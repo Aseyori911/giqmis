@@ -165,13 +165,14 @@ export default function Gallery() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-slate-800 mb-4">
+            <h3 className="text-3xl font-bold text-slate-800 mb-4">
               Frequently Asked Questions
             </h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
               Find answers to common questions about our Arabic language
               programs.
             </p>
+            <div className=" bg-orange-500 border border-orange-500  w-[10%] mx-auto mt-3 h-1"></div>
           </div>
           <div className="max-w-3xl mx-auto">
             {/* <!-- FAQ Item 1 --> */}

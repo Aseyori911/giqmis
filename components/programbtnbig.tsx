@@ -17,7 +17,7 @@ import {
 
 // Type definitions
 interface Feature {
-  icon: any;
+  icon: React.ElementType;
   text: string;
 }
 
@@ -50,7 +50,7 @@ interface Instructor {
 interface Course {
   title: string;
   subtitle: string;
-  icon: any;
+  icon: React.ElementType;
   rating: number;
   reviews: number;
   students: number;
@@ -424,7 +424,7 @@ const courseData: CourseData = {
   },
 };
 
-export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
+export default function MultiCourseDetails(): React.ReactElement {
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<TabId>("overview");
 
@@ -434,20 +434,19 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
     description,
     onClick,
   }) => (
-    <div className="bg-white rounded-lg overflow-hidden shadow-sm mb-4 hover:shadow-md transition-shadow">
-      <div className="w-full bg-gray-200 h-60">
-        {/* this is where you will put the image */}
-        <BookOpen size={48} className="text-gray-400" />
+    <div className="bg-white rounded-lg overflow-hidden flex shadow-sm mb-6 hover:shadow-md transition-shadow">
+      <div className="w-56 md:w-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+        <BookOpen size={56} className="text-gray-400" />
       </div>
-      <div className="flex-1 p-6">
-        <h4 className="text-xl font-semibold mb-2 text-slate-800">{title}</h4>
-        <p className="text-slate-600 mb-5 leading-relaxed">{description}</p>
+      <div className="flex-1 p-8">
+        <h4 className="text-2xl font-semibold mb-3 text-slate-800">{title}</h4>
+        <p className="text-slate-600 mb-6 leading-relaxed text-lg">{description}</p>
         <button
           onClick={() => onClick(courseKey)}
-          className="inline-flex items-center gap-2 bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors font-medium"
+          className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors font-medium text-lg"
         >
           View Details
-          <ChevronRight size={16} />
+          <ChevronRight size={18} />
         </button>
       </div>
     </div>
@@ -461,52 +460,56 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
   if (!selectedCourse) {
     return (
       <div className="p-8 bg-gray-50 min-h-screen">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-4 text-gray-800">
-              Special Programs
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold mb-6 text-gray-800">
+            Special Programs
             </h1>
-            <p className="text-gray-600 text-lg">
-              {/* {" "} */}
+            <p className="text-gray-600 text-xl max-w-3xl mx-auto">
+              Choose from our comprehensive selection of Arabic language
               Beyond our regular courses, we offer specialized programs to meet
               diverse learning needs and interests.
             </p>
             <div className=" bg-orange-500 border border-orange-500  w-[10%] mx-auto mt-3 h-1"></div>
           </div>
+          
 
-          <CourseCard
-            courseKey="summer-intensive"
-            title="Summer Intensive Course"
-            description="Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons."
-            onClick={handleCourseSelect}
-          />
+          <div className="space-y-6">
+            <CourseCard
+              courseKey="summer-intensive"
+              title="Summer Intensive Course"
+              description="Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons and immersive cultural experiences."
+              onClick={handleCourseSelect}
+            />
 
-          <CourseCard
-            courseKey="conversation-club"
-            title="Arabic Conversation Club"
-            description="Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice."
-            onClick={handleCourseSelect}
-          />
+            <CourseCard
+              courseKey="conversation-club"
+              title="Arabic Conversation Club"
+              description="Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice for learners at all levels."
+              onClick={handleCourseSelect}
+            />
 
-          <CourseCard
-            courseKey="private-tutoring"
-            title="Private Tutoring"
-            description="Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives."
-            onClick={handleCourseSelect}
-          />
+            <CourseCard
+              courseKey="private-tutoring"
+              title="Private Tutoring"
+              description="Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives and prefer individualized attention."
+              onClick={handleCourseSelect}
+            />
 
-          <CourseCard
-            courseKey="arabic-for-professionals"
-            title="Arabic for Professionals"
-            description="Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement."
-            onClick={handleCourseSelect}
-          />
+            <CourseCard
+              courseKey="arabic-for-professionals"
+              title="Arabic for Professionals"
+              description="Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement and professional development."
+              onClick={handleCourseSelect}
+            />
+          </div>
         </div>
       </div>
     );
   }
 
   const course: Course = courseData[selectedCourse];
+  const IconComponent: React.ElementType = course.icon;
 
   const tabs: Tab[] = [
     { id: "overview", label: "Overview" },
@@ -520,7 +523,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
         <div
-          className={`relative bg-gradient-to-r ${course.color} text-white p-8 `}
+          className={`relative bg-gradient-to-r ${course.color} text-white p-8`}
         >
           <button
             onClick={() => setSelectedCourse(null)}
@@ -530,11 +533,24 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
           </button>
 
           <div className="flex items-start gap-6">
+            <div className="w-24 h-24 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+              <IconComponent size={40} className="text-white" />
+            </div>
             <div className="flex-1">
               <h2 className="text-3xl font-bold mb-2">{course.title}</h2>
               <p className="text-white text-opacity-90 text-lg mb-4">
                 {course.subtitle}
               </p>
+              <div className="flex items-center gap-4 text-sm">
+                <span className="flex items-center gap-1">
+                  <Star className="fill-yellow-300 text-yellow-300" size={16} />
+                  {course.rating} ({course.reviews} reviews)
+                </span>
+                <span className="flex items-center gap-1">
+                  <Users size={16} />
+                  {course.students}+ students enrolled
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -598,7 +614,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
                   </h4>
                   <div className="space-y-3">
                     {course.features.map((feature: Feature, index: number) => {
-                      const FeatureIcon = feature.icon;
+                      const FeatureIcon: React.ElementType = feature.icon;
                       return (
                         <div key={index} className="flex items-center gap-3">
                           <FeatureIcon

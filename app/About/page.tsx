@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover bg-center text-white py-35 text-center min-h-[400px] flex items-center justify-center">
         <div className="container mx-auto px-4 ">
-          <h2 className="text-4xl mb-5">About Our School</h2>
+          <h2 className="text-4xl font-bold mb-5">About Our School</h2>
           <ul className="flex justify-center list-none">
             <li className="mx-1">
               {/* <a href="/" className="text-orange-500 no-underline">Home</a> */}
@@ -75,7 +75,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[80%] mx-auto">
             <div className="bg-white p-10 rounded-lg shadow-sm h-full">
-              <h3 className="text-2xl text-slate-800 mb-5 flex items-center">
+              <h3 className="text-3xl font-bold text-slate-800 mb-5 flex items-center">
                 <span className="text-3xl mr-4 text-orange-500">🎯</span> Our
                 Mission
               </h3>
@@ -87,7 +87,7 @@ export default function Home() {
               </p>
             </div>
             <div className="bg-white p-10 rounded-lg shadow-sm h-full">
-              <h3 className="text-2xl text-slate-800 mb-5 flex items-center">
+              <h3 className="text-3xl font-bold text-slate-800 mb-5 flex items-center">
                 <span className="text-3xl mr-4 text-orange-500">👁️</span> Our
                 Vision
               </h3>
@@ -105,7 +105,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-slate-800 mb-4">Our Core Values</h3>
+            <h3 className="text-3xl font-bold text-slate-800 mb-4">Our Core Values</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
               The principles that guide our approach to education and community
               building.
@@ -184,7 +184,7 @@ export default function Home() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-slate-800 mb-4">Meet Our Team</h3>
+            <h3 className="text-3xl font-bold text-slate-800 mb-4">Meet Our Team</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
               Our dedicated faculty brings years of experience and passion to
               Arabic language education.
@@ -266,7 +266,7 @@ export default function Home() {
       <section className="py-20 sm:block hidden bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-slate-800 mb-4">Our Journey</h3>
+            <h3 className="text-3xl font-bold text-slate-800 mb-4">Our Journey</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
               The growth and milestones of GIQMIS School over the years.
             </p>
@@ -367,7 +367,7 @@ export default function Home() {
       <section className="sm:hidden block py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-slate-800 mb-4">Not Our Journey</h3>
+            <h3 className="text-3xl font-bold text-slate-800 mb-4">Our Journey</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
               The growth and milestones of GIQMIS School over the years.
             </p>
@@ -462,7 +462,7 @@ export default function Home() {
 
       <section className="py-20 bg-orange-500 text-white text-center">
         <div className="container mx-auto px-4">
-          <h3 className="text-3xl mb-4">Join Our Arabic Learning Community</h3>
+          <h3 className="text-3xl font-bold mb-4">Join Our Arabic Learning Community</h3>
           <p className="mb-8 max-w-2xl mx-auto">
             Experience the rich tradition of Arabic language and culture in our
             supportive learning environment.

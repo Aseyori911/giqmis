@@ -12,7 +12,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-[50px]">
-            <h3 className="text-[32px] text-gray-800 mb-[15px]">
+            <h3 className="text-3xl font-bold text-gray-800 mb-[15px]">
               Why Choose GIQMIS?
             </h3>
             <p className="text-gray-600 max-w-[700px] mx-auto">
@@ -60,7 +60,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-10">
-            <h3 className="text-[32px] text-gray-800 mb-[10px]">
+            <h3 className="text-3xl font-bold text-gray-800 mb-[10px]">
               Our Programs
             </h3>
             <p className="text-gray-600 max-w-[700px] mx-auto">
@@ -81,7 +81,7 @@ export default function Home() {
 
       <section className="py-20 bg-orange-500 text-white text-center">
         <div className="max-w-7xl mx-auto px-4">
-          <h3 className="text-[32px] mb-5">
+          <h3 className="text-3xl font-bold mb-5">
             Begin Your Journey to Qur&apos;anic Excellence
           </h3>
           <p className="max-w-[600px] mx-auto mb-[30px] leading-relaxed">
@@ -95,7 +95,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-[32px] text-gray-800 mb-[15px]">
+            <h3 className="text-3xl font-bold text-gray-800 mb-[15px]">
               What Our Students Say
             </h3>
             <p className="text-gray-600 max-w-[700px] mx-auto">
