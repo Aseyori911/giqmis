@@ -124,7 +124,7 @@ export default function Program() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 hidden md:block">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl text-slate-800 mb-4">Special Programs</h3>
@@ -134,7 +134,7 @@ export default function Program() {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  w-[80%] mx-auto">
-            <div className="bg-white rounded-lg overflow-hidden md:flex shadow-sm">
+            <div className="bg-white rounded-lg overflow-hidden flex shadow-sm">
               <div className="w-48 bg-gray-200 "></div>
               <div className="flex-1 p-6">
                 <h4 className="text-xl mb-2 text-slate-800">Summer Intensive Course</h4>
@@ -178,6 +178,75 @@ export default function Program() {
             </div>
             <div className="bg-white rounded-lg overflow-hidden flex shadow-sm">
               <div className="w-48 bg-gray-200"></div>
+              <div className="flex-1 p-6">
+                <h4 className="text-xl mb-2 text-slate-800">Arabic for Professionals</h4>
+                <p className="text-slate-500 mb-5 leading-relaxed">
+                  Specialized courses for business professionals, healthcare
+                  workers, diplomats, and others who need Arabic language skills
+                  for their career.
+                </p>
+                <a href="#" className="inline-block bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+                  View Details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-gray-50 md:hidden block">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl text-slate-800 mb-4">fake Special Programs</h3>
+            <p className="text-slate-500 max-w-[80%] mx-auto">
+              Beyond our regular courses, we offer specialized programs to meet
+              diverse learning needs and interests.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  w-[80%] mx-auto">
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div className="w-full bg-gray-200 h-60"></div>
+              <div className="flex-1 p-6">
+                <h4 className="text-xl mb-2 text-slate-800">Summer Intensive Course</h4>
+                <p className="text-slate-500 mb-5 leading-relaxed">
+                  Accelerate your Arabic learning with our 4-week intensive
+                  summer program. Perfect for those who want to make rapid
+                  progress in a short time frame.
+                </p>
+                <a href="#" className="inline-block bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+                  View Details
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div className="w-full bg-gray-200 h-60"></div>
+              <div className="flex-1 p-6">
+                <h4 className="text-xl mb-2 text-slate-800">Arabic Conversation Club</h4>
+                <p className="text-slate-500 mb-5 leading-relaxed">
+                  Practice speaking Arabic in a relaxed, social environment. Our
+                  weekly conversation clubs are facilitated by native speakers
+                  and are free for enrolled students.
+                </p>
+                <a href="#" className="inline-block bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+                  View Details
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div className="w-full bg-gray-200 h-60"></div>
+              <div className="flex-1 p-6">
+                <h4 className="text-xl mb-2 text-slate-800">Private Tutoring</h4>
+                <p className="text-slate-500 mb-5 leading-relaxed">
+                  Personalized one-on-one instruction tailored to your specific
+                  learning goals, schedule, and pace. Ideal for students who
+                  need targeted help or have unique objectives.
+                </p>
+                <a href="#" className="inline-block bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 transition-colors">
+                  View Details
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div className="w-full bg-gray-200 h-60"></div>
               <div className="flex-1 p-6">
                 <h4 className="text-xl mb-2 text-slate-800">Arabic for Professionals</h4>
                 <p className="text-slate-500 mb-5 leading-relaxed">
