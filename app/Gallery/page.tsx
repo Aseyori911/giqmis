@@ -444,7 +444,7 @@ export default function Gallery() {
                 &quot;
                 </span>
                 The graduation ceremony at Al-Noor was one of my proudest
-                moments. The school's commitment to celebrating achievements
+                moments. The school&apos;s commitment to celebrating achievements
                 really motivates students to excel.
               </p>
               <div className="flex items-center">

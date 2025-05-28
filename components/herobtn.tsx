@@ -6,7 +6,7 @@ import {
   User,
   Mail,
   Phone,
-  FileText,
+  // FileText,
   GraduationCap,
   Calendar,
   CheckCircle,
@@ -23,7 +23,7 @@ type ModalProps = {
   children: ReactNode;
 };
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, children }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -89,7 +89,7 @@ const ArabicSchoolModals = () => {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-[42px] mb-5">Nurturing Knowledge and Faith</h2>
           <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed">
-            GLADTIDINGS INSTITUTION provides quality Qur'an memorization and
+            GLADTIDINGS INSTITUTION provides quality Qur&apos;an memorization and
             Islamic studies education for females in a supportive and enriching
             environment.
           </p>

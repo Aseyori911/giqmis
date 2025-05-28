@@ -66,4 +66,3 @@ export default function Menuu() {
     </div>
   );
 }
-// https://github.com/Aseyori911/GIQMIS.git

@@ -43,7 +43,7 @@ export default function Home() {
                 accomplishments we&apos;ve been able to record over the years are
                 those concerning two different student. One of them, Zainab, has
                 speech defect and her communication is poor, however, by the
-                might of Allah she has memorised up to 4 ajza of the Qur'an.
+                might of Allah she has memorised up to 4 ajza of the Qur&apos;an.
               </p>
               <p className="text-slate-500 leading-relaxed mb-4">
                 {/* {" "} */}

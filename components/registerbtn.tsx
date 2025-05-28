@@ -6,7 +6,7 @@ import {
   User,
   Mail,
   Phone,
-  FileText,
+  // FileText,
   GraduationCap,
   Calendar,
   CheckCircle,
@@ -26,7 +26,7 @@ type ModalProps = {
   
   // console.log("re-render")
   
-  const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+  const Modal = ({ isOpen, children }: ModalProps) => {
     if (!isOpen) return null;
 
     return (

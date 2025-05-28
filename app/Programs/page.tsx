@@ -109,8 +109,8 @@ export default function Program() {
                 src="https://plus.unsplash.com/premium_photo-1679065960816-77d101ec25f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXJhYmljJTIwc2Nob29sfGVufDB8fDB8fHww"
                 alt="Students learning Arabic"
                 width={500}
-                height={500}
-                className="w-full h-auto block"
+                height={300}
+                className="w-full h-[750px] block"
               />
             </div>
           </div>

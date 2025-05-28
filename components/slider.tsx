@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function Sliding() {
   return(
@@ -49,10 +49,10 @@ export default function Sliding() {
           </div>
           <div className="p-[25px]">
             <h4 className="text-xl text-gray-800 mb-[10px]">
-              Children's Arabic Program
+              Children&apos;s Arabic Program
             </h4>
             <p className="text-gray-600 mb-5 leading-relaxed">
-              Our Arabic school nurtures children by focusing on Qur'an reading,
+              Our Arabic school nurtures children by focusing on Qur&apos;an reading,
               memorization, and understanding, while strengthening Arabic
               language foundations, pronunciation skills, and overall
               comprehension abilities effectively.
@@ -92,7 +92,7 @@ export default function Sliding() {
             </h4>
             <p className="text-gray-600 mb-5 leading-relaxed">
               We provide structured Arabic education for teenagers, emphasizing
-              Qur'an reading, Tajweed, memorization, grammar skills,
+              Qur&apos;an reading, Tajweed, memorization, grammar skills,
               comprehension improvement, and building a deep, meaningful
               relationship with the Arabic language.
             </p>
@@ -130,7 +130,7 @@ export default function Sliding() {
               Adult Arabic Program
             </h4>
             <p className="text-gray-600 mb-5 leading-relaxed">
-              Our adult Arabic courses focus on Qur'an reading, memorization,
+              Our adult Arabic courses focus on Qur&apos;an reading, memorization,
               Arabic grammar mastery, and communication skills, offering
               flexible paths for beginners, intermediate learners, and advanced
               students.
@@ -169,7 +169,7 @@ export default function Sliding() {
               Summer Intensive Program
             </h4>
             <p className="text-gray-600 mb-5 leading-relaxed">
-              Boost Arabic and Qur'an memorization this summer through daily
+              Boost Arabic and Qur&apos;an memorization this summer through daily
               intensive classes focusing on fluent reading, grammar practice,
               vocabulary development, memorization strategies, and comprehensive
               language understanding.
@@ -206,7 +206,7 @@ export default function Sliding() {
           <div className="p-[25px]">
             <h4 className="text-xl text-gray-800 mb-[10px]">Online class</h4>
             <p className="text-gray-600 mb-5 leading-relaxed">
-              Attend live, interactive Arabic classes online focused on Qur'an
+              Attend live, interactive Arabic classes online focused on Qur&apos;an
               reading, Tajweed, memorization, grammar, comprehension
               improvement, and enjoy personalized instruction from experienced
               teachers with flexible scheduling.
