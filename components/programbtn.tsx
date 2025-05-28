@@ -5,7 +5,7 @@ import {
   Calendar,
   Clock,
   Users,
-  Star,
+//   Star,
   BookOpen,
   Award,
   ChevronRight,
@@ -14,10 +14,13 @@ import {
   Target,
   Globe,
 } from "lucide-react";
-
+interface IconProps {
+    size?: number;
+    className?: string;
+  }
 // Type definitions
 interface Feature {
-  icon: any;
+    icon: string | React.ComponentType<IconProps>;
   text: string;
 }
 
@@ -50,7 +53,7 @@ interface Instructor {
 interface Course {
   title: string;
   subtitle: string;
-  icon: any;
+  icon: string | React.ComponentType<IconProps>;
   rating: number;
   reviews: number;
   students: number;
@@ -574,7 +577,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <h4 className="font-semibold text-gray-800">
-                    What You'll Learn
+                    What You&apos;ll Learn
                   </h4>
                   <ul className="space-y-2">
                     {course.whatYouLearn.map((item: string, index: number) => (

@@ -590,7 +590,7 @@ export default function MultiCourseDetails(): React.ReactElement {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <h4 className="font-semibold text-gray-800">
-                    What You'll Learn
+                    What You&apos;ll Learn
                   </h4>
                   <ul className="space-y-2">
                     {course.whatYouLearn.map((item: string, index: number) => (
