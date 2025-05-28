@@ -31,7 +31,7 @@ export default function Header() {
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center space-x-6 gap-10">
+            <div className="flex items-center space-x-6 gap-3">
               <Active />
 
               {/* Language Switch */}

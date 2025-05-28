@@ -109,8 +109,15 @@ export default function Program() {
                 src="https://plus.unsplash.com/premium_photo-1679065960816-77d101ec25f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXJhYmljJTIwc2Nob29sfGVufDB8fDB8fHww"
                 alt="Students learning Arabic"
                 width={500}
-                height={300}
-                className="w-full h-[750px] block"
+                height={500}
+                className="w-full md:h-[750px] sm:hidden block "
+              />
+              <Image
+                src="https://plus.unsplash.com/premium_photo-1679065960816-77d101ec25f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXJhYmljJTIwc2Nob29sfGVufDB8fDB8fHww"
+                alt="Students learning Arabic"
+                width={500}
+                height={500}
+                className="w-full sm:h[50px] hidden sm:block"
               />
             </div>
           </div>
@@ -127,8 +134,8 @@ export default function Program() {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  w-[80%] mx-auto">
-            <div className="bg-white rounded-lg overflow-hidden flex shadow-sm">
-              <div className="w-48 bg-gray-200"></div>
+            <div className="bg-white rounded-lg overflow-hidden md:flex shadow-sm">
+              <div className="w-48 bg-gray-200 "></div>
               <div className="flex-1 p-6">
                 <h4 className="text-xl mb-2 text-slate-800">Summer Intensive Course</h4>
                 <p className="text-slate-500 mb-5 leading-relaxed">
