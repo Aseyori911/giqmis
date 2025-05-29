@@ -8,7 +8,7 @@ export default function Gallery() {
           <h2 className="text-4xl font-bold text-white mb-4">Our Gallery</h2>
           <p className="text-lg text-white max-w-3xl mx-auto">
             Explore memorable moments from our classes, events, and cultural
-            celebrations at Al-Noor Arabic School. Discover the vibrant
+            celebrations at GIQMIS. Discover the vibrant
             community and rich learning experiences we offer.
           </p>
         </div>
@@ -389,7 +389,7 @@ export default function Gallery() {
                 <span className="absolute -top-5 -left-4 text-8xl text-orange-500 opacity-10 z-10">
                 &quot;
                 </span>
-                The gallery events at Al-Noor have been a wonderful way to
+                The gallery events at GIQMIS have been a wonderful way to
                 connect with Arabic culture. My children love showcasing their
                 artwork and calligraphy projects!
               </p>
@@ -417,7 +417,7 @@ export default function Gallery() {
                 <span className="absolute -top-5 -left-4 text-8xl text-orange-500 opacity-10 z-10">
                 &quot;
                 </span>
-                I&apos;ve been studying Arabic at Al-Noor for two years now. The
+                I&apos;ve been studying Arabic at GIQMIS for two years now. The
                 cultural events and field trips have truly enhanced my
                 understanding of the language and culture.
               </p>
@@ -443,7 +443,7 @@ export default function Gallery() {
                 <span className="absolute -top-5 -left-4 text-8xl text-orange-500 opacity-10 z-10">
                 &quot;
                 </span>
-                The graduation ceremony at Al-Noor was one of my proudest
+                The graduation ceremony at GIQMIS was one of my proudest
                 moments. The school&apos;s commitment to celebrating achievements
                 really motivates students to excel.
               </p>

@@ -404,7 +404,7 @@ const ArabicSchoolModals = () => {
                 Our Mission - رسالتنا
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                At Al-Noor Arabic School, we are dedicated to providing
+                At GIQMIS, we are dedicated to providing
                 authentic Arabic language education rooted in Islamic values and
                 cultural heritage. Our mission is to nurture young minds,
                 strengthen their connection to their faith and heritage, while
@@ -476,7 +476,7 @@ const ArabicSchoolModals = () => {
 
             <div className="bg-blue-50 p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-gray-800 mb-3">
-                Why Choose Al-Noor?
+                Why Choose GIQMIS?
               </h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">

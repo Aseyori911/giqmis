@@ -281,7 +281,7 @@ export default function Home() {
                 <h4 className="text-lg text-orange-500 mb-2">2019</h4>
                 <h3 className="text-xl text-slate-800 mb-2">The Beginning</h3>
                 <p className="text-slate-500 leading-relaxed">
-                  Al-Noor Arabic School was founded with just 15 students and 2
+                  Gladtidings Institutions for Qur&apos;an Memorization and Islamic Studies for Females was founded with just 15 students and 2
                   teachers, operating on weekends in a community center.
                 </p>
               </div>
@@ -382,7 +382,7 @@ export default function Home() {
               <h4 className="text-lg text-orange-500 mb-2">2019</h4>
               <h3 className="text-xl text-slate-800 mb-2">The Beginning</h3>
                 <p className="text-slate-500 leading-relaxed">
-                Al-Noor Arabic School was founded with just 15 students and 2
+                GIQMIS Arabic School was founded with just 15 students and 2
                 teachers, operating on weekends in a community center.
                 </p>
               </div>
