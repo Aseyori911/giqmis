@@ -5,7 +5,6 @@ import {
   Calendar,
   Clock,
   Users,
-//   Star,
   BookOpen,
   Award,
   ChevronRight,
@@ -470,7 +469,6 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
               Special Programs
             </h1>
             <p className="text-gray-600 text-lg">
-              {/* {" "} */}
               Beyond our regular courses, we offer specialized programs to meet
               diverse learning needs and interests.
             </p>
