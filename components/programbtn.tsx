@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import Registerbtn from "@/components/registerbtn";
+import Image from "next/image";
 import {
   X,
   Calendar,
@@ -13,13 +15,14 @@ import {
   Target,
   Globe,
 } from "lucide-react";
+
 interface IconProps {
-    size?: number;
-    className?: string;
-  }
-// Type definitions
+  size?: number;
+  className?: string;
+}
+
 interface Feature {
-    icon: string | React.ComponentType<IconProps>;
+  icon: string | React.ComponentType<IconProps>;
   text: string;
 }
 
@@ -63,6 +66,7 @@ interface Course {
   curriculum: CurriculumWeek[];
   schedule: Schedule;
   instructor: Instructor;
+  image: string; // Added image property
 }
 
 interface CourseData {
@@ -73,6 +77,7 @@ interface CourseCardProps {
   courseKey: string;
   title: string;
   description: string;
+  image: string; // Added image prop
   onClick: (courseKey: string) => void;
 }
 
@@ -92,6 +97,7 @@ const courseData: CourseData = {
     reviews: 245,
     students: 1420,
     color: "from-orange-500 to-orange-600",
+    image: "/giq1.avif", // Different image for each course
     description:
       "Dive deep into Arabic language and culture with our intensive 4-week summer program. This immersive course combines traditional learning methods with modern interactive techniques to accelerate your Arabic proficiency.",
     features: [
@@ -177,6 +183,7 @@ const courseData: CourseData = {
     reviews: 156,
     students: 320,
     color: "from-blue-500 to-blue-600",
+    image: "/conversation-club.jpg", // Different image
     description:
       "Improve your Arabic speaking skills in a relaxed, supportive environment. Our conversation clubs are led by native speakers and provide excellent practice opportunities for students at all levels.",
     features: [
@@ -262,6 +269,7 @@ const courseData: CourseData = {
     reviews: 89,
     students: 450,
     color: "from-purple-500 to-purple-600",
+    image: "/private-tutoring.jpg", // Different image
     description:
       "Accelerate your Arabic learning with personalized instruction tailored to your specific goals, schedule, and learning style. Perfect for students who need targeted help or have unique objectives.",
     features: [
@@ -347,6 +355,7 @@ const courseData: CourseData = {
     reviews: 78,
     students: 190,
     color: "from-green-500 to-green-600",
+    image: "/arabic-professionals.jpg", // Different image
     description:
       "Master Arabic language skills tailored to your professional needs. Whether you work in business, healthcare, diplomacy, or other fields, this specialized course provides industry-specific vocabulary and communication skills.",
     features: [
@@ -434,12 +443,19 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
     courseKey,
     title,
     description,
+    image, // Now receiving image as prop
     onClick,
   }) => (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm mb-4 hover:shadow-md transition-shadow">
-      <div className="w-full bg-gray-200 h-60">
-        {/* this is where you will put the image */}
-        <BookOpen size={48} className="text-gray-400" />
+      <div className="w-full bg-[url] h-[200px]">
+        <Image
+          src={image} // Using the passed image prop
+          alt={title} // Better alt text
+          width={100}
+          height={100}
+          sizes="68px"
+          className="w-full h-full bg-cover bg-center rounded object-contain"
+        />
       </div>
       <div className="flex-1 p-6">
         <h4 className="text-xl font-semibold mb-2 text-slate-800">{title}</h4>
@@ -479,6 +495,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
             courseKey="summer-intensive"
             title="Summer Intensive Course"
             description="Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons."
+            image={courseData["summer-intensive"].image} // Passing specific image
             onClick={handleCourseSelect}
           />
 
@@ -486,6 +503,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
             courseKey="conversation-club"
             title="Arabic Conversation Club"
             description="Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice."
+            image={courseData["conversation-club"].image} // Passing specific image
             onClick={handleCourseSelect}
           />
 
@@ -493,6 +511,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
             courseKey="private-tutoring"
             title="Private Tutoring"
             description="Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives."
+            image={courseData["private-tutoring"].image} // Passing specific image
             onClick={handleCourseSelect}
           />
 
@@ -500,6 +519,7 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
             courseKey="arabic-for-professionals"
             title="Arabic for Professionals"
             description="Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement."
+            image={courseData["arabic-for-professionals"].image} // Passing specific image
             onClick={handleCourseSelect}
           />
         </div>
@@ -517,12 +537,20 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 flex items-center justify-center p-3 z-50">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
         <div
-          className={`relative bg-gradient-to-r ${course.color} text-white p-8 `}
+          className={`relative bg-gradient-to-r ${course.color} text-white p-2 flex gap-3 justify-center items-center rounded-t-2xl`}
         >
+          <Image
+            src="/Gladtidings_LOGO.JPG"
+            alt="Glad"
+            width={48}
+            height={48}
+            sizes="68px"
+            className="w-24 h-24 rounded object-contain"
+          />
           <button
             onClick={() => setSelectedCourse(null)}
             className="absolute top-4 right-4 p-2 hover:bg-white hover:bg-opacity-20 rounded-full transition-colors"
@@ -727,20 +755,15 @@ export default function MultiCourseDetailsSmallDevice(): React.ReactElement {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <div className="text-sm text-gray-600">
-              <div className="font-medium">Ready to get started?</div>
-              <div>Contact us for more information about enrollment</div>
-            </div>
-            <div className="flex gap-3">
-              <button className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
-                Contact Us
-              </button>
-              <button className="px-8 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium">
-                Enroll Now
-              </button>
-            </div>
+        <div className="border-t border-gray-200 p-6 bg-gray-200">
+          <div className="flex gap-3">
+            <a
+              href="Contact"
+              className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Contact Us
+            </a>
+            <Registerbtn />
           </div>
         </div>
       </div>

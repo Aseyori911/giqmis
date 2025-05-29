@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import Registerbtn from "@/components/registerbtn";
+import Image from "next/image";
 import {
   X,
   Calendar,
@@ -509,7 +511,7 @@ export default function MultiCourseDetails(): React.ReactElement {
   }
 
   const course: Course = courseData[selectedCourse];
-  const IconComponent: React.ElementType = course.icon;
+  // const IconComponent: React.ElementType = course.icon;
 
   const tabs: Tab[] = [
     { id: "overview", label: "Overview" },
@@ -519,7 +521,7 @@ export default function MultiCourseDetails(): React.ReactElement {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-opacity-80 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
         {/* Header */}
         <div
@@ -533,8 +535,17 @@ export default function MultiCourseDetails(): React.ReactElement {
           </button>
 
           <div className="flex items-start gap-6">
-            <div className="w-24 h-24 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
-              <IconComponent size={40} className="text-white" />
+            <div className=" bg-black bg-opacity-20 rounded-xl flex items-center justify-center">
+                <Image
+                  src="/Gladtidings_LOGO.JPG"
+                  alt="Glad"
+                  // fill
+                  // style={{ objectFit: "cover" }} 
+                  width={48}
+                  height={48}
+                  sizes="68px"
+                  className="w-24 h-24 rounded object-contain"
+                />
             </div>
             <div className="flex-1">
               <h2 className="text-3xl font-bold mb-2">{course.title}</h2>
@@ -742,19 +753,17 @@ export default function MultiCourseDetails(): React.ReactElement {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-6 bg-gray-50">
+        <div className="border-t border-gray-200 p-6 bg-gray-200">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="text-sm text-gray-600">
               <div className="font-medium">Ready to get started?</div>
               <div>Contact us for more information about enrollment</div>
             </div>
             <div className="flex gap-3">
-              <button className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors">
-                Contact Us
-              </button>
-              <button className="px-8 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors font-medium">
-                Enroll Now
-              </button>
+            <a href="Contact" className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Contact Us
+          </a>
+              <Registerbtn />
             </div>
           </div>
         </div>
