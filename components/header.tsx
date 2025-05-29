@@ -15,7 +15,7 @@ export default function Header() {
                   src="/Gladtidings_LOGO.JPG"
                   alt="Glad"
                   fill
-                  style={{ objectFit: "cover" }} 
+                  style={{ objectFit: "cover" }}
                   sizes="48px"
                   className="max-w-full max-h-full object-contain"
                 />
@@ -24,29 +24,30 @@ export default function Header() {
                 <h1 className="text-2xl font-bold text-gray-800">
                   GI<span className="text-orange-500">QM</span>IS
                 </h1>
-                <p className="italic text-xs text-orange-600">
+                <p className="italic text-[12px] md:text-xs text-orange-600">
                   LET KNOWLEDGE FLOURISH
                 </p>
               </div>
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center space-x-6 gap-3">
+            <div className="flex items-center space-x-1 gap-15 lg:gap-10">
               <Active />
-
-              {/* Language Switch */}
-              <div className="sm:flex items-center text-sm text-gray-600">
-                <span className="hover:text-orange-600 cursor-pointer transition-colors">
-                  English
-                </span>
-                <span className="mx-2">|</span>
-                <span className="hover:text-orange-600 cursor-pointer transition-colors">
-                  العربية
-                </span>
-              </div>
-              {/* Mobile Menu Toggle */}
-              <div className="lg:hidden">
-                <Menuu />
+              <div className="bar flex items-center gap-8">
+                {/* Language Switch */}
+                <div className="sm:flex items-center text-sm text-gray-600">
+                  <span className="lang hover:text-orange-600 cursor-pointer transition-colors">
+                    English
+                  </span>
+                  <span className="mx-2">|</span>
+                  <span className="lang hover:text-orange-600 cursor-pointer transition-colors">
+                    العربية
+                  </span>
+                </div>
+                {/* Mobile Menu Toggle */}
+                <div className="md:hidden">
+                  <Menuu />
+                </div>
               </div>
             </div>
           </div>

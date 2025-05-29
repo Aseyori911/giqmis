@@ -183,7 +183,7 @@ const courseData: CourseData = {
     reviews: 156,
     students: 320,
     color: "from-blue-500 to-blue-600",
-    image: "/conversation-club.jpg", // Different image
+    image: "/giq2.webp", // Different image
     description:
       "Improve your Arabic speaking skills in a relaxed, supportive environment. Our conversation clubs are led by native speakers and provide excellent practice opportunities for students at all levels.",
     features: [
@@ -269,7 +269,7 @@ const courseData: CourseData = {
     reviews: 89,
     students: 450,
     color: "from-purple-500 to-purple-600",
-    image: "/private-tutoring.jpg", // Different image
+    image: "/giq3.avif", // Different image
     description:
       "Accelerate your Arabic learning with personalized instruction tailored to your specific goals, schedule, and learning style. Perfect for students who need targeted help or have unique objectives.",
     features: [
@@ -355,7 +355,7 @@ const courseData: CourseData = {
     reviews: 78,
     students: 190,
     color: "from-green-500 to-green-600",
-    image: "/arabic-professionals.jpg", // Different image
+    image: "/giq4.webp", // Different image
     description:
       "Master Arabic language skills tailored to your professional needs. Whether you work in business, healthcare, diplomacy, or other fields, this specialized course provides industry-specific vocabulary and communication skills.",
     features: [

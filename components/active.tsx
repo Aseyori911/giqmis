@@ -21,7 +21,7 @@ export default function Active() {
   return (
     <div>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block">
+      <nav className="hidden md:block">
         <ul className="flex space-x-8">
           {navItems.map((item) => (
             <li key={item.path}>

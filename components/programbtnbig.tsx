@@ -63,6 +63,7 @@ interface Course {
   curriculum: CurriculumWeek[];
   schedule: Schedule;
   instructor: Instructor;
+  image: string; // Added image property
 }
 
 interface CourseData {
@@ -73,6 +74,7 @@ interface CourseCardProps {
   courseKey: string;
   title: string;
   description: string;
+  image: string;
   onClick: (courseKey: string) => void;
 }
 
@@ -92,6 +94,7 @@ const courseData: CourseData = {
     reviews: 245,
     students: 1420,
     color: "from-orange-500 to-orange-600",
+    image: "/giq1.avif", // Unique image for summer course
     description:
       "Dive deep into Arabic language and culture with our intensive 4-week summer program. This immersive course combines traditional learning methods with modern interactive techniques to accelerate your Arabic proficiency.",
     features: [
@@ -177,6 +180,7 @@ const courseData: CourseData = {
     reviews: 156,
     students: 320,
     color: "from-blue-500 to-blue-600",
+    image: "/giq2.webp", // Unique image for conversation club
     description:
       "Improve your Arabic speaking skills in a relaxed, supportive environment. Our conversation clubs are led by native speakers and provide excellent practice opportunities for students at all levels.",
     features: [
@@ -262,6 +266,7 @@ const courseData: CourseData = {
     reviews: 89,
     students: 450,
     color: "from-purple-500 to-purple-600",
+    image: "/giq3.avif", // Unique image for private tutoring
     description:
       "Accelerate your Arabic learning with personalized instruction tailored to your specific goals, schedule, and learning style. Perfect for students who need targeted help or have unique objectives.",
     features: [
@@ -347,6 +352,7 @@ const courseData: CourseData = {
     reviews: 78,
     students: 190,
     color: "from-green-500 to-green-600",
+    image: "/giq4.webp", // Unique image for professionals course
     description:
       "Master Arabic language skills tailored to your professional needs. Whether you work in business, healthcare, diplomacy, or other fields, this specialized course provides industry-specific vocabulary and communication skills.",
     features: [
@@ -434,11 +440,23 @@ export default function MultiCourseDetails(): React.ReactElement {
     courseKey,
     title,
     description,
+    image,
     onClick,
   }) => (
     <div className="bg-white rounded-lg overflow-hidden flex shadow-sm mb-6 hover:shadow-md transition-shadow">
-      <div className="w-56 md:w-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-        <BookOpen size={56} className="text-gray-400" />
+      <div className="w-56 md:w-64 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4 relative overflow-hidden">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 224px, 256px"
+          className="object-cover rounded"
+          onError={(e) => {
+            // Fallback to default image if specific image fails to load
+            const target = e.target as HTMLImageElement;
+            target.src = '/giq1.avif';
+          }}
+        />
       </div>
       <div className="flex-1 p-8">
         <h4 className="text-2xl font-semibold mb-3 text-slate-800">{title}</h4>
@@ -481,6 +499,7 @@ export default function MultiCourseDetails(): React.ReactElement {
               courseKey="summer-intensive"
               title="Summer Intensive Course"
               description="Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons and immersive cultural experiences."
+              image={courseData["summer-intensive"].image}
               onClick={handleCourseSelect}
             />
 
@@ -488,6 +507,7 @@ export default function MultiCourseDetails(): React.ReactElement {
               courseKey="conversation-club"
               title="Arabic Conversation Club"
               description="Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice for learners at all levels."
+              image={courseData["conversation-club"].image}
               onClick={handleCourseSelect}
             />
 
@@ -495,6 +515,7 @@ export default function MultiCourseDetails(): React.ReactElement {
               courseKey="private-tutoring"
               title="Private Tutoring"
               description="Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives and prefer individualized attention."
+              image={courseData["private-tutoring"].image}
               onClick={handleCourseSelect}
             />
 
@@ -502,6 +523,7 @@ export default function MultiCourseDetails(): React.ReactElement {
               courseKey="arabic-for-professionals"
               title="Arabic for Professionals"
               description="Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement and professional development."
+              image={courseData["arabic-for-professionals"].image}
               onClick={handleCourseSelect}
             />
           </div>
