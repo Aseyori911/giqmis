@@ -1,11 +1,12 @@
 import Sidebar from "@/components/admin/sidebar";
-
+// import Sidebar from "@/components/slider";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="min-h-screen bg-[#faf8f4]">
       <Sidebar />
-      <main className="flex-1 bg-[#faf8f4] min-h-screen overflow-y-auto">
+      {/* offset for desktop fixed sidebar, offset top on mobile for the topbar */}
+      <main className="lg:ml-60 pt-14 lg:pt-0 min-h-screen">
         {children}
       </main>
     </div>
