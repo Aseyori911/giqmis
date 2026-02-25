@@ -105,7 +105,7 @@ function DetailModal({ app, onClose, onUpdate }: { app: Application; onClose: ()
   )
 }
 
-export default function () {
+function ApplicationsPage() {
   const [apps, setApps] = useState<Application[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -140,7 +140,7 @@ const fetchApps = useCallback(async () => {
     }
 
     setApps(data.applications || [])
-  } catch (err) {
+  } catch {
     toast.error("Network error. Please try again.")
   } finally {
     setLoading(false)
@@ -239,3 +239,5 @@ const fetchApps = useCallback(async () => {
     </div>
   )
 }
+
+export default ApplicationsPage
