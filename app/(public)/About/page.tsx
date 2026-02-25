@@ -203,7 +203,7 @@ export default function Home() {
                 </h4>
                 <p className="text-orange-500 text-sm mb-4">School Director</p>
                 <div className="text-sm text-slate-500 leading-relaxed mb-4">
-                  With over 20 years of experience in Arabic education, Layla
+                  With over 20 years of experience in Arabic education, Sipe Bushrah Olasumbo
                   founded GIQMIS with a vision to create an immersive language
                   learning community.
                 </div>
@@ -268,7 +268,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-slate-800 mb-4">Our Journey</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
-              The growth and milestones of GIQMIS School over the years.
+              The growth and milestones of GIQMIS over the years.
             </p>
             <div className=" bg-orange-500 border border-orange-500  w-[10%] mx-auto mt-3 h-1"></div>
           </div>
@@ -369,7 +369,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-slate-800 mb-4">Our Journey</h3>
             <p className="text-slate-500 max-w-2xl mx-auto">
-              The growth and milestones of GIQMIS School over the years.
+              The growth and milestones of GIQMIS over the years.
             </p>
             <div className=" bg-orange-500 border border-orange-500  w-[10%] mx-auto mt-3 h-1"></div>
           </div>
@@ -382,7 +382,7 @@ export default function Home() {
               <h4 className="text-lg text-orange-500 mb-2">2019</h4>
               <h3 className="text-xl text-slate-800 mb-2">The Beginning</h3>
                 <p className="text-slate-500 leading-relaxed">
-                GIQMIS Arabic School was founded with just 15 students and 2
+                GIQMIS was founded with just 15 students and 2
                 teachers, operating on weekends in a community center.
                 </p>
               </div>

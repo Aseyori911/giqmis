@@ -44,7 +44,7 @@ export default function Active() {
                   <li key={item.path}>
                     <Link
                       href={item.path}
-                      className={linkClass(item.path)}
+                      // className={linkClass(item.path)}
                     >
                       {item.name}
                     </Link>

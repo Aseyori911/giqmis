@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Registerbtn from "@/components/registerbtn";
+
 import Image from "next/image";
 import {
   X,
