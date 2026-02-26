@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, useCallback } from 'react'
-import { Trash2, Upload, Plus, X, Image as ImageIcon, Newspaper, Mail } from 'lucide-react'
+import { Trash2, Upload, Plus, X, Image as ImageIcon, Newspaper, Mail, BellRing } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 
 type GalleryItem = {
@@ -32,14 +32,23 @@ type ContactMessage = {
   submitted_at: string
 }
 
+type WaitlistEntry = {
+  id: string
+  name: string
+  phone: string
+  email: string
+  submitted_at: string
+}
+
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export default function AnnouncementsPage() {
-  const [tab, setTab] = useState<'gallery' | 'news' | 'messages'>('gallery')
+  const [tab, setTab] = useState<'gallery' | 'news' | 'messages' | 'waitlist'>('gallery')
   const [items, setItems] = useState<GalleryItem[]>([])
   const [posts, setPosts] = useState<NewsPost[]>([])
   const [messages, setMessages] = useState<ContactMessage[]>([])
+  const [waitlist, setWaitlist] = useState<WaitlistEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
@@ -60,17 +69,20 @@ export default function AnnouncementsPage() {
 
   const fetchAll = useCallback(async () => {
     setLoading(true)
-    const [gRes, nRes, mRes] = await Promise.all([
+    const [gRes, nRes, mRes, wRes] = await Promise.all([
       fetch('/api/admin/gallery'),
       fetch('/api/admin/galleryNews'),
       fetch('/api/admin/messages'),
+      fetch('/api/admin/waitlist'),
     ])
     const gData = await gRes.json()
     const nData = await nRes.json()
     const mData = await mRes.json()
+    const wData = await wRes.json()
     setItems(gData.items || [])
     setPosts(nData.posts || [])
     setMessages(mData.messages || [])
+    setWaitlist(wData.waitlist || [])
     setLoading(false)
   }, [])
 
@@ -216,17 +228,31 @@ export default function AnnouncementsPage() {
     fetchAll()
   }
 
+  const deleteWaitlistEntry = async (id: string) => {
+    await fetch('/api/admin/waitlist', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    })
+    toast.success('Entry removed')
+    fetchAll()
+  }
+
   const unreadCount = messages.filter(m => !m.read).length
+
+  const waitlistCSV = `data:text/csv;charset=utf-8,Name,Phone,Email,Date\n${waitlist.map(w =>
+    `${w.name},${w.phone},${w.email || ''},${new Date(w.submitted_at).toLocaleDateString('en-GB')}`
+  ).join('\n')}`
 
   return (
     <div className="p-7 pb-16 max-w-6xl mx-auto">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-stone-900 font-serif">Announcements</h1>
-        <p className="text-sm text-stone-400 mt-1">Manage gallery media, news posts, and contact messages</p>
+        <p className="text-sm text-stone-400 mt-1">Manage gallery media, news posts, contact messages and waitlist</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-6 border-b border-stone-200">
+      <div className="flex flex-wrap gap-2 mb-6 border-b border-stone-200">
         <button
           onClick={() => setTab('gallery')}
           className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors -mb-px
@@ -250,6 +276,18 @@ export default function AnnouncementsPage() {
           {unreadCount > 0 && (
             <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none">
               {unreadCount}
+            </span>
+          )}
+        </button>
+        <button
+          onClick={() => setTab('waitlist')}
+          className={`flex items-center gap-2 px-4 py-2.5 text-sm font-semibold border-b-2 transition-colors -mb-px
+            ${tab === 'waitlist' ? 'border-green-600 text-green-700' : 'border-transparent text-stone-400 hover:text-stone-600'}`}
+        >
+          <BellRing size={15} /> Waitlist
+          {waitlist.length > 0 && (
+            <span className="bg-amber-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+              {waitlist.length}
             </span>
           )}
         </button>
@@ -457,9 +495,7 @@ export default function AnnouncementsPage() {
             <h2 className="text-sm font-bold text-stone-700">
               Contact Messages ({messages.length})
             </h2>
-            <span className="text-xs text-stone-400">
-              {unreadCount} unread
-            </span>
+            <span className="text-xs text-stone-400">{unreadCount} unread</span>
           </div>
 
           {loading ? (
@@ -473,14 +509,10 @@ export default function AnnouncementsPage() {
           ) : (
             <div className="divide-y divide-stone-50">
               {messages.map(msg => (
-                <div
-                  key={msg.id}
-                  className={`p-5 hover:bg-stone-50 transition-colors ${!msg.read ? 'bg-blue-50/40 border-l-4 border-l-blue-400' : ''}`}
-                >
+                <div key={msg.id}
+                  className={`p-5 hover:bg-stone-50 transition-colors ${!msg.read ? 'bg-blue-50/40 border-l-4 border-l-blue-400' : ''}`}>
                   <div className="flex justify-between items-start gap-4">
                     <div className="flex-1 min-w-0">
-
-                      {/* Name + unread badge */}
                       <div className="flex items-center gap-2 mb-1.5">
                         <p className="text-sm font-bold text-stone-800">{msg.name}</p>
                         {!msg.read && (
@@ -489,33 +521,22 @@ export default function AnnouncementsPage() {
                           </span>
                         )}
                       </div>
-
-                      {/* Contact links */}
                       <div className="flex flex-wrap gap-3 mb-2">
-                        <a
-                          href={`mailto:${msg.email}`}
-                          className="text-xs text-orange-500 hover:underline flex items-center gap-1"
-                        >
+                        <a href={`mailto:${msg.email}`}
+                          className="text-xs text-orange-500 hover:underline flex items-center gap-1">
                           <Mail size={11} /> {msg.email}
                         </a>
                         {msg.phone && (
-                          <a
-                            href={`https://wa.me/${msg.phone.replace(/\D/g, '')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-green-600 hover:underline"
-                          >
+                          <a href={`https://wa.me/${msg.phone.replace(/\D/g, '')}`}
+                            target="_blank" rel="noopener noreferrer"
+                            className="text-xs text-green-600 hover:underline">
                             📱 {msg.phone}
                           </a>
                         )}
                       </div>
-
-                      {/* Message body */}
                       <p className="text-sm text-stone-600 leading-relaxed bg-stone-50 rounded-lg px-3 py-2">
                         {msg.message}
                       </p>
-
-                      {/* Date */}
                       <p className="text-xs text-stone-400 mt-2">
                         {new Date(msg.submitted_at).toLocaleDateString('en-GB', {
                           day: 'numeric', month: 'short', year: 'numeric',
@@ -523,25 +544,100 @@ export default function AnnouncementsPage() {
                         })}
                       </p>
                     </div>
-
-                    {/* Action buttons */}
                     <div className="flex flex-col gap-2 flex-shrink-0">
                       {!msg.read && (
-                        <button
-                          onClick={() => markRead(msg.id)}
-                          className="px-3 py-1.5 border border-stone-200 rounded-lg text-xs text-stone-500 hover:bg-stone-100 transition-colors whitespace-nowrap"
-                        >
+                        <button onClick={() => markRead(msg.id)}
+                          className="px-3 py-1.5 border border-stone-200 rounded-lg text-xs text-stone-500 hover:bg-stone-100 transition-colors whitespace-nowrap">
                           Mark Read
                         </button>
                       )}
-                      <button
-                        onClick={() => deleteMessage(msg.id)}
-                        className="p-1.5 border border-red-200 rounded-lg text-red-400 hover:bg-red-50 transition-colors flex items-center justify-center"
-                      >
+                      <button onClick={() => deleteMessage(msg.id)}
+                        className="p-1.5 border border-red-200 rounded-lg text-red-400 hover:bg-red-50 transition-colors flex items-center justify-center">
                         <Trash2 size={13} />
                       </button>
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── WAITLIST TAB ── */}
+      {tab === 'waitlist' && (
+        <div className="bg-white rounded-xl border border-stone-200 shadow-sm">
+          <div className="px-6 py-4 border-b border-stone-100 flex justify-between items-center">
+            <div>
+              <h2 className="text-sm font-bold text-stone-700">
+                Enrollment Waitlist ({waitlist.length})
+              </h2>
+              <p className="text-xs text-stone-400 mt-0.5">
+                People who signed up to be notified when enrollment opens
+              </p>
+            </div>
+            {waitlist.length > 0 && (
+              <a
+                href={waitlistCSV}
+                download="waitlist.csv"
+                className="text-xs text-green-700 font-semibold hover:underline flex items-center gap-1"
+              >
+                Export CSV ↓
+              </a>
+            )}
+          </div>
+
+          {loading ? (
+            <p className="text-center text-stone-400 text-sm py-12">Loading…</p>
+          ) : waitlist.length === 0 ? (
+            <div className="text-center py-16">
+              <BellRing size={32} className="mx-auto text-stone-200 mb-3" />
+              <p className="text-stone-400 text-sm">No one on the waitlist yet.</p>
+              <p className="text-stone-300 text-xs mt-1">
+                People who sign up when enrollment is closed will appear here.
+              </p>
+            </div>
+          ) : (
+            <div className="divide-y divide-stone-50">
+              {waitlist.map((entry, index) => (
+                <div key={entry.id} className="px-6 py-4 flex items-center gap-4 hover:bg-stone-50 transition-colors">
+                  <div className="w-7 h-7 rounded-full bg-amber-100 text-amber-700 text-xs font-bold flex items-center justify-center flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-stone-800">{entry.name}</p>
+                    <div className="flex flex-wrap gap-3 mt-0.5">
+                      <a
+                        href={`https://wa.me/${entry.phone.replace(/\D/g, '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-green-600 hover:underline"
+                      >
+                        📱 {entry.phone}
+                      </a>
+                      {entry.email && (
+                        <a
+                          href={`mailto:${entry.email}`}
+                          className="text-xs text-orange-500 hover:underline"
+                        >
+                          ✉ {entry.email}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-xs text-stone-400">
+                      {new Date(entry.submitted_at).toLocaleDateString('en-GB', {
+                        day: 'numeric', month: 'short', year: 'numeric'
+                      })}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => deleteWaitlistEntry(entry.id)}
+                    className="p-1.5 border border-red-200 rounded-lg text-red-400 hover:bg-red-50 transition-colors flex-shrink-0"
+                  >
+                    <Trash2 size={13} />
+                  </button>
                 </div>
               ))}
             </div>
