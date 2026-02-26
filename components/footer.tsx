@@ -13,7 +13,7 @@ export default function Footer() {
                 About GIQMIS
               </h4>
               <p className="text-gray-300 text-sm leading-6">
-                GLADTIDINGS INSTITUTION FOR QUR&apos;AN MEMORIZATION AND ISLAMIC
+                GLADTIDINGS INSTITUTE FOR QUR&apos;AN MEMORIZATION AND ISLAMIC
                 STUDIES FOR FEMALES is dedicated to providing excellent Islamic
                 education in a nurturing environment.
               </p>
@@ -172,7 +172,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="border-t border-gray-700 pt-6">
             <p className="text-center text-gray-400 text-xs">
-              &copy; 2025 GLADTIDINGS INSTITUTION FOR QUR&apos;AN MEMORIZATION
+              &copy; 2025 GLADTIDINGS INSTITUTE FOR QUR&apos;AN MEMORIZATION
               AND ISLAMIC STUDIES FOR FEMALES. All Rights Reserved.
             </p>
           </div>

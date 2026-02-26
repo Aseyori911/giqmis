@@ -126,7 +126,7 @@ const ArabicSchoolModals = () => {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-[42px] mb-5">Nurturing Knowledge and Faith</h2>
           <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed">
-            GLADTIDINGS INSTITUTION provides quality Qur&apos;an memorization and
+            GLADTIDINGS INSTITUTE provides quality Qur&apos;an memorization and
             Islamic studies education for females in a supportive and enriching
             environment.
           </p>
@@ -199,7 +199,7 @@ const ArabicSchoolModals = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Student Name / اسم الطالب *
+                      Student Full Name / اسم الطالب *
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -253,7 +253,7 @@ const ArabicSchoolModals = () => {
 
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Phone Number *
+                      Phone/Whatsapp Number *
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -271,7 +271,7 @@ const ArabicSchoolModals = () => {
 
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Student Age
+                      Student Age Group
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -283,13 +283,11 @@ const ArabicSchoolModals = () => {
                         required
                       >
                         <option value="">Select age</option>
-                        <option value="4-5">4-5 years</option>
-                        <option value="6-7">6-7 years</option>
-                        <option value="8-9">8-9 years</option>
-                        <option value="10-11">10-11 years</option>
-                        <option value="12-13">12-13 years</option>
-                        <option value="14-15">14-15 years</option>
-                        <option value="16+">16+ years</option>
+                        <option value="6-12">Children (6-12 years)</option>
+                        <option value="13-18">Teens (13-18 years)</option>
+                        <option value="19-30">Young Adults (19-30 years)</option>
+                        <option value="31-50">Adults (31-50 years)</option>
+                        <option value="51+">Elderly Women (51 years and above)</option>
                       </select>
                     </div>
                   </div>

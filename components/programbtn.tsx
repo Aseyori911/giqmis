@@ -430,7 +430,7 @@ const courseData: CourseData = {
       initials: "OM",
       experience: "12+ years in corporate training",
       credentials: "MBA & Arabic Language Certification",
-      bio: "Prof. Al-Mansoori has extensive experience training professionals across various industries. He has worked with multinational corporations, government agencies, and healthcare institutions to deliver targeted Arabic language training.",
+      bio: "Prof. Al-Mansoori has extensive experience training professionals across various industries. He has worked with multinational corporations, government agencies, and healthcare institute to deliver targeted Arabic language training.",
     },
   },
 };

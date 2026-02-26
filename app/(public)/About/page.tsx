@@ -27,7 +27,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-[80%] mx-auto">
             <div>
               <h3 className="text-[28px] text-black font-bold mb-5">
-                Welcome to GLADTIDINGS INSTITUTION FOR QUR&apos;AN MEMORIZATION
+                Welcome to GLADTIDINGS INSTITUTE FOR QUR&apos;AN MEMORIZATION
                 AND ISLAMIC STUDIES FOR FEMALES
               </h3>
               <p className="text-slate-500 leading-relaxed mb-4">
@@ -281,7 +281,7 @@ export default function Home() {
                 <h4 className="text-lg text-orange-500 mb-2">2019</h4>
                 <h3 className="text-xl text-slate-800 mb-2">The Beginning</h3>
                 <p className="text-slate-500 leading-relaxed">
-                  Gladtidings Institutions for Qur&apos;an Memorization and Islamic Studies for Females was founded with just 15 students and 2
+                  Gladtidings institute for Qur&apos;an Memorization and Islamic Studies for Females was founded with just 15 students and 2
                   teachers, operating on weekends in a community center.
                 </p>
               </div>

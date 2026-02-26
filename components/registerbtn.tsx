@@ -194,7 +194,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Student Name / اسم الطالب *
+                      Student Full Name / اسم الطالب *
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -203,7 +203,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="studentName"
                         value={formData.studentName}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none placeholder-gray-400"
                         placeholder="Enter student's full name"
                         required
                       />
@@ -221,7 +221,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="parentName"
                         value={formData.parentName}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none placeholder-gray-400"
                         placeholder="Parent or guardian full name"
                         required
                       />
@@ -239,7 +239,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none placeholder-gray-400"
                         placeholder="your.email@example.com"
                         required
                       />
@@ -248,7 +248,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Phone Number *
+                      Phone/Whatsapp Number *
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -257,7 +257,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none placeholder-gray-400"
                         placeholder="+234 xxx xxx xxxx"
                         required
                       />
@@ -266,7 +266,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">
-                      Student Age
+                      Student Age Group
                     </label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -274,16 +274,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="studentAge"
                         value={formData.studentAge}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white text-gray-700"
                       >
                         <option value="">Select age</option>
-                        <option value="4-5">4-5 years</option>
-                        <option value="6-7">6-7 years</option>
-                        <option value="8-9">8-9 years</option>
-                        <option value="10-11">10-11 years</option>
-                        <option value="12-13">12-13 years</option>
-                        <option value="14-15">14-15 years</option>
-                        <option value="16+">16+ years</option>
+                        <option value="6-12">Children (6-12 years)</option>
+                        <option value="13-18">Teens (13-18 years)</option>
+                        <option value="19-30">Young Adults (19-30 years)</option>
+                        <option value="31-50">Adults (31-50 years)</option>
+                        <option value="51+">Elderly Women (51 years and above)</option>
                       </select>
                     </div>
                   </div>
@@ -299,7 +297,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         name="grade"
                         value={formData.grade}
                         onChange={handleInputChange}
-                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white"
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white text-gray-700"
                       >
                         <option value="">Select grade</option>
                         <option value="pre-k">Pre-Kindergarten</option>
@@ -327,7 +325,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       name="program"
                       value={formData.program}
                       onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white text-gray-700"
                     >
                       <option value="">Select program</option>
                       {activePrograms.map(p => (
@@ -353,7 +351,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       value={formData.previousExperience}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none placeholder-gray-400"
                       placeholder="Please describe any previous Arabic or Islamic education..."
                     />
                   </div>
@@ -370,7 +368,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       value={formData.goals}
                       onChange={handleInputChange}
                       rows={3}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none placeholder-gray-400"
                       placeholder="What do you hope your child will achieve through our program?"
                     />
                   </div>

@@ -101,7 +101,7 @@ export default function Home() {
             </h3>
             <p className="text-gray-600 max-w-[700px] mx-auto">
               Hear from our community of students and parents about their
-              experience at GLADTIDINGS INSTITUTION.
+              experience at GLADTIDINGS INSTITUTE.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
@@ -152,7 +152,7 @@ export default function Home() {
             </h2>
             <p className="text-gray-600 max-w-[700px] mx-auto">
               Hear from our community of students and parents about their
-              experience at GLADTIDINGS INSTITUTION.
+              experience at GLADTIDINGS INSTITUTE.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -100,7 +100,7 @@ const ApplyNow = () => {
           <input
             type="text"
             name="studentName"
-            placeholder="Student Name *"
+            placeholder="Student Full Name *"
             value={formData.studentName}
             onChange={handleInputChange}
             className="w-full border border-gray-300 p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-emerald-500"
@@ -130,7 +130,7 @@ const ApplyNow = () => {
           <input
             type="tel"
             name="phone"
-            placeholder="Phone Number *"
+            placeholder="Phone/Whatsapp Number *"
             value={formData.phone}
             onChange={handleInputChange}
             className="w-full border border-gray-300 p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-emerald-500"
