@@ -140,10 +140,14 @@ export default function Footer() {
                   Nigeria
                 </p>
                 <p>
-                  <span className="font-medium text-white">Phone:</span>
+                  <span className="font-medium text-white">
+                    Whatsapp Number:
+                  </span>
                   <br />
                   <a
-                    href="tel:+2348071032546"
+                    href="https://wa.me/2348071032546"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-orange-500 transition-colors"
                   >
                     +234 807 103 2546
@@ -153,7 +157,9 @@ export default function Footer() {
                   <span className="font-medium text-white">Email:</span>
                   <br />
                   <a
-                    href="mailto:gladtidingsipe@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=gladtidingsipe@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="hover:text-orange-500 transition-colors"
                   >
                     gladtidingsipe@gmail.com
@@ -166,8 +172,8 @@ export default function Footer() {
           {/* Copyright */}
           <div className="border-t border-gray-700 pt-6">
             <p className="text-center text-gray-400 text-xs">
-              &copy; 2025 GLADTIDINGS INSTITUTION FOR QUR&apos;AN MEMORIZATION AND
-              ISLAMIC STUDIES FOR FEMALES. All Rights Reserved.
+              &copy; 2025 GLADTIDINGS INSTITUTION FOR QUR&apos;AN MEMORIZATION
+              AND ISLAMIC STUDIES FOR FEMALES. All Rights Reserved.
             </p>
           </div>
         </div>

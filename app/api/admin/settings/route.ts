@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+// import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getAdminSession } from '@/lib/auth'
+import { supabaseAdmin } from '@/lib/superbase-admin'
 
 // Public GET — Apply Now form uses this to check enrollment status
 export async function GET() {

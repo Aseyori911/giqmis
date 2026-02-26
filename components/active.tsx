@@ -9,7 +9,7 @@ export default function Active() {
     { name: "Home", path: "/" },
     { name: "About", path: "/About" },
     { name: "Programs", path: "/Programs" },
-    { name: "Gallery", path: "/Gallery" },
+    { name: "News/Gallery", path: "/Gallery" },
     { name: "Contact", path: "/Contact" },
   ];
 

@@ -52,7 +52,7 @@ export default function Gallery() {
                   </div>
                   <div className="contact-text">
                     <h4 className="text-lg font-semibold mb-1 text-slate-800">
-                      Phone Number
+                      whatsapp Number
                     </h4>
                     <p className="mb-0 text-slate-500">(123) 456-7890</p>
                   </div>
@@ -127,7 +127,7 @@ export default function Gallery() {
                   <input
                     type="tel"
                     className="block w-full px-4 py-3 text-base leading-6 text-gray-700 bg-white border border-gray-300 rounded transition-colors duration-300 focus:border-orange-500 focus:outline-none"
-                    placeholder="Phone Number"
+                    placeholder="WhatsApp Number"
                     required
                   />
                 </div>

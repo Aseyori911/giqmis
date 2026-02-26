@@ -1,7 +1,8 @@
 // app/api/admin/applications/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+// import { supabaseAdmin } from '@/lib/supabase-admin'
 import { getAdminSession } from '@/lib/auth'
+import { supabaseAdmin } from '@/lib/superbase-admin'
 
 export async function GET(req: NextRequest) {
   const isAdmin = await getAdminSession()
@@ -60,4 +61,43 @@ export async function PATCH(req: NextRequest) {
   }
 
   return NextResponse.json({ application: data })
+}
+
+export async function DELETE(req: NextRequest) {
+  const isAdmin = await getAdminSession()
+  if (!isAdmin) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  const { id } = await req.json()
+
+  if (!id) {
+    return NextResponse.json({ error: 'id is required' }, { status: 400 })
+  }
+
+  // First check the application exists and is not accepted
+  const { data: existing, error: fetchError } = await supabaseAdmin
+    .from('applications')
+    .select('status')
+    .eq('id', id)
+    .single()
+
+  if (fetchError || !existing) {
+    return NextResponse.json({ error: 'Application not found' }, { status: 404 })
+  }
+
+  if (existing.status === 'accepted') {
+    return NextResponse.json({ error: 'Accepted applications cannot be deleted' }, { status: 403 })
+  }
+
+  const { error } = await supabaseAdmin
+    .from('applications')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+
+  return NextResponse.json({ success: true })
 }
