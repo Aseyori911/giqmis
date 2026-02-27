@@ -18,6 +18,7 @@ const TOTAL_STEPS = 4
 export default function Registerbtn() {
   const [showApplyModal, setShowApplyModal] = useState(false)
   const [enrollmentOpen, setEnrollmentOpen] = useState(true)
+  const [activeCourses, setActiveCourses] = useState<string[]>([])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isWaitlistSubmitted, setIsWaitlistSubmitted] = useState(false)
   const [step, setStep] = useState(1)
@@ -29,6 +30,7 @@ export default function Registerbtn() {
     fetch('/api/admin/settings').then(r => r.json()).then(data => {
       const s = data.settings || {}
       setEnrollmentOpen(s.enrollment_open !== 'false')
+      setActiveCourses(s.active_courses || [])
     }).catch(() => {})
   }, [showApplyModal])
 
@@ -177,7 +179,7 @@ export default function Registerbtn() {
                   <form onSubmit={handleSubmit}>
                     {step === 1 && <StepOne formData={formData} onChange={handleInputChange} />}
                     {step === 2 && <StepTwo formData={formData} setFormData={setFormData} />}
-                    {step === 3 && <StepThree formData={formData} setFormData={setFormData} />}
+                    {step === 3 && <StepThree formData={formData} setFormData={setFormData} activeCourses={activeCourses} />}
                     {step === 4 && <StepFour formData={formData} onChange={handleInputChange} setFormData={setFormData} />}
 
                     <div className="flex gap-4 pt-6 mt-2 border-t border-gray-100">
