@@ -1,6 +1,12 @@
-// app/api/admin/login/route.ts
 import { NextRequest, NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
 import { createAdminToken } from '@/lib/auth'
+import bcrypt from 'bcryptjs'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,12 +16,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Password is required.' }, { status: 400 })
     }
 
-    const correctPassword = process.env.ADMIN_PASSWORD
-    if (!correctPassword) {
+    // Fetch hashed password from Supabase
+    const { data, error } = await supabase
+      .from('admin_credentials')
+      .select('password_hash')
+      .single()
+
+    if (error || !data) {
       return NextResponse.json({ error: 'Server configuration error.' }, { status: 500 })
     }
 
-    if (password !== correctPassword) {
+    // Compare entered password with hash
+    const match = await bcrypt.compare(password, data.password_hash)
+
+    if (!match) {
       await new Promise(r => setTimeout(r, 800))
       return NextResponse.json({ error: 'Incorrect password.' }, { status: 401 })
     }

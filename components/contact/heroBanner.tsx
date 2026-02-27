@@ -1,0 +1,12 @@
+export default function HeroBanner() {
+  return (
+    <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover bg-center text-white py-35 text-center min-h-500 flex items-center justify-center">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-white mb-4">Contact Us</h2>
+        <p className="text-lg text-white max-w-3xl mx-auto">
+          Have questions about our programs or want to schedule a visit? We&apos;re here to help.
+        </p>
+      </div>
+    </section>
+  )
+}

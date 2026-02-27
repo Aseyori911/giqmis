@@ -1,8 +1,7 @@
-// middleware.ts  (ROOT of project, same level as package.json)
 import { NextRequest, NextResponse } from 'next/server'
 import { verifyAdminToken } from '@/lib/auth'
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
@@ -13,6 +12,7 @@ export async function middleware(req: NextRequest) {
     }
 
     const isValid = await verifyAdminToken(token)
+
     if (!isValid) {
       const response = NextResponse.redirect(new URL('/admin/login', req.url))
       response.cookies.set('admin_token', '', { maxAge: 0 })
