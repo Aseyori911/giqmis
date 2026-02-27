@@ -1,33 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-  X,
-  ArrowRight,
-  ArrowLeft,
-  User,
-  Mail,
-  Phone,
-  GraduationCap,
-  Calendar,
-  CheckCircle,
-  BookOpen,
-  Users,
-  Heart,
-  AlertCircle,
-  BellRing,
-  Globe,
-  School,
-  Clock,
-  CheckSquare,
+  X, ArrowRight, ArrowLeft, User, Mail, Phone, GraduationCap,
+  Calendar, CheckCircle, BookOpen, Users, Heart, AlertCircle,
+  BellRing, Globe, School, Clock, CheckSquare,
 } from "lucide-react";
 import { ReactNode } from "react";
 import { toast } from "react-hot-toast";
 
-type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  children: ReactNode;
-};
+type ModalProps = { isOpen: boolean; onClose: () => void; children: ReactNode };
 
 const Modal = ({ isOpen, children }: ModalProps) => {
   if (!isOpen) return null;
@@ -40,22 +21,23 @@ const Modal = ({ isOpen, children }: ModalProps) => {
   );
 };
 
-const COURSES = [
-  "Arabic (Beginner)",
-  "Arabic (Intermediary)",
-  "Quran Revision",
-  "Quran Recitation",
-  "Beginner Tajweed",
-  "Advance Tajweed",
-  "Adkar",
-  "Hifdh",
-  "Hadith",
-  "Lessons from the Quran",
-  "Islamic Studies",
+const ALL_COURSES = [
+  { id: "Arabic_Beginner",          label: "Arabic (Beginner)" },
+  { id: "Arabic_Intermediate",      label: "Arabic (Intermediate)" },
+  { id: "Arabic_Revision",          label: "Arabic Revision" },
+  { id: "Quran_Recitation",         label: "Quran Recitation" },
+  { id: "Beginner_Tajweed",         label: "Beginner Tajweed" },
+  { id: "Advanced_Tajweed",         label: "Advanced Tajweed" },
+  { id: "Adkar",                    label: "Adkar" },
+  { id: "Hafdh",                    label: "Hafdh" },
+  { id: "Hadith",                   label: "Hadith" },
+  { id: "Lessons from the Quran",   label: "Lessons from the Quran" },
+  { id: "Islamic_Studies",          label: "Islamic Studies" },
 ];
 
 const Registerbtn = () => {
   const [enrollmentOpen, setEnrollmentOpen] = useState(true);
+  const [activeCourses, setActiveCourses] = useState<string[]>([]);
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isWaitlistSubmitted, setIsWaitlistSubmitted] = useState(false);
@@ -63,38 +45,16 @@ const Registerbtn = () => {
   const totalSteps = 4;
 
   const [formData, setFormData] = useState({
-    // Stage 1 - Personal
-    studentName: "",
-    parentName: "",
-    email: "",
-    phone: "",
-    studentAge: "",
-    westernEducationLevel: "",
-    lastSchoolAttended: "",
-    nationality: "",
-    parentGuardianContact: "",
-    nextOfKinContact: "",
-    // Stage 2 - Quran background
-    studiedQuranBefore: "",
-    previousQuranLevel: "",
-    needsQuranReadingHelp: "",
-    levelOfStudyInterested: "",
-    // Stage 3 - Courses
-    selectedCourses: [] as string[],
-    // Stage 4 - Preferences
-    preferredLearningStyle: "",
-    goals: "",
-    whyInterestedInSchool: "",
-    classTime: "",
-    otherClassTime: "",
-    agreeToTerms: "",
+    studentName: "", parentName: "", email: "", phone: "",
+    studentAge: "", westernEducationLevel: "", lastSchoolAttended: "",
+    nationality: "", parentGuardianContact: "", nextOfKinContact: "",
+    studiedQuranBefore: "", previousQuranLevel: "", needsQuranReadingHelp: "",
+    levelOfStudyInterested: "", selectedCourses: [] as string[],
+    preferredLearningStyle: "", goals: "", whyInterestedInSchool: "",
+    classTime: "", otherClassTime: "", agreeToTerms: "",
   });
 
-  const [waitlistData, setWaitlistData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
+  const [waitlistData, setWaitlistData] = useState({ name: "", phone: "", email: "" });
 
   useEffect(() => {
     if (!showApplyModal) return;
@@ -103,6 +63,10 @@ const Registerbtn = () => {
       .then(data => {
         const s = data.settings || {};
         setEnrollmentOpen(s.enrollment_open !== "false");
+        const active = ALL_COURSES
+          .filter(c => s[c.id] === "true")
+          .map(c => c.label);
+        setActiveCourses(active);
       })
       .catch(() => {});
   }, [showApplyModal]);
@@ -117,13 +81,8 @@ const Registerbtn = () => {
   const handleCourseToggle = (course: string) => {
     setFormData(prev => {
       const already = prev.selectedCourses.includes(course);
-      if (already) {
-        return { ...prev, selectedCourses: prev.selectedCourses.filter(c => c !== course) };
-      }
-      if (prev.selectedCourses.length >= 3) {
-        toast.error("You can select a maximum of 3 courses.");
-        return prev;
-      }
+      if (already) return { ...prev, selectedCourses: prev.selectedCourses.filter(c => c !== course) };
+      if (prev.selectedCourses.length >= 3) { toast.error("You can select a maximum of 3 courses."); return prev; }
       return { ...prev, selectedCourses: [...prev.selectedCourses, course] };
     });
   };
@@ -144,35 +103,37 @@ const Registerbtn = () => {
       if (!formData.levelOfStudyInterested) { toast.error("Level of study is required"); return false; }
     }
     if (step === 3) {
-      if (formData.selectedCourses.length < 2) {
-        toast.error("Please select at least 2 courses");
-        return false;
-      }
+      if (formData.selectedCourses.length < 2) { toast.error("Please select at least 2 courses"); return false; }
     }
     if (step === 4) {
       if (!formData.preferredLearningStyle) { toast.error("Preferred learning style is required"); return false; }
       if (!formData.goals) { toast.error("Goals are required"); return false; }
       if (!formData.classTime) { toast.error("Please select a class time"); return false; }
-      if (formData.classTime === "Other" && !formData.otherClassTime) {
-        toast.error("Please specify your preferred class time");
-        return false;
-      }
+      if (formData.classTime === "Other" && !formData.otherClassTime) { toast.error("Please specify your preferred class time"); return false; }
       if (!formData.agreeToTerms) { toast.error("Please respond to the terms and conditions"); return false; }
       if (formData.agreeToTerms === "No") { toast.error("You must agree to the terms to enroll"); return false; }
     }
     return true;
   };
 
-  const handleNext = () => {
-    if (validateStep()) setStep(s => s + 1);
-  };
-
+  const handleNext = () => { if (validateStep()) setStep(s => s + 1); };
   const handleBack = () => setStep(s => s - 1);
+
+  const resetForm = () => {
+    setFormData({
+      studentName: "", parentName: "", email: "", phone: "",
+      studentAge: "", westernEducationLevel: "", lastSchoolAttended: "",
+      nationality: "", parentGuardianContact: "", nextOfKinContact: "",
+      studiedQuranBefore: "", previousQuranLevel: "", needsQuranReadingHelp: "",
+      levelOfStudyInterested: "", selectedCourses: [], preferredLearningStyle: "",
+      goals: "", whyInterestedInSchool: "", classTime: "", otherClassTime: "", agreeToTerms: "",
+    });
+    setStep(1);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!validateStep()) return;
-    if (!enrollmentOpen) return;
+    if (!validateStep() || !enrollmentOpen) return;
     try {
       const res = await fetch("/api/apply", {
         method: "POST",
@@ -185,26 +146,10 @@ const Registerbtn = () => {
         }),
       });
       const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.error || "Something went wrong. Please try again.");
-        return;
-      }
+      if (!res.ok) { toast.error(data.error || "Something went wrong. Please try again."); return; }
       toast.success("Application submitted successfully 🎉");
       setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setShowApplyModal(false);
-        setStep(1);
-        setFormData({
-          studentName: "", parentName: "", email: "", phone: "",
-          studentAge: "", westernEducationLevel: "", lastSchoolAttended: "",
-          nationality: "", parentGuardianContact: "", nextOfKinContact: "",
-          studiedQuranBefore: "", previousQuranLevel: "", needsQuranReadingHelp: "",
-          levelOfStudyInterested: "", selectedCourses: [], preferredLearningStyle: "",
-          goals: "", whyInterestedInSchool: "", classTime: "", otherClassTime: "",
-          agreeToTerms: "",
-        });
-      }, 3000);
+      setTimeout(() => { setIsSubmitted(false); setShowApplyModal(false); resetForm(); }, 3000);
     } catch {
       toast.error("Network error. Please check your connection and try again.");
     }
@@ -228,15 +173,14 @@ const Registerbtn = () => {
   const closeModal = () => {
     setShowApplyModal(false);
     setIsWaitlistSubmitted(false);
-    setStep(1);
     setWaitlistData({ name: "", phone: "", email: "" });
+    resetForm();
   };
 
   const inputClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400";
   const selectClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white text-gray-700";
   const labelClass = "block text-sm font-semibold text-gray-700 mb-1";
 
-  // Progress bar
   const ProgressBar = () => (
     <div className="mb-6">
       <div className="flex justify-between items-center mb-2">
@@ -255,20 +199,16 @@ const Registerbtn = () => {
         ))}
       </div>
       <div className="w-full bg-gray-100 rounded-full h-1.5">
-        <div
-          className="bg-emerald-600 h-1.5 rounded-full transition-all duration-500"
-          style={{ width: `${((step - 1) / (totalSteps - 1)) * 100}%` }}
-        />
+        <div className="bg-emerald-600 h-1.5 rounded-full transition-all duration-500"
+          style={{ width: `${((step - 1) / (totalSteps - 1)) * 100}%` }} />
       </div>
     </div>
   );
 
   return (
     <div>
-      <button
-        onClick={() => setShowApplyModal(true)}
-        className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-      >
+      <button onClick={() => setShowApplyModal(true)}
+        className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
         Enroll Today
       </button>
 
@@ -387,18 +327,14 @@ const Registerbtn = () => {
               ) : (
                 <>
                   <ProgressBar />
-
                   <form onSubmit={handleSubmit}>
 
-                    {/* ── STEP 1 — PERSONAL INFO ── */}
+                    {/* ── STEP 1 ── */}
                     {step === 1 && (
                       <div className="space-y-5">
                         <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-                          <p className="text-sm text-emerald-800">
-                            <strong>Step 1 of 4 — Personal Information</strong>
-                          </p>
+                          <p className="text-sm text-emerald-800"><strong>Step 1 of 4 — Personal Information</strong></p>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                           <div>
                             <label className={labelClass}>Student Full Name / اسم الطالب *</label>
@@ -409,7 +345,6 @@ const Registerbtn = () => {
                                 className={inputClass} required />
                             </div>
                           </div>
-
                           <div>
                             <label className={labelClass}>Parent/Guardian Name *</label>
                             <div className="relative">
@@ -419,7 +354,6 @@ const Registerbtn = () => {
                                 className={inputClass} required />
                             </div>
                           </div>
-
                           <div>
                             <label className={labelClass}>Email Address *</label>
                             <div className="relative">
@@ -429,7 +363,6 @@ const Registerbtn = () => {
                                 className={inputClass} required />
                             </div>
                           </div>
-
                           <div>
                             <label className={labelClass}>Phone/WhatsApp Number *</label>
                             <div className="relative">
@@ -439,7 +372,6 @@ const Registerbtn = () => {
                                 className={inputClass} required />
                             </div>
                           </div>
-
                           <div>
                             <label className={labelClass}>Student Age Group *</label>
                             <div className="relative">
@@ -455,7 +387,6 @@ const Registerbtn = () => {
                               </select>
                             </div>
                           </div>
-
                           <div>
                             <label className={labelClass}>Western Education Level *</label>
                             <div className="relative">
@@ -470,7 +401,6 @@ const Registerbtn = () => {
                             </div>
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>Last School Attended *</label>
                           <div className="relative">
@@ -480,7 +410,6 @@ const Registerbtn = () => {
                               className={inputClass} required />
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>Nationality *</label>
                           <div className="relative">
@@ -490,7 +419,6 @@ const Registerbtn = () => {
                               className={inputClass} required />
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>
                             Parent/Guardian Contact
@@ -499,11 +427,9 @@ const Registerbtn = () => {
                           <div className="relative">
                             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input type="tel" name="parentGuardianContact" value={formData.parentGuardianContact}
-                              onChange={handleInputChange} placeholder="+234 xxx xxx xxxx"
-                              className={inputClass} />
+                              onChange={handleInputChange} placeholder="+234 xxx xxx xxxx" className={inputClass} />
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>
                             Next of Kin Contact
@@ -512,22 +438,18 @@ const Registerbtn = () => {
                           <div className="relative">
                             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input type="tel" name="nextOfKinContact" value={formData.nextOfKinContact}
-                              onChange={handleInputChange} placeholder="+234 xxx xxx xxxx"
-                              className={inputClass} />
+                              onChange={handleInputChange} placeholder="+234 xxx xxx xxxx" className={inputClass} />
                           </div>
                         </div>
                       </div>
                     )}
 
-                    {/* ── STEP 2 — QURAN BACKGROUND ── */}
+                    {/* ── STEP 2 ── */}
                     {step === 2 && (
                       <div className="space-y-5">
                         <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-                          <p className="text-sm text-emerald-800">
-                            <strong>Step 2 of 4 — Quran & Study Background</strong>
-                          </p>
+                          <p className="text-sm text-emerald-800"><strong>Step 2 of 4 — Quran & Study Background</strong></p>
                         </div>
-
                         <div>
                           <label className={labelClass}>Have you studied Quran before? *</label>
                           <div className="flex gap-3">
@@ -543,7 +465,6 @@ const Registerbtn = () => {
                             ))}
                           </div>
                         </div>
-
                         {formData.studiedQuranBefore === "Yes" && (
                           <div>
                             <label className={labelClass}>If yes, what was your previous level of study?</label>
@@ -561,7 +482,6 @@ const Registerbtn = () => {
                             </div>
                           </div>
                         )}
-
                         <div>
                           <label className={labelClass}>Do you need help with Quran reading?</label>
                           <div className="flex gap-3">
@@ -577,7 +497,6 @@ const Registerbtn = () => {
                             ))}
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>What level of study are you interested in? *</label>
                           <div className="flex gap-3">
@@ -596,66 +515,63 @@ const Registerbtn = () => {
                       </div>
                     )}
 
-                    {/* ── STEP 3 — COURSE SELECTION ── */}
+                    {/* ── STEP 3 ── */}
                     {step === 3 && (
                       <div className="space-y-5">
                         <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-                          <p className="text-sm text-emerald-800">
-                            <strong>Step 3 of 4 — Course Selection</strong>
-                          </p>
+                          <p className="text-sm text-emerald-800"><strong>Step 3 of 4 — Course Selection</strong></p>
                         </div>
-
                         <div>
-                          <label className={labelClass}>
-                            Which course(s) would you like to enroll in? *
-                          </label>
-                          <div className={`text-xs font-semibold mb-3 px-3 py-2 rounded-lg
-                            ${formData.selectedCourses.length < 2
-                              ? 'bg-amber-50 text-amber-700'
-                              : formData.selectedCourses.length === 3
-                              ? 'bg-blue-50 text-blue-700'
-                              : 'bg-emerald-50 text-emerald-700'}`}>
-                            {formData.selectedCourses.length === 0 && "Select minimum 2 and maximum 3 courses"}
-                            {formData.selectedCourses.length === 1 && "Select 1 more course (minimum 2 required)"}
-                            {formData.selectedCourses.length === 2 && `${formData.selectedCourses.length} courses selected ✓ (you may select 1 more)`}
-                            {formData.selectedCourses.length === 3 && `${formData.selectedCourses.length} courses selected — maximum reached`}
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            {COURSES.map(course => {
-                              const selected = formData.selectedCourses.includes(course);
-                              const maxReached = formData.selectedCourses.length >= 3 && !selected;
-                              return (
-                                <button key={course} type="button"
-                                  onClick={() => handleCourseToggle(course)}
-                                  disabled={maxReached}
-                                  className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
-                                    ${selected
-                                      ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
-                                      : maxReached
-                                      ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed'
-                                      : 'border-gray-200 text-gray-600 hover:border-emerald-300 hover:bg-emerald-50/50'}`}>
-                                  <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border-2 transition-colors
-                                    ${selected ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300'}`}>
-                                    {selected && <CheckSquare className="w-3 h-3 text-white" />}
-                                  </div>
-                                  {course}
-                                </button>
-                              );
-                            })}
-                          </div>
+                          <label className={labelClass}>Which course(s) would you like to enroll in? *</label>
+                          {activeCourses.length === 0 ? (
+                            <div className="text-center py-8 bg-amber-50 rounded-xl border border-amber-200">
+                              <p className="text-sm font-semibold text-amber-700">No courses are currently active.</p>
+                              <p className="text-xs text-amber-600 mt-1">Please contact the school directly to enroll.</p>
+                            </div>
+                          ) : (
+                            <>
+                              <div className={`text-xs font-semibold mb-3 px-3 py-2 rounded-lg
+                                ${formData.selectedCourses.length < 2 ? 'bg-amber-50 text-amber-700' :
+                                  formData.selectedCourses.length === 3 ? 'bg-blue-50 text-blue-700' :
+                                  'bg-emerald-50 text-emerald-700'}`}>
+                                {formData.selectedCourses.length === 0 && "Select minimum 2 and maximum 3 courses"}
+                                {formData.selectedCourses.length === 1 && "Select 1 more course (minimum 2 required)"}
+                                {formData.selectedCourses.length === 2 && `${formData.selectedCourses.length} courses selected ✓ (you may select 1 more)`}
+                                {formData.selectedCourses.length === 3 && `${formData.selectedCourses.length} courses selected — maximum reached`}
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {activeCourses.map(course => {
+                                  const selected = formData.selectedCourses.includes(course);
+                                  const maxReached = formData.selectedCourses.length >= 3 && !selected;
+                                  return (
+                                    <button key={course} type="button"
+                                      onClick={() => handleCourseToggle(course)}
+                                      disabled={maxReached}
+                                      className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
+                                        ${selected ? 'border-emerald-500 bg-emerald-50 text-emerald-700' :
+                                          maxReached ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed' :
+                                          'border-gray-200 text-gray-600 hover:border-emerald-300 hover:bg-emerald-50/50'}`}>
+                                      <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border-2 transition-colors
+                                        ${selected ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300'}`}>
+                                        {selected && <CheckSquare className="w-3 h-3 text-white" />}
+                                      </div>
+                                      {course}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
                     )}
 
-                    {/* ── STEP 4 — PREFERENCES & AGREEMENT ── */}
+                    {/* ── STEP 4 ── */}
                     {step === 4 && (
                       <div className="space-y-5">
                         <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-                          <p className="text-sm text-emerald-800">
-                            <strong>Step 4 of 4 — Preferences & Agreement</strong>
-                          </p>
+                          <p className="text-sm text-emerald-800"><strong>Step 4 of 4 — Preferences & Agreement</strong></p>
                         </div>
-
                         <div>
                           <label className={labelClass}>What is your preferred learning style? *</label>
                           <div className="grid grid-cols-2 gap-2">
@@ -671,7 +587,6 @@ const Registerbtn = () => {
                             ))}
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>What are your goals for this course? *</label>
                           <div className="relative">
@@ -682,29 +597,19 @@ const Registerbtn = () => {
                               required />
                           </div>
                         </div>
-
                         <div>
-                          <label className={labelClass}>
-                            Why are you interested in joining this online Quran school?
-                          </label>
+                          <label className={labelClass}>Why are you interested in joining this online Quran school?</label>
                           <div className="relative">
                             <BookOpen className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                             <textarea name="whyInterestedInSchool" value={formData.whyInterestedInSchool}
-                              onChange={handleInputChange} rows={3}
-                              placeholder="Tell us why you want to join..."
+                              onChange={handleInputChange} rows={3} placeholder="Tell us why you want to join..."
                               className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none text-gray-700 placeholder-gray-400" />
                           </div>
                         </div>
-
                         <div>
                           <label className={labelClass}>General Class Time *</label>
                           <div className="space-y-2">
-                            {[
-                              "Wednesdays (5:00 PM - 5:30 PM) NGT",
-                              "Fridays (5:00 PM - 5:30 PM) NGT",
-                              "Sundays (5:30 PM - 6:00 PM) NGT",
-                              "Other",
-                            ].map(opt => (
+                            {["Wednesdays (5:00 PM - 5:30 PM) NGT", "Fridays (5:00 PM - 5:30 PM) NGT", "Sundays (5:30 PM - 6:00 PM) NGT", "Other"].map(opt => (
                               <button key={opt} type="button"
                                 onClick={() => setFormData(p => ({ ...p, classTime: opt }))}
                                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
@@ -726,11 +631,8 @@ const Registerbtn = () => {
                             </div>
                           )}
                         </div>
-
                         <div>
-                          <label className={labelClass}>
-                            Do you agree to the school&apos;s terms and conditions? *
-                          </label>
+                          <label className={labelClass}>Do you agree to the school&apos;s terms and conditions? *</label>
                           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-3">
                             <p className="text-sm text-blue-800 leading-relaxed">
                               📢 <strong>Please note:</strong> The primary communication platform for announcements will be <strong>Telegram</strong>, in shaa Allaah.
@@ -759,7 +661,7 @@ const Registerbtn = () => {
                       </div>
                     )}
 
-                    {/* Navigation Buttons */}
+                    {/* Navigation */}
                     <div className="flex gap-4 pt-6 mt-2 border-t border-gray-100">
                       {step > 1 ? (
                         <button type="button" onClick={handleBack}
@@ -772,7 +674,6 @@ const Registerbtn = () => {
                           Cancel
                         </button>
                       )}
-
                       {step < totalSteps ? (
                         <button type="button" onClick={handleNext}
                           className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">

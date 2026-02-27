@@ -43,16 +43,17 @@ export const INITIAL_FORM_DATA = {
   classTime: "", otherClassTime: "", agreeToTerms: "",
 }
 
-export const COURSES = [
-  "Arabic (Beginner)",
-  "Arabic (Intermediary)",
-  "Quran Revision",
-  "Quran Recitation",
-  "Beginner Tajweed",
-  "Advance Tajweed",
-  "Adkar",
-  "Hifdh",
-  "Hadith",                  // ← add this line
-  "Lessons from the Quran",
-  "Islamic Studies",
+// All possible courses mapped to their settings IDs
+export const ALL_COURSES = [
+  { id: "Arabic_Beginner",          label: "Arabic (Beginner)" },
+  { id: "Arabic_Intermediate",      label: "Arabic (Intermediate)" },
+  { id: "Arabic_Revision",          label: "Arabic Revision" },
+  { id: "Quran_Recitation",         label: "Quran Recitation" },
+  { id: "Beginner_Tajweed",         label: "Beginner Tajweed" },
+  { id: "Advanced_Tajweed",         label: "Advanced Tajweed" },
+  { id: "Adkar",                    label: "Adkar" },
+  { id: "Hafdh",                    label: "Hafdh" },
+  { id: "Hadith",                   label: "Hadith" },
+  { id: "Lessons from the Quran",   label: "Lessons from the Quran" },
+  { id: "Islamic_Studies",          label: "Islamic Studies" },
 ]

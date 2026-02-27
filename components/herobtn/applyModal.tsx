@@ -12,6 +12,7 @@ type Props = {
   isOpen: boolean
   onClose: () => void
   enrollmentOpen: boolean
+  activeCourses: string[]
   isSubmitted: boolean
   isWaitlistSubmitted: boolean
   step: number
@@ -28,7 +29,7 @@ type Props = {
 }
 
 export default function ApplyModal({
-  isOpen, onClose, enrollmentOpen, isSubmitted, isWaitlistSubmitted,
+  isOpen, onClose, enrollmentOpen, activeCourses, isSubmitted, isWaitlistSubmitted,
   step, totalSteps, formData, waitlistData, onInputChange, setFormData,
   setWaitlistData, onNext, onBack, onSubmit, onWaitlistSubmit,
 }: Props) {
@@ -87,7 +88,7 @@ export default function ApplyModal({
                 <form onSubmit={onSubmit}>
                   {step === 1 && <StepOne formData={formData} onChange={onInputChange} />}
                   {step === 2 && <StepTwo formData={formData} setFormData={setFormData} />}
-                  {step === 3 && <StepThree formData={formData} setFormData={setFormData} />}
+                  {step === 3 && <StepThree formData={formData} setFormData={setFormData} activeCourses={activeCourses} />}
                   {step === 4 && <StepFour formData={formData} onChange={onInputChange} setFormData={setFormData} />}
 
                   <div className="flex gap-4 pt-6 mt-2 border-t border-gray-100">

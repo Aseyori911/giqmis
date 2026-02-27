@@ -63,6 +63,15 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
+                    href="sponsor"
+                    className="flex items-center text-gray-300 hover:text-orange-500 transition-colors duration-200 text-sm"
+                  >
+                    <span className="text-orange-500 text-xl mr-2">✓</span>
+                    <span>Sponsor a Student</span>
+                  </a>
+                </li>
+                <li>
+                  <a
                     href="Contact"
                     className="flex items-center text-gray-300 hover:text-orange-500 transition-colors duration-200 text-sm"
                   >

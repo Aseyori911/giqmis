@@ -1,16 +1,16 @@
 import { CheckSquare } from 'lucide-react'
-import { COURSES } from './data'
 import { FormData } from './types'
 import { toast } from 'react-hot-toast'
 
 type Props = {
   formData: FormData
   setFormData: React.Dispatch<React.SetStateAction<FormData>>
+  activeCourses: string[]
 }
 
 const labelClass = "block text-sm font-semibold text-gray-700 mb-1"
 
-export default function StepThree({ formData, setFormData }: Props) {
+export default function StepThree({ formData, setFormData, activeCourses }: Props) {
   const handleCourseToggle = (course: string) => {
     setFormData(prev => {
       const already = prev.selectedCourses.includes(course)
@@ -37,28 +37,41 @@ export default function StepThree({ formData, setFormData }: Props) {
       <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
         <p className="text-sm text-emerald-800"><strong>Step 3 of 4 — Course Selection</strong></p>
       </div>
+
       <div>
         <label className={labelClass}>Which course(s) would you like to enroll in? *</label>
-        <div className={`text-xs font-semibold mb-3 px-3 py-2 rounded-lg ${statusClass}`}>{statusMsg}</div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {COURSES.map(course => {
-            const selected = formData.selectedCourses.includes(course)
-            const maxReached = count >= 3 && !selected
-            return (
-              <button key={course} type="button" onClick={() => handleCourseToggle(course)} disabled={maxReached}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
-                  ${selected ? 'border-emerald-500 bg-emerald-50 text-emerald-700' :
-                    maxReached ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed' :
-                    'border-gray-200 text-gray-600 hover:border-emerald-300 hover:bg-emerald-50/50'}`}>
-                <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border-2 transition-colors
-                  ${selected ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300'}`}>
-                  {selected && <CheckSquare className="w-3 h-3 text-white" />}
-                </div>
-                {course}
-              </button>
-            )
-          })}
-        </div>
+
+        {activeCourses.length === 0 ? (
+          <div className="text-center py-8 bg-amber-50 rounded-xl border border-amber-200">
+            <p className="text-sm font-semibold text-amber-700">No courses are currently active.</p>
+            <p className="text-xs text-amber-600 mt-1">Please contact the school directly to enroll.</p>
+          </div>
+        ) : (
+          <>
+            <div className={`text-xs font-semibold mb-3 px-3 py-2 rounded-lg ${statusClass}`}>
+              {statusMsg}
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {activeCourses.map(course => {
+                const selected = formData.selectedCourses.includes(course)
+                const maxReached = count >= 3 && !selected
+                return (
+                  <button key={course} type="button" onClick={() => handleCourseToggle(course)} disabled={maxReached}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
+                      ${selected ? 'border-emerald-500 bg-emerald-50 text-emerald-700' :
+                        maxReached ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed' :
+                        'border-gray-200 text-gray-600 hover:border-emerald-300 hover:bg-emerald-50/50'}`}>
+                    <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border-2 transition-colors
+                      ${selected ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300'}`}>
+                      {selected && <CheckSquare className="w-3 h-3 text-white" />}
+                    </div>
+                    {course}
+                  </button>
+                )
+              })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

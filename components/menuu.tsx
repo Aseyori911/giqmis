@@ -13,6 +13,7 @@ export default function Menuu() {
     { name: "About", path: "/About" },
     { name: "Programs", path: "/Programs" },
     { name: "Gallery", path: "/Gallery" },
+    { name: "Sponsor a Student", path: "/sponsor" },
     { name: "Contact", path: "/Contact" },
   ];
 

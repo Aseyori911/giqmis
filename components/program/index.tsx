@@ -1,12 +1,11 @@
-import Link from 'next/link'
-import { ChevronUp } from 'lucide-react'
-import MultiCourseDetails from '@/components/programbtnbig'
-import MultiCourseDetailsSmallDevice from '@/components/programbtn'
-import HeroBanner from './heroBanner'
-import ProgramsSlider from './programsSlider'
-import CurriculumSection from './curriculumSection'
-import FAQSection from './FAQSection'
-import CTASection from './CTASection'
+import MultiCourseDetails from "@/components/programbtnbig";
+import MultiCourseDetailsSmallDevice from "@/components/programbtn";
+import HeroBanner from "./heroBanner";
+import ProgramsSlider from "./programsSlider";
+import CurriculumSection from "./curriculumSection";
+import FAQSection from "./FAQSection";
+import CTASection from "./CTASection";
+import ScrollToTop from "../scrollToTop";
 
 export default function ProgramPage() {
   return (
@@ -29,11 +28,7 @@ export default function ProgramPage() {
       <FAQSection />
       <CTASection />
 
-      <div className="fixed bottom-5 right-5 z-50">
-        <Link href="/" className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 text-xl hover:bg-orange-200 transition-colors">
-          <ChevronUp />
-        </Link>
-      </div>
+      <ScrollToTop />
     </div>
-  )
+  );
 }

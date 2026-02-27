@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast'
 import ApplyModal from './applyModal'
 import ReadMoreModal from './readMoreModal'
 import { FormData, WaitlistData } from './types'
-import { INITIAL_FORM_DATA } from './data'
+import { INITIAL_FORM_DATA, ALL_COURSES } from './data'
 
 const TOTAL_STEPS = 4
 
@@ -13,6 +13,7 @@ export default function ArabicSchoolModals() {
   const [showApplyModal, setShowApplyModal] = useState(false)
   const [showReadMoreModal, setShowReadMoreModal] = useState(false)
   const [enrollmentOpen, setEnrollmentOpen] = useState(true)
+  const [activeCourses, setActiveCourses] = useState<string[]>([])
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isWaitlistSubmitted, setIsWaitlistSubmitted] = useState(false)
   const [step, setStep] = useState(1)
@@ -24,6 +25,11 @@ export default function ArabicSchoolModals() {
     fetch('/api/admin/settings').then(r => r.json()).then(data => {
       const s = data.settings || {}
       setEnrollmentOpen(s.enrollment_open !== 'false')
+      // Filter courses to only those toggled ON in settings
+      const active = ALL_COURSES
+        .filter(c => s[c.id] === 'true')
+        .map(c => c.label)
+      setActiveCourses(active)
     }).catch(() => {})
   }, [showApplyModal])
 
@@ -111,7 +117,7 @@ export default function ArabicSchoolModals() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-[url('/api/placeholder/1200/600')] bg-cover bg-center bg-black/60 bg-blend-overlay text-white py-[100px] text-center">
+      <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover text-white py-[100px] text-center">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-[42px] mb-5">Nurturing Knowledge and Faith</h2>
           <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed">
@@ -134,6 +140,7 @@ export default function ArabicSchoolModals() {
         isOpen={showApplyModal}
         onClose={closeApplyModal}
         enrollmentOpen={enrollmentOpen}
+        activeCourses={activeCourses}
         isSubmitted={isSubmitted}
         isWaitlistSubmitted={isWaitlistSubmitted}
         step={step}

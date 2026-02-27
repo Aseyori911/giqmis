@@ -5,13 +5,14 @@ import Link from "next/link";
 export default function Active() {
   const pathname = usePathname();
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/About" },
-    { name: "Programs", path: "/Programs" },
-    { name: "News/Gallery", path: "/Gallery" },
-    { name: "Contact", path: "/Contact" },
-  ];
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/About" },
+  { name: "Programs", path: "/Programs" },
+  { name: "News/Gallery", path: "/Gallery" },
+  { name: "Sponsor a Student", path: "/sponsor" },
+  { name: "Contact", path: "/Contact" },
+];
 
   const linkClass = (path: string) =>
     pathname === path
