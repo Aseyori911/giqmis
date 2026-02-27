@@ -1,6 +1,6 @@
 import HeroBanner from "./heroBanner";
 import WhySponsored from "./whySponsored";
-import SponsorTiers from "./sponsorTiers";
+import StudentTestimonials from './sponsorTiers'
 import SponsorForm from "./sponsorForm";
 import SponsorFAQ from "./sponsorFAQ";
 import CTASection from "./CTASection";
@@ -11,7 +11,7 @@ export default function SponsorPage() {
     <div>
       <HeroBanner />
       <WhySponsored />
-      <SponsorTiers />
+      <StudentTestimonials />
 
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-3xl">

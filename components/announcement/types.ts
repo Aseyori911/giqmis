@@ -35,4 +35,15 @@ export type WaitlistEntry = {
   submitted_at: string
 }
 
-export type TabType = 'gallery' | 'news' | 'messages' | 'waitlist'
+export type SponsorEntry = {
+  id: string
+  name: string
+  email: string
+  phone: string
+  tier: string
+  message: string | null
+  anonymous: boolean
+  submitted_at: string
+}
+
+export type TabType = 'gallery' | 'news' | 'messages' | 'waitlist' | 'sponsors'

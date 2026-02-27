@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @media (max-width: 460px) {
-    .lang{
-        @apply text-[11px];
-      }
-    .bar{
-        @apply gap-2;
-      }
+  .lang {
+    @apply text-[11px];
+  }
+  .bar {
+    @apply gap-2;
+  }
 }

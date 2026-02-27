@@ -2,11 +2,13 @@ import Sliding from '@/components/slider'
 
 export default function ProgramsSlider() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h3 className="text-3xl font-bold text-gray-800 mb-[10px]">Our Programs</h3>
-          <p className="text-gray-600 max-w-[700px] mx-auto">
+          <h3 className="text-3xl font-bold text-gray-800 dark:text-stone-100 mb-[10px]">
+            Our Programs
+          </h3>
+          <p className="text-gray-600 dark:text-stone-400 max-w-[700px] mx-auto">
             We offer various programs tailored to different age groups and educational needs.
           </p>
           <div className="bg-orange-500 border border-orange-500 w-[10%] mx-auto mt-3 h-1"></div>

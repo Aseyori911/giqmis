@@ -1,0 +1,42 @@
+export const slides = [
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1661378462458-7240ebe44deb?w=500&auto=format&fit=crop&q=60',
+    alt: 'Children learning Arabic',
+    badge: 'Ages 5-12',
+    title: "Children's Arabic Program",
+    description: "Our Arabic school nurtures children by focusing on Qur'an reading, memorization, and understanding, while strengthening Arabic language foundations, pronunciation skills, and overall comprehension abilities effectively.",
+    tags: ['2x Weekly', 'Small Classes'],
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1723532432416-9ad01e52c3b5?w=500&auto=format&fit=crop&q=60',
+    alt: 'Teens learning Arabic',
+    badge: 'Ages 13-17',
+    title: 'Teen Arabic Program',
+    description: "We provide structured Arabic education for teenagers, emphasizing Qur'an reading, Tajweed, memorization, grammar skills, comprehension improvement, and building a deep, meaningful relationship with the Arabic language.",
+    tags: ['3x Weekly', 'Progressive Learning'],
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1618371331418-baa506217295?q=80&w=1170&auto=format&fit=crop',
+    alt: 'Adults learning Arabic',
+    badge: 'Ages 18+',
+    title: 'Adult Arabic Program',
+    description: "Our adult Arabic courses focus on Qur'an reading, memorization, Arabic grammar mastery, and communication skills, offering flexible paths for beginners, intermediate learners, and advanced students.",
+    tags: ['Evening Classes', 'All Levels'],
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1661382504923-8085addc989c?w=500&auto=format&fit=crop&q=60',
+    alt: 'Summer Arabic program',
+    badge: 'Summer',
+    title: 'Summer Intensive Program',
+    description: "Boost Arabic and Qur'an memorization this summer through daily intensive classes focusing on fluent reading, grammar practice, vocabulary development, memorization strategies, and comprehensive language understanding.",
+    tags: ['Daily Classes', 'All Ages'],
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1661547803869-35653a2d2e27?w=500&auto=format&fit=crop&q=60',
+    alt: 'Online Arabic learning',
+    badge: 'Online',
+    title: 'Online Class',
+    description: "Attend live, interactive Arabic classes online focused on Qur'an reading, Tajweed, memorization, grammar, comprehension improvement, and enjoy personalized instruction from experienced teachers with flexible scheduling.",
+    tags: ['Flexible Hours', 'Individual Attention'],
+  },
+]

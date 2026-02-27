@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { X, ChevronRight, Calendar, Clock } from 'lucide-react'
-import Registerbtn from '@/components/registerbtn'
+import Registerbtn from '@/components/registration'
 import { Course, TabId, Tab, Feature, CurriculumWeek, ScheduleDate } from './types'
 import { TABS } from './data'
 

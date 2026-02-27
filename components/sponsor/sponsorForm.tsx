@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { Mail } from 'lucide-react'
 
-const inputCls = 'block w-full px-4 py-3 text-base text-gray-700 bg-white border border-gray-300 rounded transition-colors focus:border-orange-500 focus:outline-none'
+const inputCls = 'block w-full px-4 py-3 text-base text-gray-700 dark:text-stone-300 bg-white dark:bg-stone-900 border border-gray-300 dark:border-stone-700 rounded transition-colors focus:border-orange-500 focus:outline-none'
 
 export default function SponsorForm() {
   const [formData, setFormData] = useState({
@@ -33,12 +33,12 @@ export default function SponsorForm() {
   }
 
   if (submitted) return (
-    <div className="bg-green-50 border border-green-200 rounded-xl p-10 text-center">
-      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+    <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-10 text-center">
+      <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
         <Mail className="w-8 h-8 text-green-600" />
       </div>
-      <h4 className="text-xl font-bold text-green-800 mb-2">Thank You!</h4>
-      <p className="text-green-600 mb-4">We've received your sponsorship interest. Our team will contact you within 24 hours with payment details.</p>
+      <h4 className="text-xl font-bold text-green-800 dark:text-green-400 mb-2">Thank You!</h4>
+      <p className="text-green-600 dark:text-green-500 mb-4">We've received your sponsorship interest. Our team will contact you within 24 hours with payment details.</p>
       <button onClick={() => setSubmitted(false)}
         className="px-6 py-2 bg-orange-500 text-white rounded font-semibold hover:bg-orange-600 transition-colors">
         Submit Another
@@ -47,8 +47,9 @@ export default function SponsorForm() {
   )
 
   return (
-    <form id="sponsor-form" onSubmit={handleSubmit} className="bg-white rounded-2xl border border-stone-200 shadow-sm p-8">
-      <h3 className="text-2xl font-bold text-slate-800 mb-6 relative pb-4">
+    <form id="sponsor-form" onSubmit={handleSubmit}
+      className="bg-white dark:bg-stone-800 rounded-2xl border border-stone-200 dark:border-stone-700 shadow-sm p-8">
+      <h3 className="text-2xl font-bold text-slate-800 dark:text-stone-100 mb-6 relative pb-4">
         Sponsorship Interest Form
         <span className="absolute left-0 bottom-0 w-12 h-1 bg-orange-500"></span>
       </h3>
@@ -65,7 +66,7 @@ export default function SponsorForm() {
           onChange={e => setFormData({ ...formData, phone: e.target.value })} className={inputCls} />
         <select required value={formData.tier}
           onChange={e => setFormData({ ...formData, tier: e.target.value })}
-          className={`${inputCls} bg-white`}>
+          className={`${inputCls} dark:bg-stone-900`}>
           <option value="">Select Sponsorship Level *</option>
           <option value="seed">🌱 Seed Sponsor — ₦10,000/month</option>
           <option value="full">⭐ Full Sponsor — ₦25,000/month</option>
@@ -84,7 +85,7 @@ export default function SponsorForm() {
         <input type="checkbox" id="anonymous" checked={formData.anonymous}
           onChange={e => setFormData({ ...formData, anonymous: e.target.checked })}
           className="w-4 h-4 accent-orange-500" />
-        <label htmlFor="anonymous" className="text-sm text-slate-600">
+        <label htmlFor="anonymous" className="text-sm text-slate-600 dark:text-stone-400">
           I would like to sponsor anonymously
         </label>
       </div>

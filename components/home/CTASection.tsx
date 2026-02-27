@@ -1,4 +1,4 @@
-import Registerbtn from '@/components/registerbtn'
+import Registerbtn from '@/components/registration'
 
 export default function CTASection() {
   return (
