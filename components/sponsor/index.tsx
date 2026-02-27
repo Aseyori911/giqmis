@@ -13,11 +13,11 @@ export default function SponsorPage() {
       <WhySponsored />
       <StudentTestimonials />
 
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-3xl">
           <SponsorForm />
         </div>
-      </section>
+      </section> */}
 
       <SponsorFAQ />
       <CTASection />

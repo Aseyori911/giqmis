@@ -4,6 +4,11 @@ export type ModalProps = {
   children: React.ReactNode
 }
 
+export type PrivateClassSlot = {
+  day: string
+  time: string
+}
+
 export type FormData = {
   studentName: string
   parentName: string
@@ -23,8 +28,8 @@ export type FormData = {
   preferredLearningStyle: string
   goals: string
   whyInterestedInSchool: string
-  classTime: string
-  otherClassTime: string
+  classType: string
+  privateClassSlots: PrivateClassSlot[]
   agreeToTerms: string
 }
 

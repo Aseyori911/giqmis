@@ -12,12 +12,10 @@ type Props = {
 export default function SlideCard({ image, alt, badge, title, description, tags }: Props) {
   return (
     <div className="flex-shrink-0 w-full p-[15px]">
-      <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:-translate-y-[10px] transition-transform flex flex-col h-full">
+      <div className="bg-white dark:bg-stone-800 rounded-lg overflow-hidden shadow-sm hover:-translate-y-[10px] transition-transform flex flex-col h-full">
         <div className="relative h-[200px] overflow-hidden">
           <Image
-            src={image}
-            alt={alt}
-            fill
+            src={image} alt={alt} fill
             sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: 'cover' }}
             className="object-cover hover:scale-105 transition-transform duration-300"
@@ -27,11 +25,11 @@ export default function SlideCard({ image, alt, badge, title, description, tags 
           </div>
         </div>
         <div className="p-[25px] flex flex-col flex-grow">
-          <h4 className="text-xl text-gray-800 mb-[10px]">{title}</h4>
-          <p className="text-gray-600 mb-5 leading-relaxed">{description}</p>
-          <div className="flex justify-start gap-[15px] pt-[15px] mt-auto border-t border-gray-100">
+          <h4 className="text-xl text-gray-800 dark:text-stone-100 mb-[10px]">{title}</h4>
+          <p className="text-gray-600 dark:text-stone-400 mb-5 leading-relaxed">{description}</p>
+          <div className="flex justify-start gap-[15px] pt-[15px] mt-auto border-t border-gray-100 dark:border-stone-700">
             {tags.map((tag) => (
-              <div key={tag} className="text-sm text-gray-600 bg-gray-50 px-3 py-[5px] rounded">
+              <div key={tag} className="text-sm text-gray-600 dark:text-stone-400 bg-gray-50 dark:bg-stone-700 px-3 py-[5px] rounded">
                 {tag}
               </div>
             ))}

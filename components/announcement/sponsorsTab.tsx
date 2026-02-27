@@ -1,31 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { Trash2, Download, Heart, Phone, Mail, Crown } from "lucide-react";
+import { Trash2, Download, Heart, Phone, Mail, Crown, Eye, EyeOff } from "lucide-react";
 import { toast } from "react-hot-toast";
 import { SponsorEntry } from "./types";
 
-const TIER_LABELS: Record<
-  string,
-  { label: string; color: string; bg: string }
-> = {
+const TIER_LABELS: Record<string, { label: string; color: string; bg: string }> = {
   seed: {
-    label: "🌱 Seed — ₦10,000/mo",
+    label: "Online Student Tuition Fee",
     color: "text-green-700",
     bg: "bg-green-50 border-green-200",
   },
   full: {
-    label: "⭐ Full — ₦25,000/mo",
+    label: "Day Student Tuition Fee",
     color: "text-blue-700",
     bg: "bg-blue-50 border-blue-200",
   },
   legacy: {
-    label: "👑 Legacy — ₦50,000/mo",
+    label: "Boarding Student Tuition Fee",
     color: "text-purple-700",
     bg: "bg-purple-50 border-purple-200",
   },
   custom: {
-    label: "💛 Custom Amount",
+    label: "Others",
     color: "text-orange-700",
     bg: "bg-orange-50 border-orange-200",
   },
@@ -41,6 +38,15 @@ export default function SponsorsTab({
   onRefresh: () => void;
 }) {
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState<Set<string>>(new Set());
+
+  const toggleReveal = (id: string) => {
+    setRevealed(prev => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete sponsor entry for ${name}?`)) return;
@@ -51,10 +57,7 @@ export default function SponsorsTab({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
-      if (!res.ok) {
-        toast.error("Failed to delete.");
-        return;
-      }
+      if (!res.ok) { toast.error("Failed to delete."); return; }
       toast.success("Sponsor entry deleted.");
       onRefresh();
     } catch {
@@ -65,25 +68,17 @@ export default function SponsorsTab({
   };
 
   const handleExportCSV = () => {
-    const headers = [
-      "Name",
-      "Email",
-      "Phone",
-      "Tier",
-      "Message",
-      "Anonymous",
-      "Submitted At",
-    ];
+    const headers = ["Name", "Email", "Phone", "Tier", "Message", "Anonymous", "Submitted At"];
     const rows = sponsors.map((s) =>
       [
-        s.anonymous ? "Anonymous" : s.name,
-        s.anonymous ? "—" : s.email,
-        s.anonymous ? "—" : s.phone,
+        s.name,
+        s.email,
+        s.phone,
         TIER_LABELS[s.tier]?.label || s.tier,
         s.message || "",
         s.anonymous ? "Yes" : "No",
         new Date(s.submitted_at).toLocaleDateString("en-GB"),
-      ].map((v) => `"${v.toString().replace(/"/g, '""')}"`),
+      ].map((v) => `"${v.toString().replace(/"/g, '""')}"`)
     );
 
     const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
@@ -97,39 +92,29 @@ export default function SponsorsTab({
     toast.success("CSV exported!");
   };
 
-  // Summary counts per tier
-  const tierCounts = sponsors.reduce(
-    (acc, s) => {
-      acc[s.tier] = (acc[s.tier] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+  const tierCounts = sponsors.reduce((acc, s) => {
+    const key = s.tier.startsWith("custom") ? "custom" : s.tier;
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
 
   if (loading)
-    return (
-      <p className="text-center text-stone-400 text-sm py-16">
-        Loading sponsors…
-      </p>
-    );
+    return <p className="text-center text-stone-400 text-sm py-16">Loading sponsors…</p>;
 
   return (
     <div className="space-y-5">
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-base font-bold text-stone-700">
-            Sponsorship Interest
-          </h2>
+          <h2 className="text-base font-bold text-stone-700">Sponsorship Interest</h2>
           <p className="text-xs text-stone-400 mt-0.5">
             {sponsors.length} entr{sponsors.length !== 1 ? "ies" : "y"} received
           </p>
         </div>
         {sponsors.length > 0 && (
-          <button
-            onClick={handleExportCSV}
-            className="flex items-center gap-1.5 px-3.5 py-2 border border-stone-200 rounded-lg text-sm text-stone-500 hover:bg-stone-50 transition-colors"
-          >
+          <button onClick={handleExportCSV}
+            className="flex items-center gap-1.5 px-3.5 py-2 border border-stone-200 rounded-lg text-sm text-stone-500 hover:bg-stone-50 transition-colors">
             <Download size={14} /> Export CSV
           </button>
         )}
@@ -139,18 +124,11 @@ export default function SponsorsTab({
       {sponsors.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {(["seed", "full", "legacy", "custom"] as const).map((tier) => (
-            <div
-              key={tier}
-              className={`rounded-xl border p-4 ${TIER_LABELS[tier].bg}`}
-            >
-              <p
-                className={`text-xs font-bold uppercase tracking-wider ${TIER_LABELS[tier].color}`}
-              >
-                {TIER_LABELS[tier].label.split("—")[0].trim()}
+            <div key={tier} className={`rounded-xl border p-4 ${TIER_LABELS[tier].bg}`}>
+              <p className={`text-xs font-bold uppercase tracking-wider ${TIER_LABELS[tier].color}`}>
+                {TIER_LABELS[tier].label}
               </p>
-              <p
-                className={`text-3xl font-bold font-serif mt-1 ${TIER_LABELS[tier].color}`}
-              >
+              <p className={`text-3xl font-bold font-serif mt-1 ${TIER_LABELS[tier].color}`}>
                 {tierCounts[tier] || 0}
               </p>
               <p className="text-xs text-stone-400 mt-0.5">sponsors</p>
@@ -165,9 +143,7 @@ export default function SponsorsTab({
           <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-3">
             <Heart size={24} className="text-orange-400" />
           </div>
-          <p className="text-stone-500 text-sm font-semibold">
-            No sponsor entries yet
-          </p>
+          <p className="text-stone-500 text-sm font-semibold">No sponsor entries yet</p>
           <p className="text-stone-400 text-xs mt-1">
             Entries will appear here when sponsors submit the form.
           </p>
@@ -175,78 +151,107 @@ export default function SponsorsTab({
       ) : (
         <div className="space-y-3">
           {sponsors.map((s, i) => {
-            const tier = TIER_LABELS[s.tier] || {
+            const tierKey = s.tier.startsWith("custom:") ? "custom" : s.tier;
+            const tier = TIER_LABELS[tierKey] || {
               label: s.tier,
               color: "text-stone-600",
               bg: "bg-stone-50 border-stone-200",
             };
+            const isRevealed = revealed.has(s.id);
+            const customDetails = s.tier.startsWith("custom:")
+              ? s.tier.replace("custom:", "").trim()
+              : null;
+
             return (
-              <div
-                key={s.id}
-                className="bg-white rounded-xl border border-stone-200 p-4 hover:border-stone-300 transition-colors"
-              >
+              <div key={s.id}
+                className={`bg-white rounded-xl border p-4 hover:border-stone-300 transition-colors
+                  ${s.anonymous ? 'border-amber-200 bg-amber-50/30' : 'border-stone-200'}`}>
                 <div className="flex items-start justify-between gap-4">
-                  {/* Left — number + info */}
+
+                  {/* Left */}
                   <div className="flex items-start gap-3 flex-1 min-w-0">
-                    <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 text-xs font-bold text-orange-600">
+
+                    {/* Number badge */}
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold
+                      ${s.anonymous ? 'bg-amber-100 text-amber-600' : 'bg-orange-100 text-orange-600'}`}>
                       {i + 1}
                     </div>
+
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <p className="text-sm font-bold text-stone-800">
-                          {s.anonymous ? (
-                            <span className="flex items-center gap-1.5 text-stone-400 italic">
-                              <Crown size={13} /> Anonymous Sponsor
-                            </span>
-                          ) : (
-                            s.name
-                          )}
+
+                      {/* Name row */}
+                      <div className="flex items-center gap-2 flex-wrap mb-1.5">
+                        <p className="text-sm font-bold text-stone-800 flex items-center gap-1.5">
+                          {s.anonymous && <Crown size={13} className="text-amber-500" />}
+                          {s.name}
                         </p>
-                        <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${tier.bg} ${tier.color}`}
-                        >
-                          {tier.label}
-                        </span>
+
+                        {/* Anonymous badge */}
                         {s.anonymous && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-stone-100 text-stone-500 border border-stone-200">
-                            Anonymous
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200">
+                            Prefers Anonymity
                           </span>
                         )}
+
+                        {/* Tier badge */}
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${tier.bg} ${tier.color}`}>
+                          {tier.label}
+                        </span>
                       </div>
 
-                      {/* Contact — hidden if anonymous */}
-                      {!s.anonymous && (
+                      {/* Anonymous notice + reveal toggle */}
+                      {s.anonymous && (
+                        <div className="bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-2 flex items-center justify-between gap-3">
+                          <p className="text-xs text-amber-700 leading-relaxed">
+                            🤲 This sponsor prefers to remain anonymous to the public.
+                            Their details are visible only to school administrators.
+                          </p>
+                          <button
+                            onClick={() => toggleReveal(s.id)}
+                            className="flex items-center gap-1 text-xs font-semibold text-amber-700 hover:text-amber-900 whitespace-nowrap transition-colors">
+                            {isRevealed
+                              ? <><EyeOff size={12} /> Hide</>
+                              : <><Eye size={12} /> View Details</>}
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Contact details — always visible for non-anonymous, toggle for anonymous */}
+                      {(!s.anonymous || isRevealed) && (
                         <div className="flex flex-wrap gap-x-4 gap-y-1 mb-2">
-                          <a
-                            href={`mailto:${s.email}`}
-                            className="flex items-center gap-1 text-xs text-stone-500 hover:text-orange-600 transition-colors"
-                          >
+                          <a href={`mailto:${s.email}`}
+                            className="flex items-center gap-1 text-xs text-stone-500 hover:text-orange-600 transition-colors">
                             <Mail size={11} /> {s.email}
                           </a>
-                          <a
-                            href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-xs text-stone-500 hover:text-green-600 transition-colors"
-                          >
+                          <a href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
+                            target="_blank" rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-xs text-stone-500 hover:text-green-600 transition-colors">
                             <Phone size={11} /> {s.phone}
                           </a>
                         </div>
                       )}
 
+                      {/* Custom tier details */}
+                      {customDetails && (
+                        <div className="bg-orange-50 border border-orange-100 rounded-lg px-3 py-2 mb-2">
+                          <p className="text-[11px] font-bold text-orange-600 uppercase tracking-wide mb-0.5">
+                            Intended Use
+                          </p>
+                          <p className="text-xs text-orange-800">{customDetails}</p>
+                        </div>
+                      )}
+
                       {/* Message */}
                       {s.message && (
-                        <p className="text-xs text-stone-500 bg-stone-50 rounded-lg px-3 py-2 border border-stone-100 leading-relaxed">
+                        <p className="text-xs text-stone-500 bg-stone-50 rounded-lg px-3 py-2 border border-stone-100 leading-relaxed mb-1.5">
                           &ldquo;{s.message}&rdquo;
                         </p>
                       )}
 
-                      <p className="text-[11px] text-stone-400 mt-1.5">
+                      <p className="text-[11px] text-stone-400">
                         Submitted{" "}
                         {new Date(s.submitted_at).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
+                          day: "numeric", month: "long", year: "numeric",
                         })}
                       </p>
                     </div>
@@ -254,15 +259,9 @@ export default function SponsorsTab({
 
                   {/* Delete */}
                   <button
-                    onClick={() =>
-                      handleDelete(
-                        s.id,
-                        s.anonymous ? "this anonymous sponsor" : s.name,
-                      )
-                    }
+                    onClick={() => handleDelete(s.id, s.anonymous ? `${s.name} (anonymous)` : s.name)}
                     disabled={deleting === s.id}
-                    className="flex items-center gap-1 px-2.5 py-1.5 border border-red-200 rounded-lg text-xs text-red-500 hover:bg-red-50 transition-colors disabled:opacity-50 flex-shrink-0"
-                  >
+                    className="flex items-center gap-1 px-2.5 py-1.5 border border-red-200 rounded-lg text-xs text-red-500 hover:bg-red-50 transition-colors disabled:opacity-50 flex-shrink-0">
                     <Trash2 size={12} /> {deleting === s.id ? "…" : "Delete"}
                   </button>
                 </div>

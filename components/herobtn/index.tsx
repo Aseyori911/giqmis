@@ -25,11 +25,18 @@ export default function ArabicSchoolModals() {
     fetch('/api/admin/settings').then(r => r.json()).then(data => {
       const s = data.settings || {}
       setEnrollmentOpen(s.enrollment_open !== 'false')
-      // Filter courses to only those toggled ON in settings
-      const active = ALL_COURSES
-        .filter(c => s[c.id] === 'true')
-        .map(c => c.label)
-      setActiveCourses(active)
+      if (s.custom_programs) {
+        try {
+          const saved: { id: string; label: string; active: boolean }[] = JSON.parse(s.custom_programs)
+          setActiveCourses(saved.filter(p => p.active).map(p => p.label))
+        } catch {
+          const active = ALL_COURSES.filter(c => s[c.id] === 'true').map(c => c.label)
+          setActiveCourses(active)
+        }
+      } else {
+        const active = ALL_COURSES.filter(c => s[c.id] === 'true').map(c => c.label)
+        setActiveCourses(active)
+      }
     }).catch(() => {})
   }, [showApplyModal])
 
@@ -59,8 +66,10 @@ export default function ArabicSchoolModals() {
     if (step === 4) {
       if (!formData.preferredLearningStyle) { toast.error("Preferred learning style is required"); return false }
       if (!formData.goals) { toast.error("Goals are required"); return false }
-      if (!formData.classTime) { toast.error("Please select a class time"); return false }
-      if (formData.classTime === "Other" && !formData.otherClassTime) { toast.error("Please specify your preferred class time"); return false }
+      if (!formData.classType) { toast.error("Please select a class preference"); return false }
+      if (formData.classType === 'private' && formData.privateClassSlots.length < 2) {
+        toast.error("Please add at least 2 slots for your private class"); return false
+      }
       if (!formData.agreeToTerms) { toast.error("Please respond to the terms and conditions"); return false }
       if (formData.agreeToTerms === "No") { toast.error("You must agree to the terms to enroll"); return false }
     }
@@ -84,6 +93,9 @@ export default function ArabicSchoolModals() {
           selectedCourses: formData.selectedCourses.join(', '),
           program: formData.selectedCourses.join(', '),
           grade: formData.westernEducationLevel,
+          classTime: formData.classType === 'general'
+            ? 'General Class (Wed, Fri, Sun)'
+            : `Private Class — ${formData.privateClassSlots.map(s => `${s.day} @ ${s.time}`).join(' | ')}`,
         }),
       })
       const data = await res.json()
@@ -116,7 +128,6 @@ export default function ArabicSchoolModals() {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover text-white py-[100px] text-center">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-[42px] mb-5">Nurturing Knowledge and Faith</h2>

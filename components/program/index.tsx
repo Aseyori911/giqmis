@@ -9,17 +9,17 @@ import ScrollToTop from "../scrollToTop";
 
 export default function ProgramPage() {
   return (
-    <div>
+    <div className="bg-white dark:bg-stone-900 transition-colors">
       <HeroBanner />
       <ProgramsSlider />
       <CurriculumSection />
 
-      <section className="py-20 bg-gray-50 hidden md:block">
+      <section className="py-20 bg-gray-50 dark:bg-stone-950 hidden md:block transition-colors">
         <div className="container mx-auto px-4">
           <MultiCourseDetails />
         </div>
       </section>
-      <section className="py-20 bg-gray-50 md:hidden block">
+      <section className="py-20 bg-gray-50 dark:bg-stone-950 md:hidden block transition-colors">
         <div className="container mx-auto px-4">
           <MultiCourseDetailsSmallDevice />
         </div>
@@ -27,8 +27,7 @@ export default function ProgramPage() {
 
       <FAQSection />
       <CTASection />
-
       <ScrollToTop />
     </div>
-  );
+  )
 }

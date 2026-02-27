@@ -33,13 +33,9 @@ export default function GalleryPage() {
     filter === "all" ? items : items.filter((i) => i.category === filter);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-stone-900 transition-colors">
       <HeroBanner />
-      <FilterTabs
-        categories={categories}
-        filter={filter}
-        onFilter={setFilter}
-      />
+      <FilterTabs categories={categories} filter={filter} onFilter={setFilter} />
       <section className="py-12">
         <div className="container mx-auto px-4">
           <GalleryGrid items={filtered} loading={loading} />
