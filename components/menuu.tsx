@@ -9,12 +9,12 @@ export default function Menuu() {
   const pathname = usePathname();
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/About" },
-    { name: "Programs", path: "/Programs" },
-    { name: "Gallery", path: "/Gallery" },
-    { name: "Sponsor a Student", path: "/sponsor" },
-    { name: "Contact", path: "/Contact" },
+    { name: "Home", path: "/en" },
+    { name: "About", path: "/en/About" },
+    { name: "Programs", path: "/en/Programs" },
+    { name: "Gallery", path: "/en/Gallery" },
+    { name: "Sponsor a Student", path: "/en/sponsor" },
+    { name: "Contact", path: "/en/Contact" },
   ];
 
   const mobileLinkClass = (path: string) =>
