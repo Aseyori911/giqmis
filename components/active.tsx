@@ -1,23 +1,29 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Active() {
-  const pathname = usePathname();
+  const pathname = usePathname()
+  const locale = useLocale()
+  const t = useTranslations('nav')
+  // const t = useTranslations('nav')
+// console.log('locale:', locale)
+// console.log('home translation:', t('home'))
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/About" },
-    { name: "Programs", path: "/Programs" },
-    { name: "News/Gallery", path: "/Gallery" },
-    { name: "Sponsor a Student", path: "/sponsor" },
-    { name: "Contact", path: "/Contact" },
-  ];
+    { name: t('home'),     path: `/${locale}` },
+    { name: t('about'),    path: `/${locale}/About` },
+    { name: t('programs'), path: `/${locale}/Programs` },
+    { name: t('gallery'),  path: `/${locale}/Gallery` },
+    { name: t('sponsor'),  path: `/${locale}/sponsor` },
+    { name: t('contact'),  path: `/${locale}/Contact` },
+  ]
 
   const linkClass = (path: string) =>
     pathname === path
       ? "text-sm font-semibold text-orange-600 underline"
-      : "text-sm text-gray-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-500 transition-colors duration-200";
+      : "text-sm text-gray-700 dark:text-stone-300 hover:text-orange-600 dark:hover:text-orange-500 transition-colors duration-200"
 
   return (
     <div>
@@ -54,5 +60,5 @@ export default function Active() {
         </div>
       </div>
     </div>
-  );
+  )
 }

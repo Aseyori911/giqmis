@@ -1,16 +1,17 @@
+'use client'
+
 import Sliding from '@/components/slider'
+import { useTranslations } from 'next-intl'
 
 export default function ProgramsSlider() {
+  const t = useTranslations('programs_page')
+
   return (
     <section className="py-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h3 className="text-3xl font-bold text-gray-800 dark:text-stone-100 mb-[10px]">
-            Comprehensive Arabic Education
-          </h3>
-          <p className="text-gray-600 dark:text-stone-400 max-w-[700px] mx-auto">
-            We offer a variety of programs designed to meet the needs of students of all ages and proficiency levels.
-          </p>
+          <h3 className="text-3xl font-bold text-gray-800 dark:text-stone-100 mb-[10px]">{t('sliderTitle')}</h3>
+          <p className="text-gray-600 dark:text-stone-400 max-w-[700px] mx-auto">{t('sliderSubtitle')}</p>
           <div className="bg-orange-500 border border-orange-500 w-[10%] mx-auto mt-3 h-1"></div>
         </div>
         <div className="relative overflow-hidden max-w-[1200px] mx-auto">

@@ -3,12 +3,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import {
-  GraduationCap,
-  BellRing,
-  CheckCircle,
-  X,
-  ArrowLeft,
-  ArrowRight,
+  GraduationCap, BellRing, CheckCircle, X, ArrowLeft, ArrowRight,
 } from "lucide-react";
 import Modal from "@/components/herobtn/modal";
 import ProgressBar from "@/components/herobtn/progressBar";
@@ -18,7 +13,7 @@ import StepTwo from "@/components/herobtn/stepTwo";
 import StepThree from "@/components/herobtn/stepThree";
 import StepFour from "@/components/herobtn/stepFour";
 import { FormData, WaitlistData } from "@/components/herobtn/types";
-import { INITIAL_FORM_DATA } from "@/components/herobtn/data";
+import { INITIAL_FORM_DATA, ALL_COURSES } from "@/components/herobtn/data";
 
 const TOTAL_STEPS = 4;
 
@@ -31,9 +26,7 @@ export default function Registerbtn() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM_DATA);
   const [waitlistData, setWaitlistData] = useState<WaitlistData>({
-    name: "",
-    phone: "",
-    email: "",
+    name: "", phone: "", email: "",
   });
 
   useEffect(() => {
@@ -43,15 +36,24 @@ export default function Registerbtn() {
       .then((data) => {
         const s = data.settings || {};
         setEnrollmentOpen(s.enrollment_open !== "false");
-        setActiveCourses(s.active_courses || []);
+        if (s.custom_programs) {
+          try {
+            const saved: { id: string; label: string; active: boolean }[] = JSON.parse(s.custom_programs);
+            setActiveCourses(saved.filter((p) => p.active).map((p) => p.label));
+          } catch {
+            const active = ALL_COURSES.filter((c) => s[c.id] === "true").map((c) => c.label);
+            setActiveCourses(active);
+          }
+        } else {
+          const active = ALL_COURSES.filter((c) => s[c.id] === "true").map((c) => c.label);
+          setActiveCourses(active);
+        }
       })
       .catch(() => {});
   }, [showApplyModal]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -59,92 +61,37 @@ export default function Registerbtn() {
 
   const validateStep = () => {
     if (step === 1) {
-      if (!formData.studentName) {
-        toast.error("Student name is required");
-        return false;
-      }
-      if (!formData.parentName) {
-        toast.error("Parent/Guardian name is required");
-        return false;
-      }
-      if (!formData.email) {
-        toast.error("Email is required");
-        return false;
-      }
-      if (!formData.phone) {
-        toast.error("Phone number is required");
-        return false;
-      }
-      if (!formData.studentAge) {
-        toast.error("Age group is required");
-        return false;
-      }
-      if (!formData.westernEducationLevel) {
-        toast.error("Western Education Level is required");
-        return false;
-      }
-      if (!formData.lastSchoolAttended) {
-        toast.error("Last school attended is required");
-        return false;
-      }
-      if (!formData.nationality) {
-        toast.error("Nationality is required");
-        return false;
-      }
+      if (!formData.studentName) { toast.error("Student name is required"); return false; }
+      if (!formData.parentName) { toast.error("Parent/Guardian name is required"); return false; }
+      if (!formData.email) { toast.error("Email is required"); return false; }
+      if (!formData.phone) { toast.error("Phone number is required"); return false; }
+      if (!formData.studentAge) { toast.error("Age group is required"); return false; }
+      if (!formData.westernEducationLevel) { toast.error("Western Education Level is required"); return false; }
+      if (!formData.lastSchoolAttended) { toast.error("Last school attended is required"); return false; }
+      if (!formData.nationality) { toast.error("Nationality is required"); return false; }
     }
     if (step === 2) {
-      if (!formData.studiedQuranBefore) {
-        toast.error("Please answer the Quran question");
-        return false;
-      }
-      if (!formData.levelOfStudyInterested) {
-        toast.error("Level of study is required");
-        return false;
-      }
+      if (!formData.studiedQuranBefore) { toast.error("Please answer the Quran question"); return false; }
+      if (!formData.levelOfStudyInterested) { toast.error("Level of study is required"); return false; }
     }
     if (step === 3) {
-      if (formData.selectedCourses.length < 2) {
-        toast.error("Please select at least 2 courses");
-        return false;
-      }
+      if (formData.selectedCourses.length < 2) { toast.error("Please select at least 2 courses"); return false; }
     }
     if (step === 4) {
-      if (!formData.preferredLearningStyle) {
-        toast.error("Preferred learning style is required");
-        return false;
+      if (!formData.preferredLearningStyle) { toast.error("Preferred learning style is required"); return false; }
+      if (!formData.goals) { toast.error("Goals are required"); return false; }
+      if (!formData.classType) { toast.error("Please select a class preference"); return false; }
+      if (formData.classType === "private" && formData.privateClassSlots.length < 2) {
+        toast.error("Please add at least 2 slots for your private class"); return false;
       }
-      if (!formData.goals) {
-        toast.error("Goals are required");
-        return false;
-      }
-      if (!formData.classTime) {
-        toast.error("Please select a class time");
-        return false;
-      }
-      if (formData.classTime === "Other" && !formData.otherClassTime) {
-        toast.error("Please specify your preferred class time");
-        return false;
-      }
-      if (!formData.agreeToTerms) {
-        toast.error("Please respond to the terms and conditions");
-        return false;
-      }
-      if (formData.agreeToTerms === "No") {
-        toast.error("You must agree to the terms to enroll");
-        return false;
-      }
+      if (!formData.agreeToTerms) { toast.error("Please respond to the terms and conditions"); return false; }
+      if (formData.agreeToTerms === "No") { toast.error("You must agree to the terms to enroll"); return false; }
     }
     return true;
   };
 
-  const resetForm = () => {
-    setFormData(INITIAL_FORM_DATA);
-    setStep(1);
-  };
-
-  const handleNext = () => {
-    if (validateStep()) setStep((s) => s + 1);
-  };
+  const resetForm = () => { setFormData(INITIAL_FORM_DATA); setStep(1); };
+  const handleNext = () => { if (validateStep()) setStep((s) => s + 1); };
   const handleBack = () => setStep((s) => s - 1);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -159,20 +106,16 @@ export default function Registerbtn() {
           selectedCourses: formData.selectedCourses.join(", "),
           program: formData.selectedCourses.join(", "),
           grade: formData.westernEducationLevel,
+          classTime: formData.classType === "general"
+            ? "General Class (Wed, Fri, Sun)"
+            : `Private Class — ${formData.privateClassSlots.map((s) => `${s.day} @ ${s.time}`).join(" | ")}`,
         }),
       });
       const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.error || "Something went wrong.");
-        return;
-      }
+      if (!res.ok) { toast.error(data.error || "Something went wrong."); return; }
       toast.success("Application submitted successfully 🎉");
       setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setShowApplyModal(false);
-        resetForm();
-      }, 3000);
+      setTimeout(() => { setIsSubmitted(false); setShowApplyModal(false); resetForm(); }, 3000);
     } catch {
       toast.error("Network error. Please check your connection and try again.");
     }
@@ -186,10 +129,7 @@ export default function Registerbtn() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(waitlistData),
       });
-      if (!res.ok) {
-        toast.error("Failed to save. Please try again.");
-        return;
-      }
+      if (!res.ok) { toast.error("Failed to save. Please try again."); return; }
       setIsWaitlistSubmitted(true);
     } catch {
       toast.error("Network error. Please try again.");
@@ -217,14 +157,10 @@ export default function Registerbtn() {
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
-              <div
-                className={`p-2 rounded-lg ${enrollmentOpen ? "bg-emerald-100" : "bg-amber-100"}`}
-              >
-                {enrollmentOpen ? (
-                  <GraduationCap className="w-6 h-6 text-emerald-600" />
-                ) : (
-                  <BellRing className="w-6 h-6 text-amber-600" />
-                )}
+              <div className={`p-2 rounded-lg ${enrollmentOpen ? "bg-emerald-100" : "bg-amber-100"}`}>
+                {enrollmentOpen
+                  ? <GraduationCap className="w-6 h-6 text-emerald-600" />
+                  : <BellRing className="w-6 h-6 text-amber-600" />}
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-gray-800">
@@ -237,10 +173,7 @@ export default function Registerbtn() {
                 </p>
               </div>
             </div>
-            <button
-              onClick={closeModal}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-            >
+            <button onClick={closeModal} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
               <X className="w-6 h-6 text-gray-500" />
             </button>
           </div>
@@ -265,30 +198,18 @@ export default function Registerbtn() {
                   <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-10 h-10 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                    Application Submitted!
-                  </h3>
-                  <p className="text-gray-600 mb-2">
-                    شكراً لتسجيلكم — Thank you for registering
-                  </p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Application Submitted!</h3>
+                  <p className="text-gray-600 mb-2">شكراً لتسجيلكم — Thank you for registering</p>
                   <p className="text-sm text-gray-500">
-                    Our admissions team will contact you within 2-3 business
-                    days
+                    Our admissions team will contact you within 2-3 business days
                   </p>
                 </div>
               ) : (
                 <>
                   <ProgressBar step={step} totalSteps={TOTAL_STEPS} />
                   <form onSubmit={handleSubmit}>
-                    {step === 1 && (
-                      <StepOne
-                        formData={formData}
-                        onChange={handleInputChange}
-                      />
-                    )}
-                    {step === 2 && (
-                      <StepTwo formData={formData} setFormData={setFormData} />
-                    )}
+                    {step === 1 && <StepOne formData={formData} onChange={handleInputChange} />}
+                    {step === 2 && <StepTwo formData={formData} setFormData={setFormData} />}
                     {step === 3 && (
                       <StepThree
                         formData={formData}
@@ -306,35 +227,24 @@ export default function Registerbtn() {
 
                     <div className="flex gap-4 pt-6 mt-2 border-t border-gray-100">
                       {step > 1 ? (
-                        <button
-                          type="button"
-                          onClick={handleBack}
-                          className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold flex items-center justify-center gap-2"
-                        >
+                        <button type="button" onClick={handleBack}
+                          className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold flex items-center justify-center gap-2">
                           <ArrowLeft className="w-5 h-5" /> Back
                         </button>
                       ) : (
-                        <button
-                          type="button"
-                          onClick={closeModal}
-                          className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold"
-                        >
+                        <button type="button" onClick={closeModal}
+                          className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-semibold">
                           Cancel
                         </button>
                       )}
                       {step < TOTAL_STEPS ? (
-                        <button
-                          type="button"
-                          onClick={handleNext}
-                          className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors"
-                        >
+                        <button type="button" onClick={handleNext}
+                          className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
                           Next <ArrowRight className="w-5 h-5" />
                         </button>
                       ) : (
-                        <button
-                          type="submit"
-                          className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors"
-                        >
+                        <button type="submit"
+                          className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
                           Submit Application <ArrowRight className="w-5 h-5" />
                         </button>
                       )}

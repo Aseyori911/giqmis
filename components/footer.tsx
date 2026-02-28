@@ -1,38 +1,40 @@
+'use client'
+
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations('footer')
+  const nav = useTranslations('nav')
+
   return (
     <div>
       <footer className="bg-gray-800 dark:bg-stone-950 text-white py-12 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
 
-            {/* About GIQMIS */}
+            {/* About */}
             <div className="footer-widget">
-              <h4 className="text-lg font-semibold mb-4 text-orange-500">About GIQMIS</h4>
-              <p className="text-gray-300 dark:text-stone-400 text-sm leading-6">
-                GLADTIDINGS INSTITUTE FOR QUR&apos;AN MEMORIZATION AND ISLAMIC
-                STUDIES FOR FEMALES is dedicated to providing excellent Islamic
-                education in a nurturing environment.
-              </p>
+              <h4 className="text-lg font-semibold mb-4 text-orange-500">{t('about')}</h4>
+              <p className="text-gray-300 dark:text-stone-400 text-sm leading-6">{t('aboutText')}</p>
             </div>
 
             {/* Quick Links */}
             <div className="footer-widget">
-              <h4 className="text-lg font-semibold mb-4 text-orange-500">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4 text-orange-500">{t('quickLinks')}</h4>
               <ul className="space-y-2">
                 {[
-                  { href: '/', label: 'Home' },
-                  { href: 'About', label: 'About' },
-                  { href: 'Programs', label: 'Programs' },
-                  { href: 'Gallery', label: 'Gallery' },
-                  { href: 'sponsor', label: 'Sponsor a Student' },
-                  { href: 'Contact', label: 'Contact' },
-                ].map(({ href, label }) => (
-                  <li key={label}>
+                  { href: '/en', key: 'home' },
+                  { href: 'About', key: 'about' },
+                  { href: 'Programs', key: 'programs' },
+                  { href: 'Gallery', key: 'gallery' },
+                  { href: 'sponsor', key: 'sponsor' },
+                  { href: 'Contact', key: 'contact' },
+                ].map(({ href, key }) => (
+                  <li key={key}>
                     <Link href={href} className="flex items-center text-gray-300 dark:text-stone-400 hover:text-orange-500 transition-colors duration-200 text-sm">
                       <span className="text-orange-500 text-xl mr-2">✓</span>
-                      <span>{label}</span>
+                      <span>{nav(key)}</span>
                     </Link>
                   </li>
                 ))}
@@ -41,7 +43,7 @@ export default function Footer() {
 
             {/* Programs */}
             <div className="footer-widget">
-              <h4 className="text-lg font-semibold mb-4 text-orange-500">Programs</h4>
+              <h4 className="text-lg font-semibold mb-4 text-orange-500">{t('programs')}</h4>
               <ul className="space-y-2">
                 {["Children's Program", "Teen Program", "Adult Program", "Summer Intensives", "Online Classes"].map(p => (
                   <li key={p}>
@@ -54,23 +56,23 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Us */}
+            {/* Contact */}
             <div className="footer-widget">
-              <h4 className="text-lg font-semibold mb-4 text-orange-500">Contact Us</h4>
+              <h4 className="text-lg font-semibold mb-4 text-orange-500">{t('contactUs')}</h4>
               <div className="space-y-3 text-sm text-gray-300 dark:text-stone-400">
                 <p className="leading-6">
-                  <span className="font-medium text-white dark:text-stone-200">Address:</span><br />
-                  66, Amuda Oojeere adjacent Longrich/Olowoyeye hall, Ibadan, Nigeria
+                  <span className="font-medium text-white dark:text-stone-200">{t('address')}:</span><br />
+                  {t('addressValue')}
                 </p>
                 <p>
-                  <span className="font-medium text-white dark:text-stone-200">Whatsapp Number:</span><br />
+                  <span className="font-medium text-white dark:text-stone-200">{t('whatsapp')}:</span><br />
                   <a href="https://wa.me/2348071032546" target="_blank" rel="noopener noreferrer"
                     className="hover:text-orange-500 transition-colors">
                     +234 807 103 2546
                   </a>
                 </p>
                 <p>
-                  <span className="font-medium text-white dark:text-stone-200">Email:</span><br />
+                  <span className="font-medium text-white dark:text-stone-200">{t('email')}:</span><br />
                   <a href="https://mail.google.com/mail/?view=cm&fs=1&to=gladtidingsipe@gmail.com"
                     target="_blank" rel="noopener noreferrer"
                     className="hover:text-orange-500 transition-colors">
@@ -84,8 +86,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="border-t border-gray-700 dark:border-stone-800 pt-6">
             <p className="text-center text-gray-400 dark:text-stone-500 text-xs">
-              &copy; 2025 GLADTIDINGS INSTITUTE FOR QUR&apos;AN MEMORIZATION
-              AND ISLAMIC STUDIES FOR FEMALES. All Rights Reserved.
+              {t('copyright')}
             </p>
           </div>
         </div>

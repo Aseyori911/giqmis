@@ -7,13 +7,12 @@ import ScrollToTop from "../scrollToTop";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="bg-white dark:bg-stone-900 transition-colors">
       <ArabicSchoolModals />
       <WhyChooseUs />
       <ProgramsSlider />
       <CTASection />
       <Testimonials />
-
       <ScrollToTop />
     </div>
   );

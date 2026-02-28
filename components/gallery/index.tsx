@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import { GalleryItem, NewsPost } from "./types";
 import HeroBanner from "./heroBanner";
 import FilterTabs from "./filterTabs";
@@ -9,6 +10,7 @@ import NewsSection from "./newsSection";
 import ScrollToTop from "../scrollToTop";
 
 export default function GalleryPage() {
+  const t = useTranslations('gallery')
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [posts, setPosts] = useState<NewsPost[]>([]);
   const [filter, setFilter] = useState("all");
@@ -25,12 +27,8 @@ export default function GalleryPage() {
     });
   }, []);
 
-  const categories = [
-    "all",
-    ...Array.from(new Set(items.map((i) => i.category))),
-  ];
-  const filtered =
-    filter === "all" ? items : items.filter((i) => i.category === filter);
+  const categories = ["all", ...Array.from(new Set(items.map((i) => i.category)))];
+  const filtered = filter === "all" ? items : items.filter((i) => i.category === filter);
 
   return (
     <div className="bg-white dark:bg-stone-900 transition-colors">
@@ -38,8 +36,8 @@ export default function GalleryPage() {
       <FilterTabs categories={categories} filter={filter} onFilter={setFilter} />
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <GalleryGrid items={filtered} loading={loading} />
-          <NewsSection posts={posts} />
+          <GalleryGrid items={filtered} loading={loading} loadingText={t('loading')} emptyText={t('empty')} />
+          <NewsSection posts={posts} title={t('latestNews')} />
         </div>
       </section>
       <ScrollToTop />

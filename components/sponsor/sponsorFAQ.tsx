@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { faqs } from './data'
+import { useTranslations } from 'next-intl'
 
 export default function SponsorFAQ() {
+  const t = useTranslations('sponsor')
+  const faqs = t.raw('faqs') as { question: string; answer: string }[]
   const [open, setOpen] = useState<number | null>(null)
 
   return (
     <section className="py-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-slate-800 dark:text-stone-100 mb-4">Frequently Asked Questions</h3>
+          <h3 className="text-3xl font-bold text-slate-800 dark:text-stone-100 mb-4">{t('faqTitle')}</h3>
           <div className="bg-orange-500 w-[10%] mx-auto mt-3 h-1"></div>
         </div>
         <div className="max-w-2xl mx-auto space-y-3">

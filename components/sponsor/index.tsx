@@ -1,27 +1,18 @@
 import HeroBanner from "./heroBanner";
 import WhySponsored from "./whySponsored";
-import StudentTestimonials from './sponsorTiers'
-import SponsorForm from "./sponsorForm";
+import SponsorTiers from './sponsorTiers'
 import SponsorFAQ from "./sponsorFAQ";
 import CTASection from "./CTASection";
 import ScrollToTop from "../scrollToTop";
 
 export default function SponsorPage() {
   return (
-    <div>
+    <div className="bg-white dark:bg-stone-900 transition-colors">
       <HeroBanner />
       <WhySponsored />
-      <StudentTestimonials />
-
-      {/* <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <SponsorForm />
-        </div>
-      </section> */}
-
+      <SponsorTiers />
       <SponsorFAQ />
       <CTASection />
-
       <ScrollToTop />
     </div>
   );

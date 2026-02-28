@@ -1,14 +1,17 @@
+'use client'
+
+import { useTranslations } from 'next-intl'
 import { faqs } from './data'
 
 export default function FAQSection() {
+  const t = useTranslations('programs_page')
+
   return (
     <section className="py-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-slate-800 dark:text-stone-100 mb-4">Frequently Asked Questions</h3>
-          <p className="text-slate-500 dark:text-stone-400 max-w-2xl mx-auto">
-            Find answers to common questions about our Arabic language programs.
-          </p>
+          <h3 className="text-3xl font-bold text-slate-800 dark:text-stone-100 mb-4">{t('faqTitle')}</h3>
+          <p className="text-slate-500 dark:text-stone-400 max-w-2xl mx-auto">{t('faqSubtitle')}</p>
           <div className="bg-orange-500 border border-orange-500 w-[10%] mx-auto mt-3 h-1"></div>
         </div>
         <div className="max-w-3xl mx-auto">

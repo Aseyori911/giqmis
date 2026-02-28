@@ -3,15 +3,16 @@ import { NewsPost } from './types'
 
 type Props = {
   posts: NewsPost[]
+  title: string
 }
 
-export default function NewsSection({ posts }: Props) {
+export default function NewsSection({ posts, title }: Props) {
   if (posts.length === 0) return null
 
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-stone-100 mb-8 text-center relative inline-block">
-        Latest News
+        {title}
         <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1 bg-orange-500 rounded-full" />
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -21,8 +22,7 @@ export default function NewsSection({ posts }: Props) {
             {post.image_url && (
               <div className="relative h-48">
                 <Image src={post.image_url} alt={post.title} fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw" />
+                  className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
             )}
             <div className="p-5">

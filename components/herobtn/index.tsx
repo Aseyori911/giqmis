@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
+import { useTranslations } from 'next-intl'
 import ApplyModal from './applyModal'
 import ReadMoreModal from './readMoreModal'
 import { FormData, WaitlistData } from './types'
@@ -10,6 +11,8 @@ import { INITIAL_FORM_DATA, ALL_COURSES } from './data'
 const TOTAL_STEPS = 4
 
 export default function ArabicSchoolModals() {
+  const t = useTranslations('hero')
+  
   const [showApplyModal, setShowApplyModal] = useState(false)
   const [showReadMoreModal, setShowReadMoreModal] = useState(false)
   const [enrollmentOpen, setEnrollmentOpen] = useState(true)
@@ -130,18 +133,21 @@ export default function ArabicSchoolModals() {
     <div>
       <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover text-white py-[100px] text-center">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-[42px] mb-5">Nurturing Knowledge and Faith</h2>
+          <div className="inline-block bg-orange-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
+            {t('badge')}
+          </div>
+          <h2 className="text-[42px] mb-5">{t('title')}</h2>
           <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed">
-            GLADTIDINGS INSTITUTE provides quality Qur&apos;an memorization and Islamic studies education for females in a supportive and enriching environment.
+            {t('subtitle')}
           </p>
           <div className="flex justify-center gap-4">
             <button onClick={() => setShowApplyModal(true)}
               className="bg-[#e67e22] hover:bg-[#d35400] text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Apply Now
+              {t('apply')}
             </button>
             <button onClick={() => setShowReadMoreModal(true)}
               className="bg-[#e67e22] hover:bg-[#d35400] text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Read More
+              {t('learnMore')}
             </button>
           </div>
         </div>

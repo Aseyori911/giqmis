@@ -49,9 +49,53 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'id and status are required' }, { status: 400 })
   }
 
+  let student_id = undefined
+
+  if (status === 'accepted') {
+    // Check if this application already has a student_id
+    const { data: existing } = await supabaseAdmin
+      .from('applications')
+      .select('student_id')
+      .eq('id', id)
+      .single()
+
+    if (!existing?.student_id) {
+      // Get ALL student IDs that exist (including deleted students' numbers are gone)
+      // Instead, find the highest number ever assigned and add 1
+      const { data: allIds } = await supabaseAdmin
+        .from('applications')
+        .select('student_id')
+        .not('student_id', 'is', null)
+
+      // Extract the counter numbers from existing IDs e.g. "2602-0002" → 2
+      const maxNumber = allIds && allIds.length > 0
+        ? Math.max(...allIds.map(row => {
+            const parts = row.student_id?.split('-')
+            return parts ? parseInt(parts[1], 10) : 0
+          }))
+        : 0
+
+      const next = maxNumber + 1
+      const now = new Date()
+      const year = now.getFullYear().toString().slice(2)   // "26"
+      const month = String(now.getMonth() + 1).padStart(2, '0')  // "02"
+      const counter = String(next).padStart(4, '0')        // "0004"
+      student_id = `${year}${month}-${counter}`            // "2602-0004"
+    }
+  }
+
+  const updatePayload: Record<string, unknown> = {
+    status,
+    admin_notes: admin_notes || null,
+  }
+
+  if (student_id) {
+    updatePayload.student_id = student_id
+  }
+
   const { data, error } = await supabaseAdmin
     .from('applications')
-    .update({ status, admin_notes: admin_notes || null })
+    .update(updatePayload)
     .eq('id', id)
     .select()
     .single()

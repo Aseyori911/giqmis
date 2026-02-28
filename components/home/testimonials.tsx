@@ -1,21 +1,25 @@
-import Image from 'next/image'
-import { testimonials } from './data'
+'use client'
+
+import { useTranslations } from 'next-intl'
 
 export default function Testimonials() {
+  const t = useTranslations('testimonials')
+  const items = t.raw('items') as { quote: string; name: string; role: string }[]
+
   return (
     <section className="py-20 text-center mb-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="mb-10 text-3xl font-bold text-gray-800 dark:text-stone-100 relative inline-block">
-            What Our Students Say
+            {t('title')}
             <span className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-orange-500"></span>
           </h2>
           <p className="text-gray-600 dark:text-stone-400 max-w-[700px] mx-auto">
-            Hear from our community of students and parents about their experience at GLADTIDINGS INSTITUTE.
+            {t('subtitle')}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map(({ quote, name, role, avatar }) => (
+          {items.map(({ quote, name, role }) => (
             <div key={name}
               className="bg-white dark:bg-stone-800 rounded-2xl p-8 shadow-2xl text-left transition-all duration-300 hover:-translate-y-3 hover:shadow-xl">
               <p className="text-md leading-relaxed text-gray-600 dark:text-stone-400 mb-5 relative">
@@ -23,10 +27,9 @@ export default function Testimonials() {
                 {quote}
               </p>
               <div className="flex items-center">
-                <Image
-                  src={avatar} alt={name} width={60} height={60}
-                  className="rounded-full object-cover mr-4 border-4 border-gray-100 dark:border-stone-700"
-                />
+                <div className="w-[60px] h-[60px] rounded-full bg-orange-100 dark:bg-stone-700 flex items-center justify-center mr-4 border-4 border-gray-100 dark:border-stone-700 flex-shrink-0">
+                  <span className="text-orange-500 text-xl font-bold">{name.charAt(0)}</span>
+                </div>
                 <div>
                   <h4 className="text-lg font-semibold mb-1 text-gray-800 dark:text-stone-100">{name}</h4>
                   <p className="text-sm text-gray-500 dark:text-stone-400">{role}</p>

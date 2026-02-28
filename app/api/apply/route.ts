@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
       classTime,
       otherClassTime,
       agreeToTerms,
+       attendanceMode, 
     } = body
 
     // Required field validation
@@ -68,6 +69,7 @@ export async function POST(req: NextRequest) {
         why_interested:             whyInterestedInSchool?.trim() || null,
         class_time:                 classTime === 'Other' ? otherClassTime?.trim() : classTime || null,
         agree_to_terms:             agreeToTerms || null,
+        attendance_mode: attendanceMode || null,   // ← add this
 
         status: 'pending',
       }])

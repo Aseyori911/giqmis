@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "programs": "Programs",
+    "gallery": "News/Gallery",
+    "sponsor": "Sponsor a Student",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Now Enrolling",
+    "title": "Memorize the Quran with Excellence",
+    "subtitle": "Join GLADTIDINGS INSTITUTE FOR QUR'AN MEMORIZATION AND ISLAMIC STUDIES FOR FEMALES — a nurturing environment for spiritual and academic growth.",
+    "apply": "Apply Now",
+    "learnMore": "Learn More"
+  },
+  "why": {
+    "title": "Why Choose GIQMIS?",
+    "subtitle": "We provide comprehensive Islamic education focusing on Qur'an memorization, tajweed, tafsir, and other essential Islamic sciences.",
+    "features": [
+      { "emoji": "📖", "title": "Qur'an Memorization", "description": "Our structured program helps students memorize the Qur'an with proper tajweed and understanding of the meanings." },
+      { "emoji": "👩‍🏫", "title": "Qualified Teachers", "description": "Learn from certified female instructors with extensive knowledge in Qur'anic sciences and Islamic studies." },
+      { "emoji": "🌟", "title": "Character Development", "description": "We focus on nurturing not just knowledge but also moral character and ethical values based on Islamic principles." }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Students Say",
+    "subtitle": "Hear from our community of students and parents about their experience at GLADTIDINGS INSTITUTE.",
+    "items": [
+      { "quote": "The gallery events at GIQMIS have been a wonderful way to connect with Arabic culture. My children love showcasing their artwork and calligraphy projects!", "name": "Sarah M.", "role": "Parent of two students" },
+      { "quote": "I've been studying Arabic at GIQMIS for two years now. The cultural events and field trips have truly enhanced my understanding of the language and culture.", "name": "David L.", "role": "Adult Program Student" },
+      { "quote": "The graduation ceremony at GIQMIS was one of my proudest moments. The school's commitment to celebrating achievements really motivates students to excel.", "name": "Layla K.", "role": "Graduate Student" }
+    ]
+  },
+  "programs": {
+    "title": "Our Programs",
+    "subtitle": "We offer various programs tailored to different age groups and educational needs."
+  },
+  "cta": {
+    "title": "Begin Your Journey to Qur'anic Excellence",
+    "subtitle": "Enrollment for our next term is now open! Join our community of dedicated learners today."
+  },
+  "about": {
+    "pageTitle": "About Our School",
+    "storyTitle": "Welcome to GLADTIDINGS INSTITUTE FOR QUR'AN MEMORIZATION AND ISLAMIC STUDIES FOR FEMALES",
+    "story1": "Gladtidings Institute for Qur'an Memorisation and Islamic studies was founded on the 4th February, 2019 and has gone through some very stormy moments and impacted human lives. In the little space of years of existence, we had our first haflah on the 23rd December, 2023 and so far has churned out many Hufaadh(graduates).",
+    "story2": "Also, we are registered with the corporate affairs commission (RN 3412056) and also leaving no stone unturned to take the madrasah to an enviable height. Some of the very beautiful accomplishments we've been able to record over the years are those concerning two different students. One of them, Zainab, has speech defect and her communication is poor, however, by the might of Allah she has memorised up to 4 ajza of the Qur'an.",
+    "story3": "Also, alhamdulillah that Balqis has finished 27 ajzaa of the whole Qur'an despite her eye challenge as she could not read directly from the Qur'an. We've had to read the Qur'an repeatedly to her until it sticks to her memory. All these being made realistic by Allah are accomplishments that gladden our heart.",
+    "missionTitle": "Our Mission",
+    "mission": "Our mission is to focus on reforming especially perverted souls through constant reflection and pondering over the meanings of the Qur'an and to ultimately restore the missing spiritual sanity back to the land.",
+    "visionTitle": "Our Vision",
+    "vision": "Our vision is to establish a morally sane society in which the free-mixing of the opposite sex is avoided and also correct the minds of pessimists who think Qur'an memorisation is an unrealistic feat.",
+    "valuesTitle": "Our Core Values",
+    "valuesSubtitle": "The principles that guide our approach to education and community building.",
+    "teamTitle": "Meet Our Team",
+    "teamSubtitle": "Our dedicated faculty brings years of experience and passion to Arabic language education.",
+    "journeyTitle": "Our Journey",
+    "journeySubtitle": "The growth and milestones of GIQMIS over the years.",
+    "milestones": [
+      { "year": "2019", "title": "The Beginning", "description": "Gladtidings institute for Qur'an Memorization and Islamic Studies for Females was founded with just 15 students and 2 teachers, operating on weekends in a community center." },
+      { "year": "2020", "title": "First Dedicated Space", "description": "With growing enrollment, we moved to our first dedicated facility and expanded to offer weekday evening classes for adults." },
+      { "year": "2021", "title": "Curriculum Development", "description": "We developed our own comprehensive curriculum for all levels, focusing on practical communication skills and cultural immersion." },
+      { "year": "2025", "title": "5th Anniversary & Expansion", "description": "Celebrated our 5th anniversary with over 150 students and introduced new programs including specialized courses for professionals." },
+      { "year": "2025", "title": "Online Program Launch", "description": "Launched our digital platform to reach students beyond our local community, offering virtual classes and resources." },
+      { "year": "Today", "title": "Growing Community", "description": "Now serving over 300 students with a team of 12 dedicated teachers and staff, continuing our mission of language education and cultural preservation." }
+    ]
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "Have questions about our programs or want to schedule a visit? We're here to help.",
+    "getInTouch": "Get in Touch",
+    "getInTouchSubtitle": "We welcome your inquiries and look forward to helping you discover the Arabic language and culture.",
+    "sendMessage": "Send Us a Message",
+    "location": "Our Location",
+    "locationValue": "66, Amuda Oojeere adjacent Longrich/Olowoyeye hall, Ibadan, Nigeria",
+    "whatsapp": "WhatsApp Number",
+    "email": "Email Address",
+    "hours": "Office Hours",
+    "hoursValue1": "Monday - Friday: 9:00 AM - 6:00 PM",
+    "hoursValue2": "Saturday: 10:00 AM - 2:00 PM",
+    "namePlaceholder": "Your Name",
+    "emailPlaceholder": "Your Email",
+    "phonePlaceholder": "WhatsApp Number",
+    "messagePlaceholder": "Your Message",
+    "send": "Send Message",
+    "sending": "Sending…",
+    "successTitle": "Message Sent!",
+    "successSubtitle": "We'll get back to you as soon as possible.",
+    "sendAnother": "Send Another Message"
+  },
+  "sponsor": {
+    "pageTitle": "Sponsor a Student",
+    "pageSubtitle": "Give a child the gift of Quranic education. Your generosity can change a life forever.",
+    "whyTitle": "Why Sponsor a Student?",
+    "whySubtitle": "Every child deserves access to Islamic education regardless of their financial background.",
+    "tiersTitle": "Choose Your Sponsorship Level",
+    "tiersSubtitle": "Every amount makes a difference. Choose what works for you.",
+    "faqTitle": "Frequently Asked Questions",
+    "ctaTitle": "Every Child Deserves to Learn",
+    "ctaSubtitle": "Join our growing family of sponsors and be part of a legacy that outlasts this world.",
+    "ctaBtn": "Become a Sponsor Today",
+    "formTitle": "Sponsorship Interest Form",
+    "namePlaceholder": "Your Full Name *",
+    "emailPlaceholder": "Your Email *",
+    "phonePlaceholder": "WhatsApp Number *",
+    "selectLevel": "Select Sponsorship Level *",
+    "messagePlaceholder": "Any message or special request? (optional)",
+    "anonymous": "I would like to sponsor anonymously",
+    "submit": "Submit Sponsorship Interest",
+    "submitting": "Submitting…",
+    "successTitle": "Thank You!",
+    "successSubtitle": "We've received your sponsorship interest. Our team will contact you within 24 hours with payment details.",
+    "submitAnother": "Submit Another",
+    "mostPopular": "Most Popular",
+    "sponsorBtn": "Sponsor at this Level",
+    "contactBtn": "Contact Us",
+    "livesTitle": "Lives Changed by Your Generosity",
+"livesSubtitle": "These are real students whose education was made possible through the kindness of our sponsors.",
+"classOf": "Class of",
+"students": [
+  { "initials": "FA", "name": "Fatimah Adebayo", "program": "Quran Memorization", "year": "2023", "color": "bg-emerald-500", "quote": "This scholarship changed my life. I was able to complete my Hifdh program without my family worrying about the fees. May Allah reward every sponsor abundantly." },
+  { "initials": "ZM", "name": "Zainab Musa", "program": "Arabic & Tajweed", "year": "2024", "color": "bg-orange-500", "quote": "Before this program I could not read the Quran properly. Today I lead recitation in my community. I am forever grateful to those who sponsored my education." },
+  { "initials": "HI", "name": "Hafsat Ibrahim", "program": "Beginner Tajweed", "year": "2024", "color": "bg-blue-500", "quote": "The scholarship removed every barrier between me and my education. The teachers were patient, the community was warm, and I grew so much spiritually." }
+],
+    "whyReasons": [
+  { "emoji": "📖", "title": "Empower Through Knowledge", "description": "Your sponsorship gives a student access to Quranic education and Islamic studies that could transform their life." },
+  { "emoji": "🤲", "title": "Continuous Reward (Sadaqah Jariyah)", "description": "Every verse a sponsored student memorises is a source of ongoing reward for you, even after this life." },
+  { "emoji": "🌍", "title": "Build a Better Community", "description": "Educated, spiritually grounded students grow into leaders who positively impact their families and communities." },
+  { "emoji": "💛", "title": "Support the Vulnerable", "description": "Many of our students come from low-income families. Your help ensures financial hardship never stops a child from learning." }
+  
+],
+"faqs": [
+  { "question": "How is my sponsorship money used?", "answer": "Funds go directly to covering tuition, learning materials, and where needed, transport support for the sponsored student." },
+  { "question": "Will I know the student I am sponsoring?", "answer": "Yes, with the family's consent we share the student's first name, progress reports and milestone updates with you." },
+  { "question": "Can I sponsor anonymously?", "answer": "Absolutely. Just indicate this in the form and we will keep your identity completely private." },
+  { "question": "Is there a minimum sponsorship period?", "answer": "We recommend at least 3 months so the student benefits meaningfully, but there is no strict minimum." },
+  { "question": "How do I make payment?", "answer": "After submitting the form our team will contact you within 24 hours with payment details via WhatsApp or email." }
+]
+  },
+  "footer": {
+    "about": "About GIQMIS",
+    "aboutText": "GLADTIDINGS INSTITUTE FOR QUR'AN MEMORIZATION AND ISLAMIC STUDIES FOR FEMALES is dedicated to providing excellent Islamic education in a nurturing environment.",
+    "quickLinks": "Quick Links",
+    "programs": "Programs",
+    "contactUs": "Contact Us",
+    "address": "Address",
+    "addressValue": "66, Amuda Oojeere adjacent Longrich/Olowoyeye hall, Ibadan, Nigeria",
+    "whatsapp": "Whatsapp Number",
+    "email": "Email",
+    "copyright": "© 2025 GLADTIDINGS INSTITUTE FOR QUR'AN MEMORIZATION AND ISLAMIC STUDIES FOR FEMALES. All Rights Reserved."
+  },
+  "gallery": {
+    "pageTitle": "Our Gallery",
+    "pageSubtitle": "Explore memorable moments from our classes, events, and cultural celebrations at GIQMIS.",
+    "loading": "Loading gallery…",
+    "empty": "No items in this category yet.",
+    "latestNews": "Latest News"
+  },
+  "programs_page": {
+    "pageTitle": "Our Arabic Programs",
+    "sliderTitle": "Comprehensive Arabic Education",
+    "sliderSubtitle": "We offer a variety of programs designed to meet the needs of students of all ages and proficiency levels.",
+    "curriculumTitle": "Our Curriculum",
+    "curriculumSubtitle": "We follow a comprehensive, structured curriculum based on modern language teaching methodologies.",
+    "curriculumHeading": "Comprehensive Learning Approach",
+    "curriculumP1": "Our curriculum integrates the four essential language skills—reading, writing, listening, and speaking—with cultural understanding to provide a holistic Arabic language education.",
+    "curriculumP2": "Each level builds progressively on previous learning, ensuring students develop strong foundations before advancing to more complex language concepts.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqSubtitle": "Find answers to common questions about our Arabic language programs.",
+    "ctaTitle": "Begin Your Arabic Learning Journey Today",
+    "ctaSubtitle": "Join GIQMIS and discover the beauty and richness of the Arabic language and culture. Our expert teachers and proven curriculum are ready to guide you towards Arabic fluency.",
+    "ctaBtn": "Contact Us"
+  }
+}

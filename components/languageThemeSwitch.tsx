@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useTheme } from 'next-themes'
+import { useLocale } from 'next-intl'
+import { useRouter, usePathname } from 'next/navigation'
 import { Sun, Moon, Monitor, ChevronDown, Globe } from 'lucide-react'
 
 const languages = [
@@ -17,16 +19,15 @@ const themes = [
 
 export default function LanguageThemeSwitch() {
   const { theme, setTheme } = useTheme()
-  const [lang, setLang] = useState('en')
+  const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)  // ← add this
+  const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setMounted(true)  // ← add this
-  }, [])
-
-  useEffect(() => {
+    setMounted(true)
     const handler = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
     }
@@ -34,12 +35,25 @@ export default function LanguageThemeSwitch() {
     return () => document.removeEventListener('mousedown', handler)
   }, [])
 
-  const currentLang = languages.find(l => l.code === lang)
-  
-  // ← use Monitor as default until mounted, then show actual theme icon
-  const currentThemeIcon = mounted
-    ? themes.find(t => t.value === theme)?.icon ?? <Monitor size={14} />
-    : <Monitor size={14} />
+  const switchLocale = (newLocale: string) => {
+    const segments = pathname.split('/')
+    segments[1] = newLocale
+    router.push(segments.join('/'))
+    router.refresh()
+    setOpen(false)
+  }
+
+  const currentLang = languages.find(l => l.code === locale)
+
+  // Avoid hydration mismatch by not rendering theme icon until mounted
+  if (!mounted) return (
+    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-sm text-gray-600">
+      <Globe size={14} className="text-orange-500" />
+      <span>{currentLang?.label}</span>
+    </div>
+  )
+
+  const currentThemeIcon = themes.find(t => t.value === theme)?.icon ?? <Monitor size={14} />
 
   return (
     <div ref={ref} className="relative">
@@ -57,11 +71,13 @@ export default function LanguageThemeSwitch() {
           <div className="px-3 py-2 border-b border-stone-100 dark:border-stone-700">
             <p className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1.5">Language</p>
             {languages.map(l => (
-              <button key={l.code} onClick={() => { setLang(l.code); setOpen(false) }}
+              <button key={l.code} onClick={() => switchLocale(l.code)}
                 className={`w-full text-left px-2 py-1.5 rounded-lg text-sm transition-colors flex items-center justify-between
-                  ${lang === l.code ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:bg-stone-50 dark:hover:bg-stone-700'}`}>
+                  ${locale === l.code
+                    ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-semibold'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-stone-50 dark:hover:bg-stone-700'}`}>
                 {l.label}
-                {lang === l.code && <span className="text-orange-500 text-xs">✓</span>}
+                {locale === l.code && <span className="text-orange-500 text-xs">✓</span>}
               </button>
             ))}
           </div>
@@ -71,10 +87,12 @@ export default function LanguageThemeSwitch() {
             {themes.map(t => (
               <button key={t.value} onClick={() => { setTheme(t.value); setOpen(false) }}
                 className={`w-full text-left px-2 py-1.5 rounded-lg text-sm transition-colors flex items-center gap-2
-                  ${mounted && theme === t.value ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-semibold' : 'text-gray-600 dark:text-gray-300 hover:bg-stone-50 dark:hover:bg-stone-700'}`}>
+                  ${theme === t.value
+                    ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-semibold'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-stone-50 dark:hover:bg-stone-700'}`}>
                 <span className="text-orange-500">{t.icon}</span>
                 {t.label}
-                {mounted && theme === t.value && <span className="ml-auto text-orange-500 text-xs">✓</span>}
+                {theme === t.value && <span className="ml-auto text-orange-500 text-xs">✓</span>}
               </button>
             ))}
           </div>

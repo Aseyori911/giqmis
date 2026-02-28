@@ -85,6 +85,7 @@ export const INITIAL_FORM_DATA = {
   classType: "",
   privateClassSlots: [] as { day: string; time: string }[],
   agreeToTerms: "",
+  attendanceMode: ''
 };
 
 export const ALL_COURSES = [

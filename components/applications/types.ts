@@ -26,4 +26,6 @@ export type Application = {
   status: 'pending' | 'reviewed' | 'accepted' | 'rejected'
   admin_notes: string
   submitted_at: string
+  student_id?: string | null
+  attendance_mode?: string | null
 }

@@ -1,15 +1,20 @@
-import { features } from './data'
+'use client'
+
+import { useTranslations } from 'next-intl'
 
 export default function WhyChooseUs() {
+  const t = useTranslations('why')
+  const features = t.raw('features') as { emoji: string; title: string; description: string }[]
+
   return (
     <section className="py-20 bg-white dark:bg-stone-900 transition-colors">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-[50px]">
           <h3 className="text-3xl font-bold text-gray-800 dark:text-stone-100 mb-[15px]">
-            Why Choose GIQMIS?
+            {t('title')}
           </h3>
           <p className="text-gray-600 dark:text-stone-400 max-w-[700px] mx-auto">
-            We provide comprehensive Islamic education focusing on Qur&apos;an memorization, tajweed, tafsir, and other essential Islamic sciences.
+            {t('subtitle')}
           </p>
           <div className="bg-orange-500 border border-orange-500 w-[10%] mx-auto mt-3 h-1"></div>
         </div>

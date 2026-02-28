@@ -31,6 +31,7 @@ export type FormData = {
   classType: string
   privateClassSlots: PrivateClassSlot[]
   agreeToTerms: string
+  attendanceMode: string
 }
 
 export type WaitlistData = {

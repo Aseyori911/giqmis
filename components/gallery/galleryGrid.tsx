@@ -4,11 +4,13 @@ import { GalleryItem } from './types'
 type Props = {
   items: GalleryItem[]
   loading: boolean
+  loadingText: string
+  emptyText: string
 }
 
-export default function GalleryGrid({ items, loading }: Props) {
-  if (loading) return <p className="text-center text-gray-400 dark:text-stone-500 py-20">Loading gallery…</p>
-  if (items.length === 0) return <p className="text-center text-gray-400 dark:text-stone-500 py-20">No items in this category yet.</p>
+export default function GalleryGrid({ items, loading, loadingText, emptyText }: Props) {
+  if (loading) return <p className="text-center text-gray-400 dark:text-stone-500 py-20">{loadingText}</p>
+  if (items.length === 0) return <p className="text-center text-gray-400 dark:text-stone-500 py-20">{emptyText}</p>
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
@@ -23,7 +25,6 @@ export default function GalleryGrid({ items, loading }: Props) {
               {item.date_label}
             </div>
           )}
-
           {item.media_type === 'video' ? (
             <video src={item.media_url}
               className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-105"
@@ -35,7 +36,6 @@ export default function GalleryGrid({ items, loading }: Props) {
                 sizes="(max-width: 768px) 100vw, 33vw" />
             </div>
           )}
-
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-6 translate-y-3/4 group-hover:translate-y-0 transition-transform duration-300">
             <h4 className="text-xl mb-2">{item.title}</h4>
             {item.description && (

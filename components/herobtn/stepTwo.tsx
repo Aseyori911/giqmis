@@ -20,6 +20,7 @@ export default function StepTwo({ formData, setFormData }: Props) {
       <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
         <p className="text-sm text-emerald-800"><strong>Step 2 of 4 — Quran & Study Background</strong></p>
       </div>
+
       <div>
         <label className={labelClass}>Have you studied Quran before? *</label>
         <div className="flex gap-3">
@@ -29,6 +30,7 @@ export default function StepTwo({ formData, setFormData }: Props) {
           ))}
         </div>
       </div>
+
       {formData.studiedQuranBefore === "Yes" && (
         <div>
           <label className={labelClass}>If yes, what was your previous level of study?</label>
@@ -40,6 +42,7 @@ export default function StepTwo({ formData, setFormData }: Props) {
           </div>
         </div>
       )}
+
       <div>
         <label className={labelClass}>Do you need help with Quran reading?</label>
         <div className="flex gap-3">
@@ -49,6 +52,7 @@ export default function StepTwo({ formData, setFormData }: Props) {
           ))}
         </div>
       </div>
+
       <div>
         <label className={labelClass}>What level of study are you interested in? *</label>
         <div className="flex gap-3">
@@ -58,6 +62,21 @@ export default function StepTwo({ formData, setFormData }: Props) {
           ))}
         </div>
       </div>
+
+      <div>
+        <label className={labelClass}>How would you like to attend? *</label>
+        <div className="flex flex-col sm:flex-row gap-3">
+          {[
+            "Online (Remote Learning)",
+            "Day (Attend in Person)",
+            "Boarding (Stay with Host)",
+          ].map(opt => (
+            <button key={opt} type="button" onClick={() => toggle('attendanceMode', opt)}
+              className={btnClass(formData.attendanceMode === opt)}>{opt}</button>
+          ))}
+        </div>
+      </div>
+
     </div>
   )
 }
