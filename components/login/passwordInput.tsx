@@ -20,7 +20,7 @@ export default function PasswordInput({ password, setPassword, showPassword, set
           onChange={e => setPassword(e.target.value)}
           placeholder="Enter admin password"
           required
-          className={`w-full py-2.5 pl-10 pr-10 rounded-lg text-sm bg-white outline-none border transition-all
+          className={`w-full py-2.5 pl-10 pr-10 rounded-lg text-sm bg-white outline-none border transition-all text-black
             ${error
               ? 'border-red-400 focus:ring-2 focus:ring-red-200'
               : 'border-stone-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-100'
