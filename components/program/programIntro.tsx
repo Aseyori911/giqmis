@@ -24,13 +24,13 @@ export default function ProgramIntro() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {PROGRAM_TYPES.map(program => (
             <div key={program.key}
-              className={`rounded-2xl border-2 ${program.border} bg-white dark:bg-stone-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group`}>
+              className="rounded-2xl border border-gray-200 dark:border-stone-700 bg-white dark:bg-stone-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
 
-              {/* Card header */}
-              <div className={`bg-gradient-to-r ${program.color} p-6 text-white`}>
+              {/* Card header — dark overlay style matching hero banners */}
+              <div className="bg-gradient-to-r from-black/80 to-black/70 p-6 text-white">
                 <div className="text-4xl mb-2">{program.emoji}</div>
                 <h3 className="text-2xl font-bold">{program.title}</h3>
-                <p className="text-white/80 text-sm mt-1">{program.subtitle}</p>
+                <p className="text-orange-400 text-sm mt-1 font-semibold">{program.subtitle}</p>
               </div>
 
               {/* Card body */}
@@ -47,7 +47,7 @@ export default function ProgramIntro() {
                   ))}
                 </ul>
                 <Link href={program.href}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm text-white bg-gradient-to-r ${program.color} hover:opacity-90 transition-opacity`}>
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm text-white bg-orange-500 hover:bg-orange-600 transition-colors">
                   Explore {program.title} <ArrowRight size={16} />
                 </Link>
               </div>
