@@ -19,7 +19,7 @@ export const courseData: CourseData = {
     reviews: 245,
     students: 1420,
     color: "from-orange-500 to-orange-600",
-    image: "/giq1.avif",
+    image: "/special-programs.jpg",
     description:
       "Dive deep into Arabic language and culture with our intensive 4-week summer program. This immersive course combines traditional learning methods with modern interactive techniques to accelerate your Arabic proficiency.",
     features: [
@@ -363,26 +363,27 @@ export const COURSE_CARDS = [
     title: "Summer Intensive Course",
     description:
       "Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons.",
+image: "/special-programs.jpg",
   },
-  {
+ {
     courseKey: "conversation-club",
     title: "Arabic Conversation Club",
-    description:
-      "Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice.",
+    description: "Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice.",
+    image: "/giq2.webp",
   },
   {
     courseKey: "private-tutoring",
     title: "Private Tutoring",
-    description:
-      "Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives.",
+    description: "Personalized one-on-one instruction tailored to your specific learning goals, schedule, and pace. Ideal for students who need targeted help or have unique objectives.",
+    image: "/giq3.avif",
   },
   {
     courseKey: "arabic-for-professionals",
     title: "Arabic for Professionals",
-    description:
-      "Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement.",
+    description: "Specialized courses for business professionals, healthcare workers, diplomats, and others who need Arabic language skills for their career advancement.",
+    image: "/giq4.webp",
   },
-];
+]
 
 export const TABS = [
   { id: "overview", label: "Overview" },

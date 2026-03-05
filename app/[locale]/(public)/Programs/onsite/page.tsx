@@ -21,7 +21,7 @@ export default function OnsitePage() {
 
       {/* Back link */}
       <div className="max-w-5xl mx-auto px-4 pt-8">
-        <Link href="/Programs"
+        <Link href="/en/Programs"
           className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-600 transition-colors">
           <ArrowLeft size={16} /> Back to Programs
         </Link>

@@ -29,7 +29,7 @@ export default function OnsitePage() {
       <div className="max-w-5xl mx-auto px-4 py-12 space-y-12">
 
         {/* Back */}
-        <Link href="/Programs"
+        <Link href="/en/Programs"
           className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-orange-500 transition-colors">
           <ArrowLeft size={16} /> Back to Programs
         </Link>
@@ -74,7 +74,7 @@ export default function OnsitePage() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-white text-orange-500 rounded-lg font-semibold text-sm hover:bg-gray-100 transition-colors">
               Contact Us <ArrowRight size={16} />
             </Link>
-            <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/2348071032546"  target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white text-white rounded-lg font-semibold text-sm hover:bg-white/10 transition-colors">
               📱 WhatsApp Us
             </a>

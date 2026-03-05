@@ -38,7 +38,7 @@ export default function OnlinePage() {
         {/* Back */}
         <Link href="/Programs"
           className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-orange-500 transition-colors">
-          <ArrowLeft size={16} /> Back to Programs
+          <ArrowLeft size={16} /> 
         </Link>
 
         {/* Age Groups */}

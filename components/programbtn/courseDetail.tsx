@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { X, ChevronRight, Calendar, Clock } from 'lucide-react'
 import Registerbtn from '@/components/registration'
@@ -12,12 +13,43 @@ type Props = {
 }
 
 export default function CourseDetail({ course, activeTab, onTabChange, onClose }: Props) {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center p-3 z-50">
-      <div className="bg-white dark:bg-stone-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+  const touchStartX = useRef<number>(0)
+  const touchStartY = useRef<number>(0)
+  const tabIds: TabId[] = ['overview', 'curriculum', 'schedule', 'instructor']
 
-        {/* Header */}
-        <div className={`relative bg-gradient-to-r ${course.color} text-white p-2 flex gap-3 justify-center items-center rounded-t-2xl`}>
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [])
+
+const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+    touchStartY.current = e.touches[0].clientY
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diffX = touchStartX.current - e.changedTouches[0].clientX
+    const diffY = touchStartY.current - e.changedTouches[0].clientY
+    if (Math.abs(diffX) < Math.abs(diffY)) return
+    if (Math.abs(diffX) < 50) return
+    const currentIndex = tabIds.indexOf(activeTab)
+    if (diffX > 0 && currentIndex < tabIds.length - 1) {
+      onTabChange(tabIds[currentIndex + 1])
+    } else if (diffX < 0 && currentIndex > 0) {
+      onTabChange(tabIds[currentIndex - 1])
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center p-3 z-50">
+      <div className="bg-white dark:bg-stone-900 rounded-2xl max-w-4xl w-full flex flex-col shadow-2xl"
+        style={{ maxHeight: '90vh' }}>
+
+        <div className={`relative bg-gradient-to-r ${course.color} text-white p-2 flex gap-3 justify-center items-center rounded-t-2xl flex-shrink-0`}>
           <Image src="/Gladtidings_LOGO.JPG" alt="Glad" width={48} height={48} sizes="68px"
             className="w-24 h-24 rounded object-contain" />
           <button onClick={onClose}
@@ -32,12 +64,11 @@ export default function CourseDetail({ course, activeTab, onTabChange, onClose }
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="border-b border-gray-200 dark:border-stone-700">
-          <div className="flex">
+        <div className="border-b border-gray-200 dark:border-stone-700 flex-shrink-0">
+          <div className="flex overflow-x-auto">
             {(TABS as Tab[]).map((tab) => (
               <button key={tab.id} onClick={() => onTabChange(tab.id)}
-                className={`px-6 py-4 font-medium transition-colors ${
+                className={`px-6 py-4 font-medium transition-colors whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'text-orange-600 border-b-2 border-orange-600'
                     : 'text-gray-600 dark:text-stone-400 hover:text-gray-800 dark:hover:text-stone-200'
@@ -48,8 +79,11 @@ export default function CourseDetail({ course, activeTab, onTabChange, onClose }
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-8 max-h-[50vh] overflow-y-auto">
+        <div
+          className="p-8 overflow-y-auto flex-1"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {activeTab === 'overview' && (
             <div className="space-y-6">
               <div>
@@ -72,7 +106,7 @@ export default function CourseDetail({ course, activeTab, onTabChange, onClose }
                   <h4 className="font-semibold text-gray-800 dark:text-stone-100">Course Features</h4>
                   <div className="space-y-3">
                     {course.features.map((feature: Feature, index: number) => {
-                      const FeatureIcon = feature.icon
+                      const FeatureIcon = feature.icon as React.ComponentType<{size?: number, className?: string}>
                       return (
                         <div key={index} className="flex items-center gap-3">
                           <FeatureIcon className="text-orange-500 flex-shrink-0" size={20} />
@@ -163,8 +197,7 @@ export default function CourseDetail({ course, activeTab, onTabChange, onClose }
           )}
         </div>
 
-        {/* Footer */}
-        <div className="border-t border-gray-200 dark:border-stone-700 p-6 bg-gray-200 dark:bg-stone-800">
+        <div className="border-t border-gray-200 dark:border-stone-700 p-4 bg-gray-200 dark:bg-stone-800 rounded-b-2xl flex-shrink-0">
           <div className="flex gap-3">
             <a href="Contact"
               className="inline-block bg-white dark:bg-stone-700 text-orange-500 dark:text-orange-400 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-stone-600 transition-colors">
@@ -173,6 +206,7 @@ export default function CourseDetail({ course, activeTab, onTabChange, onClose }
             <Registerbtn />
           </div>
         </div>
+
       </div>
     </div>
   )
