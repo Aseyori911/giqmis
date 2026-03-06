@@ -58,6 +58,7 @@ export const PROGRAM_TYPES = [
     title: "Onsite Program",
     subtitle: "Ibadan Madrasah",
     emoji: "🏫",
+    image: "/online.jpg",
     description:
       "A structured full curriculum with supervised classes on weekdays and weekends. Hostel accommodation is available for eligible students.",
     highlights: [
@@ -73,6 +74,7 @@ export const PROGRAM_TYPES = [
     title: "Online Program",
     subtitle: "Learn From Anywhere",
     emoji: "💻",
+    image: "https://images.unsplash.com/photo-1610484826967-09c5720778c7?w=600&auto=format&fit=crop&q=60",
     description:
       "Flexible, well-organized learning with full programs or individual subjects, live and pre-recorded lessons, one-on-one interaction, and continuous assessments.",
     highlights: [

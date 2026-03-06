@@ -6,7 +6,7 @@ import TeachingMethod from './teachingMethod'
 // import ProgramsSlider from './programsSlider'
 import CurriculumSection from './curriculumSection'
 import ArabicOnlineCourse from './arabicOnlineCourse'
-import SpecialWorkshops from './specialWorkshops'
+// import SpecialWorkshops from './specialWorkshops'
 import FAQSection from './FAQSection'
 import CTASection from './CTASection'
 import ScrollToTop from '../scrollToTop'
@@ -18,9 +18,9 @@ export default function ProgramPage() {
     <div className="bg-white dark:bg-stone-900 transition-colors">
       <HeroBanner />
       <ProgramIntro />
+      <CurriculumSection />
       <TeachingMethod />
       {/* <ProgramsSlider /> */}
-      <CurriculumSection />
 
       <section className="py-20 bg-gray-50 dark:bg-stone-950 hidden md:block transition-colors">
         <div className="container mx-auto px-4">
@@ -34,7 +34,7 @@ export default function ProgramPage() {
       </section>
 
       <ArabicOnlineCourse />
-      <SpecialWorkshops onEnroll={() => {}} />
+      {/* <SpecialWorkshops onEnroll={() => {}} /> */}
       <FAQSection />
       <CTASection />
       <ScrollToTop />
