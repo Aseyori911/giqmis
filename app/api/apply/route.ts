@@ -1,11 +1,10 @@
-// import { supabaseAdmin } from '@/lib/supabase-admin'
 import { supabaseAdmin } from '@/lib/superbase-admin'
 import { NextRequest, NextResponse } from 'next/server'
+import { sendApplicationConfirmation } from '@/lib/email'
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-
     const {
       studentName,
       parentName,
@@ -26,12 +25,10 @@ export async function POST(req: NextRequest) {
       goals,
       whyInterestedInSchool,
       classTime,
-      otherClassTime,
       agreeToTerms,
-       attendanceMode, 
+      attendanceMode,
     } = body
 
-    // Required field validation
     if (!studentName || !parentName || !email || !phone) {
       return NextResponse.json({ error: 'Please fill in all required fields.' }, { status: 400 })
     }
@@ -44,16 +41,13 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabaseAdmin
       .from('applications')
       .insert([{
-        // Original fields
-        student_name:        studentName.trim(),
-        parent_name:         parentName.trim(),
-        email:               email.trim().toLowerCase(),
-        phone:               phone.trim(),
-        student_age:         studentAge || null,
-        program:             selectedCourses || null,
-        goals:               goals?.trim() || null,
-
-        // New fields
+        student_name:               studentName.trim(),
+        parent_name:                parentName.trim(),
+        email:                      email.trim().toLowerCase(),
+        phone:                      phone.trim(),
+        student_age:                studentAge || null,
+        program:                    selectedCourses || null,
+        goals:                      goals?.trim() || null,
         grade:                      westernEducationLevel || null,
         western_education_level:    westernEducationLevel || null,
         last_school_attended:       lastSchoolAttended?.trim() || null,
@@ -67,10 +61,9 @@ export async function POST(req: NextRequest) {
         selected_courses:           selectedCourses || null,
         preferred_learning_style:   preferredLearningStyle || null,
         why_interested:             whyInterestedInSchool?.trim() || null,
-        class_time:                 classTime === 'Other' ? otherClassTime?.trim() : classTime || null,
+        class_time:                 classTime || null,
         agree_to_terms:             agreeToTerms || null,
-        attendance_mode: attendanceMode || null,   // ← add this
-
+        attendance_mode:            attendanceMode || null,
         status: 'pending',
       }])
       .select('id')
@@ -80,6 +73,16 @@ export async function POST(req: NextRequest) {
       console.error('Supabase insert error:', error)
       return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
     }
+
+    // Send confirmation email — runs after successful DB insert, won't block response if it fails
+    await sendApplicationConfirmation({
+      studentName: studentName.trim(),
+      parentName:  parentName.trim(),
+      email:       email.trim().toLowerCase(),
+      selectedCourses: Array.isArray(selectedCourses)
+        ? selectedCourses.join(', ')
+        : selectedCourses || 'Not specified',
+    })
 
     return NextResponse.json({ success: true, applicationId: data.id }, { status: 201 })
 

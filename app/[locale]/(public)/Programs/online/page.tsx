@@ -16,7 +16,7 @@ export default function OnlinePage() {
     <div className="bg-white dark:bg-stone-900 min-h-screen transition-colors">
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-orange-500 to-orange-700 text-white py-20 text-center">
+      <section className="bg-gradient-to-r from-orange-400 to-orange-600 text-white py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-5xl mb-4">💻</div>
           <h1 className="text-4xl font-bold mb-4">Online Program</h1>

@@ -60,7 +60,7 @@ export default function LegalStatus() {
               </p>
 
               <div className="inline-flex items-center gap-2 bg-stone-100 dark:bg-stone-700 text-slate-500 dark:text-stone-400 px-3 py-1.5 rounded-lg text-xs font-semibold mb-4">
-                <EyeOff size={13} /> RC Number Hidden
+                <EyeOff size={13} /> RN Number Hidden
               </div>
 
               <div className="mt-1">
@@ -77,7 +77,7 @@ export default function LegalStatus() {
           {/* Note */}
           <p className="text-center text-slate-400 dark:text-stone-500 text-xs mt-4 max-w-xl mx-auto leading-relaxed">
             Note: The thumbnail shows that we are registered with CAC while keeping sensitive
-            details like our RC number private. The full certificate can be shared upon request.
+            details like our RN number private. The full certificate can be shared upon request.
           </p>
 
         </div>
