@@ -4,6 +4,7 @@ import { X, ChevronRight, Calendar, Clock } from 'lucide-react'
 import Registerbtn from '@/components/registration'
 import { Course, TabId, Tab, Feature, CurriculumWeek, ScheduleDate } from './types'
 import { TABS } from './data'
+import SpecialCourse from '../specialCourses'
 
 type Props = {
   course: Course
@@ -203,7 +204,8 @@ const handleTouchStart = (e: React.TouchEvent) => {
               className="inline-block bg-white dark:bg-stone-700 text-orange-500 dark:text-orange-400 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-stone-600 transition-colors">
               Contact Us
             </a>
-            <Registerbtn />
+            {/* <Registerbtn /> */}
+<SpecialCourse />
           </div>
         </div>
 

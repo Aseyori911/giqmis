@@ -6,31 +6,46 @@ type Props = {
   formData: FormData
   setFormData: React.Dispatch<React.SetStateAction<FormData>>
   activeCourses: string[]
+  min?: number        // default 2
+  max?: number        // default 3, pass Infinity for no limit
 }
 
 const labelClass = "block text-sm font-semibold text-gray-700 mb-1"
 
-export default function StepThree({ formData, setFormData, activeCourses }: Props) {
+export default function StepThree({ formData, setFormData, activeCourses, min = 2, max = 3 }: Props) {
   const handleCourseToggle = (course: string) => {
     setFormData(prev => {
       const already = prev.selectedCourses.includes(course)
       if (already) return { ...prev, selectedCourses: prev.selectedCourses.filter(c => c !== course) }
-      if (prev.selectedCourses.length >= 3) { toast.error("You can select a maximum of 3 courses."); return prev }
+      if (prev.selectedCourses.length >= max) {
+        toast.error(`You can select a maximum of ${max} courses.`)
+        return prev
+      }
       return { ...prev, selectedCourses: [...prev.selectedCourses, course] }
     })
   }
 
   const count = formData.selectedCourses.length
+
   const statusMsg =
-    count === 0 ? "Select minimum 2 and maximum 3 courses" :
-    count === 1 ? "Select 1 more course (minimum 2 required)" :
-    count === 2 ? `${count} courses selected ✓ (you may select 1 more)` :
-    `${count} courses selected — maximum reached`
+    count === 0
+      ? min === 1
+        ? 'Select at least 1 course'
+        : `Select minimum ${min} course${min > 1 ? 's' : ''}`
+      : count < min
+      ? `Select ${min - count} more course${min - count > 1 ? 's' : ''} (minimum ${min} required)`
+      : max === Infinity
+      ? `${count} course${count > 1 ? 's' : ''} selected ✓`
+      : count === max
+      ? `${count} courses selected — maximum reached`
+      : `${count} course${count > 1 ? 's' : ''} selected ✓ (you may select ${max - count} more)`
 
   const statusClass =
-    count < 2 ? 'bg-amber-50 text-amber-700' :
-    count === 3 ? 'bg-blue-50 text-blue-700' :
-    'bg-emerald-50 text-emerald-700'
+    count < min
+      ? 'bg-amber-50 text-amber-700'
+      : count === max
+      ? 'bg-blue-50 text-blue-700'
+      : 'bg-emerald-50 text-emerald-700'
 
   return (
     <div className="space-y-5">
@@ -54,7 +69,7 @@ export default function StepThree({ formData, setFormData, activeCourses }: Prop
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {activeCourses.map(course => {
                 const selected = formData.selectedCourses.includes(course)
-                const maxReached = count >= 3 && !selected
+                const maxReached = max !== Infinity && count >= max && !selected
                 return (
                   <button key={course} type="button" onClick={() => handleCourseToggle(course)} disabled={maxReached}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors

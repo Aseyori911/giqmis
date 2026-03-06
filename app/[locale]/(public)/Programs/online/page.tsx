@@ -2,12 +2,13 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, X } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { ONLINE_AGE_GROUPS } from '@/components/program/data'
+import Registerbtn from '@/components/registration'
+// import Registerbtn from '@/components/herobtn/registerbtn'
 
 export default function OnlinePage() {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null)
-  const [showEnrollModal, setShowEnrollModal] = useState(false)
 
   const selected = ONLINE_AGE_GROUPS.find(g => g.key === selectedGroup)
 
@@ -15,11 +16,11 @@ export default function OnlinePage() {
     <div className="bg-white dark:bg-stone-900 min-h-screen transition-colors">
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20 text-center">
+      <section className="bg-gradient-to-r from-orange-500 to-orange-700 text-white py-20 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-5xl mb-4">💻</div>
           <h1 className="text-4xl font-bold mb-4">Online Program</h1>
-          <p className="text-blue-200 text-lg mb-2">Learn From Anywhere</p>
+          <p className="text-orange-300 text-lg mb-2">Learn From Anywhere</p>
           <p className="text-white/80 max-w-2xl mx-auto leading-relaxed">
             Flexible, well-organized learning with full programs or individual subjects,
             live and pre-recorded lessons, one-on-one interaction, and continuous assessments.
@@ -31,7 +32,7 @@ export default function OnlinePage() {
       <div className="max-w-5xl mx-auto px-4 pt-8">
         <Link
           href="/en/Programs"
-          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-orange-600 transition-colors"
         >
           <ArrowLeft size={16} /> Back to Programs
         </Link>
@@ -59,8 +60,8 @@ export default function OnlinePage() {
                 }
                 className={`text-left rounded-2xl border-2 p-5 transition-all duration-200 hover:shadow-md
                 ${selectedGroup === group.key
-                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 shadow-md'
-                    : 'border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-blue-300'
+                    ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20 shadow-md'
+                    : 'border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 hover:border-orange-300'
                   }`}
               >
                 <div className="text-3xl mb-2">{group.emoji}</div>
@@ -69,7 +70,6 @@ export default function OnlinePage() {
                   <h3 className="font-bold text-slate-800 dark:text-stone-100">
                     {group.label}
                   </h3>
-
                   <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${group.color}`}>
                     Ages {group.ages}
                   </span>
@@ -79,7 +79,7 @@ export default function OnlinePage() {
                   {group.intro}
                 </p>
 
-                <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 flex items-center gap-1">
                   {selectedGroup === group.key
                     ? 'Hide details ↑'
                     : 'View details & enroll →'}
@@ -91,7 +91,7 @@ export default function OnlinePage() {
 
         {/* Expanded Group */}
         {selected && (
-          <div className="bg-blue-50 dark:bg-stone-800 rounded-2xl border border-blue-200 dark:border-stone-700 p-8">
+          <div className="bg-orange-50 dark:bg-stone-800 rounded-2xl border border-orange-200 dark:border-stone-700 p-8">
 
             {/* Title */}
             <div className="flex items-center gap-3 mb-6">
@@ -102,7 +102,6 @@ export default function OnlinePage() {
                 </h3>
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${selected.color}`}>
                   Ages {selected.ages}
-
                 </span>
               </div>
             </div>
@@ -112,7 +111,6 @@ export default function OnlinePage() {
               <h4 className="font-bold text-slate-700 dark:text-stone-200 mb-3">
                 📚 Subjects
               </h4>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {selected.subjects.map((s, i) => (
                   <div
@@ -135,14 +133,13 @@ export default function OnlinePage() {
               <h4 className="font-bold text-slate-700 dark:text-stone-200 mb-3">
                 🎯 Enrollment Options
               </h4>
-
               <div className="space-y-2">
                 {selected.options.map((opt, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-2 text-sm text-slate-600 dark:text-stone-400"
                   >
-                    <span className="text-blue-500 font-bold">•</span>
+                    <span className="text-orange-500 font-bold">•</span>
                     {opt}
                   </div>
                 ))}
@@ -154,7 +151,6 @@ export default function OnlinePage() {
               <h4 className="font-bold text-slate-700 dark:text-stone-200 mb-3">
                 📋 Class Format
               </h4>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {selected.format.map((f, i) => (
                   <div
@@ -169,19 +165,18 @@ export default function OnlinePage() {
             </div>
 
             {/* Assessment */}
-            {selected.assessment && (
+            {selected.assessment && selected.assessment.length > 0 && (
               <div className="mb-6">
                 <h4 className="font-bold text-slate-700 dark:text-stone-200 mb-3">
                   📊 Assessment & Evaluation
                 </h4>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {selected.assessment.map((a, i) => (
                     <div
                       key={i}
                       className="flex items-start gap-2 text-sm text-slate-600 dark:text-stone-400"
                     >
-                      <span className="text-orange-500 font-bold">✓</span>
+                      <span className="text-orange-500 font-bold mt-0.5">✓</span>
                       {a}
                     </div>
                   ))}
@@ -190,19 +185,18 @@ export default function OnlinePage() {
             )}
 
             {/* Notes */}
-            {selected.notes && (
+            {selected.notes && selected.notes.length > 0 && (
               <div className="mb-8 bg-orange-50 dark:bg-stone-900 border border-orange-200 dark:border-stone-700 rounded-xl p-4">
                 <h4 className="font-bold text-slate-700 dark:text-stone-200 mb-3">
                   📌 Additional Notes
                 </h4>
-
                 <ul className="space-y-1">
                   {selected.notes.map((n, i) => (
                     <li
                       key={i}
                       className="flex items-start gap-2 text-sm text-slate-600 dark:text-stone-400"
                     >
-                      <span className="text-orange-500 font-bold">•</span>
+                      <span className="text-orange-500 font-bold mt-0.5">•</span>
                       {n}
                     </li>
                   ))}
@@ -211,48 +205,11 @@ export default function OnlinePage() {
             )}
 
             {/* Enroll Button */}
-            <button
-              onClick={() => setShowEnrollModal(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm transition-colors"
-            >
-              Enroll Now <ArrowRight size={16} />
-            </button>
+            <Registerbtn />
+
           </div>
         )}
       </div>
-
-      {/* Enroll Modal */}
-      {showEnrollModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
-          <div className="relative bg-white dark:bg-stone-900 rounded-2xl shadow-2xl max-w-md w-full p-8 text-center">
-
-            <button
-              onClick={() => setShowEnrollModal(false)}
-              className="absolute top-4 right-4 p-2 hover:bg-stone-100 dark:hover:bg-stone-800 rounded-lg"
-            >
-              <X className="w-5 h-5 text-slate-500" />
-            </button>
-
-            <div className="text-4xl mb-4">📝</div>
-
-            <h3 className="text-xl font-bold text-slate-800 dark:text-stone-100 mb-2">
-              Ready to Enroll?
-            </h3>
-
-            <p className="text-slate-500 dark:text-stone-400 text-sm mb-6">
-              Complete the enrollment form to register for this program.
-              Our team will contact you within 24–48 hours to confirm your spot.
-            </p>
-
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center gap-2 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
-            >
-              Go to Enrollment Form <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      )}
 
     </div>
   )

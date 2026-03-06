@@ -13,16 +13,11 @@ import StepTwo from "@/components/herobtn/stepTwo";
 import StepThree from "@/components/herobtn/stepThree";
 import StepFour from "@/components/herobtn/stepFour";
 import { FormData, WaitlistData } from "@/components/herobtn/types";
-import { INITIAL_FORM_DATA, ALL_COURSES } from "@/components/herobtn/data";
+import { INITIAL_FORM_DATA } from "@/components/herobtn/data";
 
 const TOTAL_STEPS = 4;
 
-type Props = {
-  label?: string
-  className?: string
-}
-
-export default function Registerbtn({ label = "Enroll Today", className }: Props) {
+export default function SpecialCourse() {
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [enrollmentOpen, setEnrollmentOpen] = useState(true);
   const [activeCourses, setActiveCourses] = useState<string[]>([]);
@@ -41,17 +36,17 @@ export default function Registerbtn({ label = "Enroll Today", className }: Props
       .then((data) => {
         const s = data.settings || {};
         setEnrollmentOpen(s.enrollment_open !== "false");
-        if (s.custom_programs) {
+
+        // ✅ Fetch special courses (not regular programs)
+        if (s.custom_special_courses) {
           try {
-            const saved: { id: string; label: string; active: boolean }[] = JSON.parse(s.custom_programs);
+            const saved: { id: string; label: string; active: boolean }[] = JSON.parse(s.custom_special_courses);
             setActiveCourses(saved.filter((p) => p.active).map((p) => p.label));
           } catch {
-            const active = ALL_COURSES.filter((c) => s[c.id] === "true").map((c) => c.label);
-            setActiveCourses(active);
+            setActiveCourses([]);
           }
         } else {
-          const active = ALL_COURSES.filter((c) => s[c.id] === "true").map((c) => c.label);
-          setActiveCourses(active);
+          setActiveCourses([]);
         }
       })
       .catch(() => {});
@@ -80,7 +75,7 @@ export default function Registerbtn({ label = "Enroll Today", className }: Props
       if (!formData.levelOfStudyInterested) { toast.error("Level of study is required"); return false; }
     }
     if (step === 3) {
-      if (formData.selectedCourses.length < 2) { toast.error("Please select at least 2 courses"); return false; }
+      if (formData.selectedCourses.length < 1) { toast.error("Please select at least 1 course"); return false; }
     }
     if (step === 4) {
       if (!formData.preferredLearningStyle) { toast.error("Preferred learning style is required"); return false; }
@@ -152,9 +147,9 @@ export default function Registerbtn({ label = "Enroll Today", className }: Props
     <div>
       <button
         onClick={() => setShowApplyModal(true)}
-        className={className ?? "inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold text-sm transition-colors"}
+        className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
       >
-        {label} <ArrowRight className="w-4 h-4" />
+        Enroll Today
       </button>
 
       <Modal isOpen={showApplyModal} onClose={closeModal}>
@@ -220,6 +215,8 @@ export default function Registerbtn({ label = "Enroll Today", className }: Props
                         formData={formData}
                         setFormData={setFormData}
                         activeCourses={activeCourses}
+                        min={1}
+                        max={Infinity}
                       />
                     )}
                     {step === 4 && (

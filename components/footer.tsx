@@ -16,7 +16,12 @@ export default function Footer() {
             {/* About */}
             <div className="footer-widget">
               <h4 className="text-lg font-semibold mb-4 text-orange-500">{t('about')}</h4>
-              <p className="text-gray-300 dark:text-stone-400 text-sm leading-6">{t('aboutText')}</p>
+              <p className="text-gray-300 dark:text-stone-400 text-sm leading-6 mb-3">
+                {t('aboutText')}
+              </p>
+              <p className="text-gray-400 dark:text-stone-500 text-xs leading-5 border-t border-gray-700 dark:border-stone-800 pt-3">
+                {t('academyNote')}
+              </p>
             </div>
 
             {/* Quick Links */}

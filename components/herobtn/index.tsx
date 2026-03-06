@@ -133,13 +133,37 @@ export default function ArabicSchoolModals() {
     <div>
       <section className="bg-gradient-to-r from-black/70 to-black/70 bg-cover text-white py-[100px] text-center">
         <div className="max-w-7xl mx-auto px-4">
+
+          {/* Badge */}
           <div className="inline-block bg-orange-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
             {t('badge')}
           </div>
-          <h2 className="text-[42px] mb-5">{t('title')}</h2>
-          <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed">
+
+          {/* Institute Name */}
+          <h1 className="text-[42px] font-bold leading-tight mb-2">
+            {t('instituteName')}
+          </h1>
+
+          {/* Subtitle line */}
+          <p className="text-lg text-white/90 mb-1">
+            {t('instituteSubtitle')}
+          </p>
+
+          {/* Initiative line */}
+          <p className="text-sm text-orange-300 mb-3">
+            {t('initiativeLine')}
+          </p>
+
+          {/* Arabic name */}
+          <p className="text-xl font-semibold text-white/80 mb-6" dir="rtl">
+            {t('arabicName')}
+          </p>
+
+          {/* Main subtitle */}
+          <p className="text-lg max-w-[700px] mx-auto mb-[30px] leading-relaxed text-white/80">
             {t('subtitle')}
           </p>
+
           <div className="flex justify-center gap-4">
             <button onClick={() => setShowApplyModal(true)}
               className="bg-[#e67e22] hover:bg-[#d35400] text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">

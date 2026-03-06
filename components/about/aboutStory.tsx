@@ -23,7 +23,18 @@ export default function AboutStory() {
             <p className="text-slate-500 dark:text-stone-400 leading-relaxed mb-4">
               {t("story3")}
             </p>
+
+            {/* Institute-Academy relationship note */}
+            <div className="mt-6 bg-orange-50 dark:bg-stone-800 border border-orange-200 dark:border-stone-700 rounded-xl p-5">
+              <p className="text-slate-700 dark:text-stone-300 text-sm leading-relaxed mb-2">
+                {t("academyNote")}
+              </p>
+              <p className="text-slate-500 dark:text-stone-400 text-xs leading-relaxed">
+                {t("academyCACNote")}
+              </p>
+            </div>
           </div>
+
           <div className="rounded-lg overflow-hidden shadow-xl">
             <Image
               src="https://plus.unsplash.com/premium_photo-1679065960816-77d101ec25f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXJhYmljJTIwc2Nob29sfGVufDB8fDB8fHww"

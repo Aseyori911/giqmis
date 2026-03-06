@@ -5,6 +5,7 @@ import { Save, RefreshCw } from "lucide-react";
 import { Program, Notifs } from "./types";
 import EnrollmentSection from "./enrollmentSection";
 import ProgramsSection from "./programsSection";
+import SpecialCoursesSection from "./specialCoursesSection";
 import NotificationsSection from "./notificationsSection";
 import PasswordSection from "./passwordSection";
 
@@ -22,15 +23,18 @@ const DEFAULT_PROGRAMS: Program[] = [
   { id: "Islamic_Studies",        label: "Islamic Studies",          active: false },
 ];
 
+const DEFAULT_SPECIAL_COURSES: Program[] = [];
+
 export default function SettingsPage() {
-  const [loading, setLoading]     = useState(true);
-  const [saving, setSaving]       = useState(false);
-  const [saved, setSaved]         = useState(false);
-  const [enrollOpen, setEnrollOpen] = useState(true);
-  const [deadline, setDeadline]   = useState("2025-04-30");
+  const [loading, setLoading]         = useState(true);
+  const [saving, setSaving]           = useState(false);
+  const [saved, setSaved]             = useState(false);
+  const [enrollOpen, setEnrollOpen]   = useState(true);
+  const [deadline, setDeadline]       = useState("2025-04-30");
   const [maxPerClass, setMaxPerClass] = useState("12");
-  const [programs, setPrograms]   = useState<Program[]>(DEFAULT_PROGRAMS);
-  const [notifs, setNotifs]       = useState<Notifs>({
+  const [programs, setPrograms]       = useState<Program[]>(DEFAULT_PROGRAMS);
+  const [specialCourses, setSpecialCourses] = useState<Program[]>(DEFAULT_SPECIAL_COURSES);
+  const [notifs, setNotifs]           = useState<Notifs>({
     notif_new_app: true, notif_weekly: true,
     notif_attendance: true, notif_messages: false,
   });
@@ -45,24 +49,32 @@ export default function SettingsPage() {
     setDeadline(s.enrollment_deadline || "2025-04-30");
     setMaxPerClass(s.max_per_class || "12");
     setNotifs({
-      notif_new_app:     s.notif_new_app     === "true",
-      notif_weekly:      s.notif_weekly      === "true",
-      notif_attendance:  s.notif_attendance  === "true",
-      notif_messages:    s.notif_messages    === "true",
+      notif_new_app:    s.notif_new_app    === "true",
+      notif_weekly:     s.notif_weekly     === "true",
+      notif_attendance: s.notif_attendance === "true",
+      notif_messages:   s.notif_messages   === "true",
     });
 
-    // Restore programs — use saved custom_programs if available, else fall back to defaults
+    // Restore regular programs
     if (s.custom_programs) {
       try {
-        const saved: Program[] = JSON.parse(s.custom_programs)
-        // Merge: for each saved program apply its saved active state
-        setPrograms(saved)
+        setPrograms(JSON.parse(s.custom_programs));
       } catch {
-        // If JSON is malformed fall back to defaults with saved toggle states
-        setPrograms(DEFAULT_PROGRAMS.map(p => ({ ...p, active: s[p.id] === "true" })))
+        setPrograms(DEFAULT_PROGRAMS.map(p => ({ ...p, active: s[p.id] === "true" })));
       }
     } else {
-      setPrograms(DEFAULT_PROGRAMS.map(p => ({ ...p, active: s[p.id] === "true" })))
+      setPrograms(DEFAULT_PROGRAMS.map(p => ({ ...p, active: s[p.id] === "true" })));
+    }
+
+    // Restore special courses
+    if (s.custom_special_courses) {
+      try {
+        setSpecialCourses(JSON.parse(s.custom_special_courses));
+      } catch {
+        setSpecialCourses(DEFAULT_SPECIAL_COURSES);
+      }
+    } else {
+      setSpecialCourses(DEFAULT_SPECIAL_COURSES);
     }
 
     setLoading(false);
@@ -80,11 +92,11 @@ export default function SettingsPage() {
       notif_weekly:         String(notifs.notif_weekly),
       notif_attendance:     String(notifs.notif_attendance),
       notif_messages:       String(notifs.notif_messages),
-      // Save full program list as JSON so adds/deletes persist
       custom_programs:      JSON.stringify(programs),
+      custom_special_courses: JSON.stringify(specialCourses),
     };
 
-    // Also save individual toggle keys for backwards compatibility with the enrollment form
+    // Backwards compatibility for regular programs
     programs.forEach(p => { settings[p.id] = String(p.active) });
 
     await fetch("/api/admin/settings", {
@@ -125,6 +137,7 @@ export default function SettingsPage() {
         maxPerClass={maxPerClass}   setMaxPerClass={setMaxPerClass}
       />
       <ProgramsSection programs={programs} setPrograms={setPrograms} />
+      <SpecialCoursesSection programs={specialCourses} setPrograms={setSpecialCourses} />
       <NotificationsSection notifs={notifs} setNotifs={setNotifs} />
 
       <div className="flex items-center gap-3 mb-6">

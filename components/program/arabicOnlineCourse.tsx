@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { X, ArrowRight } from 'lucide-react'
 import { ARABIC_ONLINE_COURSE } from './data'
+import Registerbtn from '@/components/registration'
 
-export default function ArabicOnlineCourse({ onEnroll }: { onEnroll: () => void }) {
+export default function ArabicOnlineCourse() {
   const [showModal, setShowModal] = useState(false)
   const c = ARABIC_ONLINE_COURSE
 
@@ -46,10 +47,8 @@ export default function ArabicOnlineCourse({ onEnroll }: { onEnroll: () => void 
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-orange-500 text-orange-600 dark:text-orange-400 rounded-lg font-semibold text-sm hover:bg-orange-50 transition-colors">
               View Full Course Description
             </button>
-            <button onClick={onEnroll}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold text-sm transition-colors">
-              Enroll in Arabic Online <ArrowRight size={16} />
-            </button>
+            {/* Registerbtn renders its own button — styled to match */}
+            <Registerbtn />
           </div>
         </div>
       </section>
@@ -119,10 +118,11 @@ export default function ArabicOnlineCourse({ onEnroll }: { onEnroll: () => void 
                 </ul>
               </div>
 
-              <button onClick={() => { setShowModal(false); onEnroll() }}
-                className="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-bold transition-colors flex items-center justify-center gap-2">
-                Start Learning Arabic Online <ArrowRight size={16} />
-              </button>
+              {/* Enroll button inside modal */}
+              <div className="w-full flex justify-center">
+                <Registerbtn />
+              </div>
+
             </div>
           </div>
         </div>
