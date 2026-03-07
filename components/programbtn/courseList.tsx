@@ -40,7 +40,7 @@ export default function CourseList({ onSelect }: Props) {
       <div className="max-w-4xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-7">
           <span className="inline-block bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
             Our Courses
           </span>

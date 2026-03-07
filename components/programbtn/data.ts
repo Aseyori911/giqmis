@@ -7,13 +7,16 @@ import {
   Users,
   Award,
   Globe,
+  Wifi,
+  CalendarCheck,
+  HeartHandshake,
 } from "lucide-react";
 import { CourseData } from "./types";
 
 export const courseData: CourseData = {
   "summer-intensive": {
-    title: "Summer Intensive Arabic Course",
-    subtitle: "4-Week Accelerated Learning Program",
+    title: "Summer Intensive Qur'an & Arabic Programme",
+    subtitle: "4-Week Online Accelerated Learning Programme",
     icon: BookOpen,
     rating: 4.9,
     reviews: 245,
@@ -21,82 +24,113 @@ export const courseData: CourseData = {
     color: "from-orange-500 to-orange-600",
     image: "/special-programs.jpg",
     description:
-      "Dive deep into Arabic language and culture with our intensive 4-week summer program. This immersive course combines traditional learning methods with modern interactive techniques to accelerate your Arabic proficiency.",
+      "An intensive 4-week online programme combining personalised 1-on-1 Qur'an Hifdh sessions with beginner Arabic pre-recorded lessons. Designed to build memorisation, comprehension, and spiritual discipline — flexible for students across all time zones.",
     features: [
-      { icon: Clock, text: "40 hours of instruction" },
-      { icon: Users, text: "Small class size (max 12 students)" },
-      { icon: BookOpen, text: "All materials included" },
-      { icon: Award, text: "Certificate of completion" },
+      { icon: Clock,        text: "4 weeks | Mon–Thu daily" },
+      { icon: Users,        text: "1-on-1 Qur'an Hifdh sessions" },
+      { icon: Wifi,         text: "Arabic pre-recorded (1–2x/week)" },
+      { icon: CalendarCheck,text: "Friday catch-up & revision" },
+      { icon: Globe,        text: "Flexible for all time zones" },
+      { icon: Award,        text: "End-of-programme assessment" },
     ],
     whatYouLearn: [
-      "Arabic alphabet and pronunciation",
-      "Essential vocabulary (500+ words)",
-      "Basic grammar and sentence structure",
-      "Conversational skills for daily situations",
-      "Reading and writing fundamentals",
-      "Cultural context and etiquette",
+      "Daily Qur'an memorisation with Tajweed correction",
+      "Arabic letters, pronunciation and reading basics",
+      "Numbers 1–100 and essential vocabulary",
+      "Simple sentence structure and writing",
+      "Mini comprehension checks and recitation tests",
+      "Discipline, consistency and spiritual growth",
     ],
     curriculum: [
       {
         week: 1,
-        title: "Foundation & Alphabet",
+        title: "Foundation & Routine",
         topics: [
-          "Arabic script basics",
-          "Letter recognition",
-          "Basic sounds",
-          "Simple greetings",
+          "Begin memorisation; review Tajweed",
+          "Establish daily Hifdh routine",
+          "Introduction to Arabic letters",
+          "Pronunciation practice",
         ],
+        quran: "Begin memorization; review Tajweed; establish daily routine",
+        arabic: "Introduction to Arabic letters; pronunciation practice",
+        notes: "Hifdh starts 1-on-1; Arabic accessible online",
       },
       {
         week: 2,
-        title: "Vocabulary & Grammar",
+        title: "Building Momentum",
         topics: [
-          "Essential nouns & verbs",
-          "Sentence structure",
-          "Present tense",
-          "Numbers 1-100",
+          "Continue memorisation; recitation checks",
+          "Review previous portion",
+          "Numbers 1–50",
+          "Basic vocabulary",
         ],
+        quran: "Continue memorization; recitation checks; review previous portion",
+        arabic: "Numbers 1–50; basic vocabulary",
+        notes: "Teachers provide feedback; exercises submitted online",
       },
       {
         week: 3,
-        title: "Conversation Skills",
+        title: "Consolidation & Testing",
         topics: [
-          "Daily conversations",
-          "Asking questions",
-          "Past tense",
-          "Family & relationships",
+          "Consolidate memorised portions",
+          "Weekly recitation test",
+          "Numbers 51–100",
+          "Simple sentence structure",
         ],
+        quran: "Consolidate memorized portions; weekly recitation test",
+        arabic: "Numbers 51–100; simple sentence structure",
+        notes: "Fridays for catch-up & revision",
       },
       {
         week: 4,
-        title: "Advanced Topics",
+        title: "Finalisation & Assessment",
         topics: [
-          "Future tense",
-          "Complex sentences",
-          "Cultural contexts",
-          "Final project",
+          "Finalize memorization goals",
+          "Cumulative revision & final assessment",
+          "Short sentence reading & writing",
+          "Mini comprehension check",
         ],
+        quran: "Finalize memorization goals; cumulative revision; final assessment",
+        arabic: "Short sentence reading & writing; mini comprehension check",
+        notes: "End-of-programme review and guidance for ongoing practice",
       },
     ],
     schedule: {
-      duration: "June 1 - June 28, 2025",
-      time: "Monday - Friday, 9:00 AM - 1:00 PM",
+      duration: "4 Weeks | Mon–Thu (Fri: Revision | Weekends: Rest)",
+      time: "Flexible per student time zone",
       dates: [
-        { label: "Registration Deadline", date: "May 25, 2025" },
-        { label: "Orientation", date: "May 31, 2025" },
-        { label: "Mid-term Assessment", date: "June 14, 2025" },
-        { label: "Final Exam", date: "June 28, 2025" },
+        { label: "Programme Days",       date: "Monday – Thursday" },
+        { label: "Catch-up & Revision",  date: "Fridays" },
+        { label: "Rest & Personal Study", date: "Weekends" },
+        { label: "Mode",                 date: "Online (1-on-1 + Pre-recorded)" },
       ],
     },
     instructor: {
-      name: "Dr. Amira Hassan",
-      title: "Senior Arabic Language Instructor",
-      initials: "AH",
-      experience: "15+ years experience",
-      credentials: "PhD in Arabic Linguistics",
-      bio: "Dr. Hassan brings over 15 years of teaching experience and a passion for Arabic language education. She has taught at prestigious universities and developed innovative teaching methods that make Arabic accessible to international students.",
+      name: "Qualified Female Instructors",
+      title: "Qur'an & Arabic Specialists",
+      initials: "GI",
+      experience: "Experienced Hifdh teachers",
+      credentials: "Ijazah-certified & Arabic-qualified",
+      bio: "Our team of qualified female instructors are experienced in Qur'an memorisation and Arabic language teaching. Each student is matched with a dedicated Hifdh teacher for personalised 1-on-1 sessions, ensuring consistent feedback, Tajweed correction, and measurable progress throughout the programme.",
+    },
+    studentExpectations: [
+      "Daily commitment to Qur'an memorisation",
+      "Completion of Arabic exercises if opted-in",
+      "Active participation in Hifdh sessions and reviews",
+      "Sincere intention for learning for the sake of Allah",
+    ],
+    requirements: [
+      "Qur'an mushaf (physical copy)",
+      "Notebook for Arabic exercises",
+      "Internet-enabled device",
+      "Parent/guardian confirmation required",
+    ],
+    quote: {
+      text: "Indeed, those who memorize the Qur'an and act upon it will be honored in this life and the Hereafter.",
+      source: "Prophetic Tradition",
     },
   },
+
   "conversation-club": {
     title: "Arabic Conversation Club",
     subtitle: "Weekly Speaking Practice Sessions",
@@ -109,10 +143,10 @@ export const courseData: CourseData = {
     description:
       "Improve your Arabic speaking skills in a relaxed, supportive environment. Our conversation clubs are led by native speakers and provide excellent practice opportunities for students at all levels.",
     features: [
-      { icon: Clock, text: "2 hours per session" },
-      { icon: Users, text: "Groups of 6-8 participants" },
-      { icon: MessageCircle, text: "Native speaker facilitation" },
-      { icon: Globe, text: "Cultural exchange focus" },
+      { icon: Clock,        text: "2 hours per session" },
+      { icon: Users,        text: "Groups of 6-8 participants" },
+      { icon: MessageCircle,text: "Native speaker facilitation" },
+      { icon: Globe,        text: "Cultural exchange focus" },
     ],
     whatYouLearn: [
       "Natural conversation flow",
@@ -168,10 +202,10 @@ export const courseData: CourseData = {
       duration: "Ongoing - Every Saturday",
       time: "Saturdays, 10:00 AM - 12:00 PM",
       dates: [
-        { label: "Next Session", date: "June 1, 2025" },
-        { label: "Registration Opens", date: "Rolling basis" },
-        { label: "Summer Break", date: "July 15-29, 2025" },
-        { label: "Fall Sessions Begin", date: "September 7, 2025" },
+        { label: "Next Session",          date: "June 1, 2025" },
+        { label: "Registration Opens",    date: "Rolling basis" },
+        { label: "Summer Break",          date: "July 15-29, 2025" },
+        { label: "Fall Sessions Begin",   date: "September 7, 2025" },
       ],
     },
     instructor: {
@@ -183,6 +217,7 @@ export const courseData: CourseData = {
       bio: "Layla is a passionate language educator from Damascus with extensive experience in conversation-based learning. She creates a warm, encouraging environment where students feel comfortable practicing their Arabic speaking skills.",
     },
   },
+
   "private-tutoring": {
     title: "Private Arabic Tutoring",
     subtitle: "Personalized One-on-One Instruction",
@@ -195,10 +230,10 @@ export const courseData: CourseData = {
     description:
       "Accelerate your Arabic learning with personalized instruction tailored to your specific goals, schedule, and learning style. Perfect for students who need targeted help or have unique objectives.",
     features: [
-      { icon: User, text: "One-on-one instruction" },
+      { icon: User,   text: "One-on-one instruction" },
       { icon: Target, text: "Customized curriculum" },
-      { icon: Clock, text: "Flexible scheduling" },
-      { icon: Award, text: "Progress tracking & reports" },
+      { icon: Clock,  text: "Flexible scheduling" },
+      { icon: Award,  text: "Progress tracking & reports" },
     ],
     whatYouLearn: [
       "Personalized learning plan",
@@ -254,10 +289,10 @@ export const courseData: CourseData = {
       duration: "Flexible scheduling available",
       time: "Sessions available 7 days a week",
       dates: [
-        { label: "Consultation Call", date: "Within 24 hours" },
-        { label: "First Session", date: "Within 3 days" },
-        { label: "Progress Review", date: "Every 4 sessions" },
-        { label: "Flexible Rescheduling", date: "24-hour notice" },
+        { label: "Consultation Call",      date: "Within 24 hours" },
+        { label: "First Session",          date: "Within 3 days" },
+        { label: "Progress Review",        date: "Every 4 sessions" },
+        { label: "Flexible Rescheduling",  date: "24-hour notice" },
       ],
     },
     instructor: {
@@ -269,6 +304,7 @@ export const courseData: CourseData = {
       bio: "Our team of private tutors includes certified Arabic instructors with diverse backgrounds and specializations. Each tutor is carefully selected and matched to your specific learning needs and goals.",
     },
   },
+
   "arabic-for-professionals": {
     title: "Arabic for Professionals",
     subtitle: "Specialized Career-Focused Training",
@@ -281,10 +317,10 @@ export const courseData: CourseData = {
     description:
       "Master Arabic language skills tailored to your professional needs. Whether you work in business, healthcare, diplomacy, or other fields, this specialized course provides industry-specific vocabulary and communication skills.",
     features: [
-      { icon: Target, text: "Industry-specific curriculum" },
-      { icon: Users, text: "Professional networking opportunities" },
+      { icon: Target,   text: "Industry-specific curriculum" },
+      { icon: Users,    text: "Professional networking opportunities" },
       { icon: BookOpen, text: "Real-world case studies" },
-      { icon: Award, text: "Professional certification" },
+      { icon: Award,    text: "Professional certification" },
     ],
     whatYouLearn: [
       "Professional terminology and vocabulary",
@@ -340,10 +376,10 @@ export const courseData: CourseData = {
       duration: "8-week program - Flexible start dates",
       time: "Evenings & weekends available",
       dates: [
-        { label: "Next Cohort", date: "June 15, 2025" },
+        { label: "Next Cohort",          date: "June 15, 2025" },
         { label: "Application Deadline", date: "June 1, 2025" },
-        { label: "Program Completion", date: "8 weeks from start" },
-        { label: "Certification Exam", date: "Final week" },
+        { label: "Program Completion",   date: "8 weeks from start" },
+        { label: "Certification Exam",   date: "Final week" },
       ],
     },
     instructor: {
@@ -360,12 +396,12 @@ export const courseData: CourseData = {
 export const COURSE_CARDS = [
   {
     courseKey: "summer-intensive",
-    title: "Summer Intensive Course",
+    title: "Summer Intensive Qur'an & Arabic",
     description:
-      "Accelerate your Arabic learning with our 4-week intensive summer program. Perfect for those who want to make rapid progress in a short time frame with structured daily lessons.",
-image: "/special-programs.jpg",
+      "A 4-week online programme combining personalised 1-on-1 Qur'an Hifdh with beginner Arabic lessons. Flexible scheduling for all time zones.",
+    image: "/special-programs.jpg",
   },
- {
+  {
     courseKey: "conversation-club",
     title: "Arabic Conversation Club",
     description: "Practice speaking Arabic in a relaxed, social environment. Our weekly conversation clubs are facilitated by native speakers and provide excellent speaking practice.",
@@ -386,8 +422,8 @@ image: "/special-programs.jpg",
 ]
 
 export const TABS = [
-  { id: "overview", label: "Overview" },
+  { id: "overview",   label: "Overview" },
   { id: "curriculum", label: "Curriculum" },
-  { id: "schedule", label: "Schedule" },
-  { id: "instructor", label: "Instructor" },
+  { id: "schedule",   label: "Schedule" },
+  // { id: "instructor", label: "Instructor" },
 ];

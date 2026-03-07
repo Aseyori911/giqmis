@@ -91,7 +91,7 @@ export default function StudentModal({ student, onClose }: { student: Student; o
             {courses.length > 0 ? (
               <div className="flex flex-wrap gap-2">
                 {courses.map((course, i) => (
-                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold rounded-full">
+                  <span key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 border border-orange-200 text-orange-700 text-xs font-semibold rounded-full">
                     <CheckCircle size={11} /> {course}
                   </span>
                 ))}

@@ -124,7 +124,7 @@
     "livesSubtitle": "These are real students whose education was made possible through the kindness of our sponsors.",
     "classOf": "Class of",
     "students": [
-      { "initials": "FA", "name": "Fatimah Adebayo", "program": "Quran Memorization", "year": "2023", "color": "bg-emerald-500", "quote": "This scholarship changed my life. I was able to complete my Hifdh program without my family worrying about the fees. May Allah reward every sponsor abundantly." },
+      { "initials": "FA", "name": "Fatimah Adebayo", "program": "Quran Memorization", "year": "2023", "color": "bg-orange-500", "quote": "This scholarship changed my life. I was able to complete my Hifdh program without my family worrying about the fees. May Allah reward every sponsor abundantly." },
       { "initials": "ZM", "name": "Zainab Musa", "program": "Arabic & Tajweed", "year": "2024", "color": "bg-orange-500", "quote": "Before this program I could not read the Quran properly. Today I lead recitation in my community. I am forever grateful to those who sponsored my education." },
       { "initials": "HI", "name": "Hafsat Ibrahim", "program": "Beginner Tajweed", "year": "2024", "color": "bg-blue-500", "quote": "The scholarship removed every barrier between me and my education. The teachers were patient, the community was warm, and I grew so much spiritually." }
     ],

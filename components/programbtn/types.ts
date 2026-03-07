@@ -14,6 +14,9 @@ export interface CurriculumWeek {
   week: number
   title: string
   topics: string[]
+  quran?: string
+  arabic?: string
+  notes?: string
 }
 
 export interface ScheduleDate {
@@ -36,6 +39,11 @@ export interface Instructor {
   bio: string
 }
 
+export interface Quote {
+  text: string
+  source: string
+}
+
 export interface Course {
   title: string
   subtitle: string
@@ -51,6 +59,9 @@ export interface Course {
   schedule: Schedule
   instructor: Instructor
   image: string
+  studentExpectations?: string[]
+  requirements?: string[]
+  quote?: Quote
 }
 
 export interface CourseData {

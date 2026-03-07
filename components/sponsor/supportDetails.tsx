@@ -31,7 +31,7 @@ export default function SupportDetails() {
       </div>
 
       {/* Account Details */}
-      <div className="bg-emerald-50 dark:bg-stone-800 rounded-2xl p-8 mb-12 border border-emerald-100 dark:border-stone-700">
+      <div className="bg-orange-50 dark:bg-stone-800 rounded-2xl p-8 mb-12 border border-orange-100 dark:border-stone-700">
         <h3 className="text-xl font-bold text-slate-800 dark:text-stone-100 mb-2">
           Sponsor Contribution Details
         </h3>

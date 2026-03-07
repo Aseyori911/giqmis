@@ -157,7 +157,7 @@ export default function OnlinePage() {
                     key={i}
                     className="flex items-start gap-2 text-sm text-slate-600 dark:text-stone-400"
                   >
-                    <span className="text-emerald-500 font-bold mt-0.5">✓</span>
+                    <span className="text-orange-500 font-bold mt-0.5">✓</span>
                     {f}
                   </div>
                 ))}

@@ -12,7 +12,7 @@ export default function OnsitePage() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-5xl mb-4">🏫</div>
           <h1 className="text-4xl font-bold mb-4">Onsite Program</h1>
-          <p className="text-emerald-300 text-lg mb-2">Ibadan Madrasah</p>
+          <p className="text-orange-300 text-lg mb-2">Ibadan Madrasah</p>
           <p className="text-white/80 max-w-2xl mx-auto leading-relaxed">
             A structured full curriculum with supervised classes on weekdays and weekends. Hostel accommodation is available for eligible students.
           </p>
@@ -22,7 +22,7 @@ export default function OnsitePage() {
       {/* Back link */}
       <div className="max-w-5xl mx-auto px-4 pt-8">
         <Link href="/en/Programs"
-          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-emerald-600 transition-colors">
+          className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-orange-600 transition-colors">
           <ArrowLeft size={16} /> Back to Programs
         </Link>
       </div>
@@ -60,7 +60,7 @@ export default function OnsitePage() {
         {/* Contact to enroll */}
         <div className="text-center bg-gradient-to-r from-orange-400 to-orange-500 rounded-2xl p-10 text-white">
           <h3 className="text-2xl font-bold mb-3">Ready to Join Our Madrasah?</h3>
-          <p className="text-emerald-100 mb-6 max-w-xl mx-auto">
+          <p className="text-orange-100 mb-6 max-w-xl mx-auto">
             For onsite enrollment, hostel availability, and scheduling — contact us directly via WhatsApp or visit us in Ibadan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

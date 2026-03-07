@@ -157,7 +157,185 @@ export async function sendApplicationConfirmation({
       `,
     })
   } catch (err) {
-    // Don't block the application if email fails — just log it
     console.error('Email send error:', err)
+  }
+}
+
+export async function sendTeacherApplicationConfirmation({
+  fullName,
+  email,
+  teachingMode,
+  subjects,
+}: {
+  fullName: string
+  email: string
+  teachingMode: string
+  subjects: string
+}) {
+  try {
+    await resend.emails.send({
+      from: 'GIQMIS Admissions <onboarding@resend.dev>',
+      to: email,
+      subject: 'Teacher Application Received – Gladtidings Institute',
+      html: `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>Teacher Application Received</title>
+        </head>
+        <body style="margin:0;padding:0;background-color:#f5f5f5;font-family:Arial,sans-serif;">
+
+          <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f5f5f5;padding:40px 0;">
+            <tr>
+              <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:600px;width:100%;">
+
+                  <!-- Header -->
+                  <tr>
+                    <td style="background-color:#e67e22;padding:36px 40px;text-align:center;">
+                      <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:bold;letter-spacing:0.5px;">
+                        GLADTIDINGS INSTITUTE
+                      </h1>
+                      <p style="color:#fff3e0;margin:6px 0 0;font-size:13px;">
+                        For Qur'an Memorization & Islamic Studies for Females
+                      </p>
+                    </td>
+                  </tr>
+
+                  <!-- Green confirmation bar -->
+                  <tr>
+                    <td style="background-color:#27ae60;padding:14px 40px;text-align:center;">
+                      <p style="color:#ffffff;margin:0;font-size:14px;font-weight:bold;">
+                        ✅ Teacher Application Successfully Received
+                      </p>
+                    </td>
+                  </tr>
+
+                  <!-- Body -->
+                  <tr>
+                    <td style="padding:40px;">
+
+                      <p style="color:#333333;font-size:16px;margin:0 0 10px;">
+                        As-salāmu ʿalaykum wa rahmatullāhi wa barakātuh,
+                      </p>
+                      <p style="color:#333333;font-size:15px;margin:0 0 20px;">
+                        Dear <strong>${fullName}</strong>,
+                      </p>
+
+                      <p style="color:#555555;font-size:15px;line-height:1.7;margin:0 0 8px;">
+                        Bārak Allāhu fīki. We are pleased to inform you that your teacher application has been
+                        successfully received by <strong>Gladtidings Institute for Qur'an Memorization and
+                        Islamic Studies for Females</strong>.
+                      </p>
+
+                      <p style="color:#555555;font-size:15px;line-height:1.7;margin:0 0 24px;">
+                        We appreciate your interest in contributing to this noble mission of teaching the
+                        Qur'an and beneficial Islamic knowledge to Muslim females.
+                      </p>
+
+                      <!-- Hadith box -->
+                      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f0fdf4;border-left:4px solid #16a34a;border-radius:0 8px 8px 0;margin:0 0 24px;">
+                        <tr>
+                          <td style="padding:16px 20px;">
+                            <p style="color:#15803d;font-size:14px;font-style:italic;margin:0 0 6px;line-height:1.7;">
+                              &ldquo;The best among you are those who learn the Qur'an and teach it.&rdquo;
+                            </p>
+                            <p style="color:#16a34a;font-size:13px;font-weight:bold;margin:0;">
+                              — Prophet Muhammad ﷺ
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Application summary box -->
+                      <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#fff8f0;border:1px solid #f0c080;border-radius:8px;margin:0 0 24px;">
+                        <tr>
+                          <td style="padding:20px 24px;">
+                            <p style="color:#b45309;font-size:13px;font-weight:bold;margin:0 0 12px;text-transform:uppercase;letter-spacing:0.5px;">
+                              Application Summary
+                            </p>
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                              <tr>
+                                <td style="color:#555;font-size:14px;padding:4px 0;width:160px;">Applicant Name:</td>
+                                <td style="color:#222;font-size:14px;font-weight:bold;padding:4px 0;">${fullName}</td>
+                              </tr>
+                              <tr>
+                                <td style="color:#555;font-size:14px;padding:4px 0;">Teaching Mode:</td>
+                                <td style="color:#222;font-size:14px;font-weight:bold;padding:4px 0;">${teachingMode}</td>
+                              </tr>
+                              <tr>
+                                <td style="color:#555;font-size:14px;padding:4px 0;">Subjects:</td>
+                                <td style="color:#222;font-size:14px;font-weight:bold;padding:4px 0;">${subjects}</td>
+                              </tr>
+                              <tr>
+                                <td style="color:#555;font-size:14px;padding:4px 0;">Status:</td>
+                                <td style="padding:4px 0;">
+                                  <span style="background-color:#fff3cd;color:#856404;font-size:12px;font-weight:bold;padding:2px 10px;border-radius:20px;border:1px solid #ffc107;">
+                                    Under Review
+                                  </span>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <p style="color:#555555;font-size:15px;line-height:1.7;margin:0 0 16px;">
+                        Our team will carefully review your application and may reach out to you via
+                        WhatsApp or email for further discussion, assessment, or to share next steps,
+                        in shaa Allāh.
+                      </p>
+
+                      <p style="color:#555555;font-size:15px;line-height:1.7;margin:0 0 28px;">
+                        Please note that submission of this application does not automatically guarantee
+                        a teaching position. We will be in touch as soon as possible.
+                      </p>
+
+                      <!-- Divider -->
+                      <hr style="border:none;border-top:1px solid #eeeeee;margin:0 0 24px;" />
+
+                      <p style="color:#555555;font-size:14px;line-height:1.7;margin:0 0 6px;">
+                        Jazākillāhu khayran for your willingness to serve this community. May Allah
+                        bless your efforts and accept it as a means of benefit for the Muslims.
+                      </p>
+
+                      <p style="color:#333;font-size:14px;margin:20px 0 4px;">
+                        Warm regards,
+                      </p>
+                      <p style="color:#e67e22;font-size:14px;font-weight:bold;margin:0;">
+                        The Admissions Team
+                      </p>
+                      <p style="color:#888;font-size:13px;margin:2px 0 0;">
+                        Gladtidings Institute for Qur'an Memorization & Islamic Studies
+                      </p>
+                    </td>
+                  </tr>
+
+                  <!-- Footer -->
+                  <tr>
+                    <td style="background-color:#f9f9f9;border-top:1px solid #eeeeee;padding:20px 40px;text-align:center;">
+                      <p style="color:#aaaaaa;font-size:12px;margin:0 0 4px;">
+                        This is an automated email. Please do not reply directly to this message.
+                      </p>
+                      <p style="color:#aaaaaa;font-size:12px;margin:0;">
+                        © ${new Date().getFullYear()} Gladtidings Institute for Qur'an Memorization & Islamic Studies for Females
+                      </p>
+                    </td>
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+          </table>
+
+        </body>
+        </html>
+      `,
+    })
+  } catch (err) {
+    // Don't block the application if email fails — just log it
+    console.error('Teacher email send error:', err)
   }
 }

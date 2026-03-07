@@ -42,15 +42,15 @@ export default function ReadMoreModal({ isOpen, onClose, onEnrollNow }: Props) {
             </p>
           </div>
 
-          <div className="bg-gradient-to-r from-emerald-50 to-blue-50 p-6 rounded-xl">
+          <div className="bg-gradient-to-r from-orange-50 to-blue-50 p-6 rounded-xl">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Our Programs - برامجنا</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {READ_MORE_PROGRAMS.map(({ title, desc }, i) => {
                 const Icon = ICONS[i]
                 return (
                   <div key={title} className="flex items-start gap-3">
-                    <div className="bg-emerald-100 p-2 rounded-lg mt-1">
-                      <Icon className="w-4 h-4 text-emerald-600" />
+                    <div className="bg-orange-100 p-2 rounded-lg mt-1">
+                      <Icon className="w-4 h-4 text-orange-600" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800">{title}</h4>
@@ -88,7 +88,7 @@ export default function ReadMoreModal({ isOpen, onClose, onEnrollNow }: Props) {
 
           <div className="flex gap-4 pt-4 border-t">
             <button onClick={onEnrollNow}
-              className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors font-semibold flex items-center justify-center gap-2">
+              className="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-semibold flex items-center justify-center gap-2">
               Enroll Now <ArrowRight className="w-5 h-5" />
             </button>
             <button onClick={onClose}

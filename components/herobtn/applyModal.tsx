@@ -39,9 +39,9 @@ export default function ApplyModal({
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${enrollmentOpen ? 'bg-emerald-100' : 'bg-amber-100'}`}>
+            <div className={`p-2 rounded-lg ${enrollmentOpen ? 'bg-orange-100' : 'bg-amber-100'}`}>
               {enrollmentOpen
-                ? <GraduationCap className="w-6 h-6 text-emerald-600" />
+                ? <GraduationCap className="w-6 h-6 text-orange-600" />
                 : <BellRing className="w-6 h-6 text-amber-600" />}
             </div>
             <div>
@@ -105,12 +105,12 @@ export default function ApplyModal({
                     )}
                     {step < totalSteps ? (
                       <button type="button" onClick={onNext}
-                        className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
+                        className="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
                         Next <ArrowRight className="w-5 h-5" />
                       </button>
                     ) : (
                       <button type="submit"
-                        className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
+                        className="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
                         Submit Application <ArrowRight className="w-5 h-5" />
                       </button>
                     )}

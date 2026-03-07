@@ -4,7 +4,7 @@ export const testimonials = [
     name: "Fatimah Adebayo",
     program: "Quran Memorization",
     year: "2023",
-    color: "bg-emerald-500",
+    color: "bg-orange-500",
     quote:
       "This scholarship changed my life. I was able to complete my Hifdh program without my family worrying about the fees. May Allah reward every sponsor abundantly.",
   },

@@ -26,7 +26,7 @@ export default function LegalStatus() {
             {/* Thumbnail */}
             <button
               onClick={() => setShowModal(true)}
-              className="relative w-36 h-48 flex-shrink-0 rounded-xl overflow-hidden border-2 border-emerald-200 dark:border-emerald-800 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 group"
+              className="relative w-36 h-48 flex-shrink-0 rounded-xl overflow-hidden border-2 border-orange-200 dark:border-orange-800 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 group"
             >
               <Image
                 src="/cac-certificate.jpg"
@@ -66,7 +66,7 @@ export default function LegalStatus() {
               <div className="mt-1">
                 <button
                   onClick={() => setShowModal(true)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold rounded-lg transition-colors"
                 >
                   <ShieldCheck size={15} /> View Certificate
                 </button>

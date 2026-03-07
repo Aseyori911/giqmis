@@ -53,8 +53,8 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
 
   return (
     <div className="space-y-5">
-      <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-        <p className="text-sm text-emerald-800">
+      <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+        <p className="text-sm text-orange-800">
           <strong>Step 4 of 4 — Preferences & Agreement</strong>
         </p>
       </div>
@@ -67,7 +67,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
             <button key={opt} type="button" onClick={() => set('preferredLearningStyle', opt)}
               className={`py-3 px-4 rounded-lg border-2 font-semibold text-sm transition-colors text-left
                 ${formData.preferredLearningStyle === opt
-                  ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
+                  ? 'border-orange-500 bg-orange-50 text-orange-700'
                   : 'border-gray-200 text-gray-500 hover:border-gray-300'}`}>
               {opt}
             </button>
@@ -82,7 +82,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
           <Heart className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
           <textarea name="goals" value={formData.goals} onChange={onChange} rows={3}
             placeholder="Describe your learning goals..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none text-gray-700 placeholder-gray-400"
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none resize-none text-gray-700 placeholder-gray-400"
             required />
         </div>
       </div>
@@ -94,7 +94,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
           <BookOpen className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
           <textarea name="whyInterestedInSchool" value={formData.whyInterestedInSchool}
             onChange={onChange} rows={3} placeholder="Tell us why you want to join..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none text-gray-700 placeholder-gray-400" />
+            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none resize-none text-gray-700 placeholder-gray-400" />
         </div>
       </div>
 
@@ -108,11 +108,11 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
             onClick={() => setFormData(p => ({ ...p, classType: 'general', privateClassSlots: [] }))}
             className={`w-full text-left px-4 py-4 rounded-xl border-2 transition-colors
               ${formData.classType === 'general'
-                ? 'border-emerald-500 bg-emerald-50'
-                : 'border-gray-200 hover:border-emerald-300'}`}>
+                ? 'border-orange-500 bg-orange-50'
+                : 'border-gray-200 hover:border-orange-300'}`}>
             <div className="flex items-center gap-3 mb-2">
-              <Users className={`w-5 h-5 flex-shrink-0 ${formData.classType === 'general' ? 'text-emerald-600' : 'text-gray-400'}`} />
-              <span className={`font-semibold text-sm ${formData.classType === 'general' ? 'text-emerald-700' : 'text-gray-700'}`}>
+              <Users className={`w-5 h-5 flex-shrink-0 ${formData.classType === 'general' ? 'text-orange-600' : 'text-gray-400'}`} />
+              <span className={`font-semibold text-sm ${formData.classType === 'general' ? 'text-orange-700' : 'text-gray-700'}`}>
                 General Class
               </span>
             </div>
@@ -131,12 +131,12 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
             onClick={() => setFormData(p => ({ ...p, classType: 'private' }))}
             className={`w-full text-left px-4 py-4 rounded-xl border-2 transition-colors
               ${formData.classType === 'private'
-                ? 'border-emerald-500 bg-emerald-50'
-                : 'border-gray-200 hover:border-emerald-300'}`}>
+                ? 'border-orange-500 bg-orange-50'
+                : 'border-gray-200 hover:border-orange-300'}`}>
             <div className="flex items-center gap-3">
-              <User className={`w-5 h-5 flex-shrink-0 ${formData.classType === 'private' ? 'text-emerald-600' : 'text-gray-400'}`} />
+              <User className={`w-5 h-5 flex-shrink-0 ${formData.classType === 'private' ? 'text-orange-600' : 'text-gray-400'}`} />
               <div>
-                <span className={`font-semibold text-sm ${formData.classType === 'private' ? 'text-emerald-700' : 'text-gray-700'}`}>
+                <span className={`font-semibold text-sm ${formData.classType === 'private' ? 'text-orange-700' : 'text-gray-700'}`}>
                   Private Class
                 </span>
                 <p className="text-xs text-gray-400 mt-0.5">
@@ -155,7 +155,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
             <div className={`text-xs font-semibold px-3 py-2 rounded-lg
               ${slotCount < 2 ? 'bg-amber-50 text-amber-700' :
                 slotCount === 3 ? 'bg-blue-100 text-blue-700' :
-                'bg-emerald-50 text-emerald-700'}`}>
+                'bg-orange-50 text-orange-700'}`}>
               {slotCount === 0 && "Add at least 2 and at most 3 class slots"}
               {slotCount === 1 && "Add 1 more slot (minimum 2 required)"}
               {slotCount === 2 && `${slotCount} slots added ✓ (you may add 1 more)`}
@@ -165,10 +165,10 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
             {/* Added slots */}
             {formData.privateClassSlots.map(slot => (
               <div key={slot.day}
-                className="flex items-center justify-between bg-white border border-emerald-200 rounded-lg px-3 py-2.5">
+                className="flex items-center justify-between bg-white border border-orange-200 rounded-lg px-3 py-2.5">
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                  <span className="text-sm font-semibold text-emerald-700">{slot.day}</span>
+                  <Clock className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-orange-700">{slot.day}</span>
                   <span className="text-sm text-gray-500">— {slot.time}</span>
                 </div>
                 <button type="button" onClick={() => removeSlot(slot.day)}
@@ -185,7 +185,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
                   <select
                     value={pendingDay}
                     onChange={e => { setPendingDay(e.target.value); setSlotError('') }}
-                    className="px-3 py-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:border-emerald-500 bg-white text-gray-700">
+                    className="px-3 py-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:border-orange-500 bg-white text-gray-700">
                     <option value="">Select day</option>
                     {DAYS_OF_WEEK.filter(d => !formData.privateClassSlots.some(s => s.day === d)).map(d => (
                       <option key={d} value={d}>{d}</option>
@@ -196,7 +196,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
                     value={pendingTime}
                     onChange={e => { setPendingTime(e.target.value); setSlotError('') }}
                     placeholder="e.g. 4:00 PM NGT"
-                    className="px-3 py-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:border-emerald-500 text-gray-700"
+                    className="px-3 py-2.5 border border-gray-300 rounded-lg text-sm outline-none focus:border-orange-500 text-gray-700"
                   />
                 </div>
                 {slotError && (
@@ -205,7 +205,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
                   </div>
                 )}
                 <button type="button" onClick={addSlot}
-                  className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors">
+                  className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold rounded-lg transition-colors">
                   <Plus size={14} /> Add Slot
                 </button>
               </div>
@@ -233,7 +233,7 @@ export default function StepFour({ formData, onChange, setFormData }: Props) {
               className={`flex-1 py-3 rounded-lg border-2 font-semibold text-sm transition-colors
                 ${formData.agreeToTerms === opt
                   ? opt === "Yes"
-                    ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
+                    ? 'border-orange-500 bg-orange-50 text-orange-700'
                     : 'border-red-400 bg-red-50 text-red-600'
                   : 'border-gray-200 text-gray-500 hover:border-gray-300'}`}>
               {opt}

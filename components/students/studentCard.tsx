@@ -27,7 +27,7 @@ export default function StudentCard({ student, onView }: { student: Student; onV
       {courses.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-3">
           {courses.slice(0, 2).map((c, i) => (
-            <span key={i} className="px-2 py-0.5 bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-semibold rounded-full">{c}</span>
+            <span key={i} className="px-2 py-0.5 bg-orange-50 border border-orange-100 text-orange-700 text-[10px] font-semibold rounded-full">{c}</span>
           ))}
           {courses.length > 2 && (
             <span className="px-2 py-0.5 bg-stone-100 text-stone-500 text-[10px] font-semibold rounded-full">+{courses.length - 2}</span>

@@ -8,6 +8,7 @@ import {
   LogOut,
   Menu,
   X,
+  BookOpen,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,15 +17,13 @@ import Image from "next/image";
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/admin" },
   { label: "Applications", icon: FileText, href: "/admin/applications" },
+  { label: "Teacher Applications", icon: BookOpen, href: "/admin/teacher-applications" },
   { label: "Students", icon: Users, href: "/admin/student" },
   { label: "Announcements", icon: Megaphone, href: "/admin/announcements" },
   { label: "Settings", icon: Settings, href: "/admin/settings" },
 ];
 
 const bg = "linear-gradient(180deg, #1f1f23 0%, #2c2c33 100%)";
-
-
-
 
 function NavContent({
   pathname,
@@ -130,7 +129,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* ── Mobile top bar (hidden on lg+) ── */}
+      {/* Mobile top bar */}
       <div
         className="lg:hidden fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 py-3 border-b border-white/5"
         style={{ background: "#071510" }}
@@ -150,8 +149,6 @@ export default function Sidebar() {
             GLADTIDINGS
           </span>
         </div>
-
-        {/* Hamburger toggle */}
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
           className="text-orange-300 p-1.5 rounded-lg hover:bg-white/10 transition-colors"
@@ -161,16 +158,13 @@ export default function Sidebar() {
         </button>
       </div>
 
-      {/* ── Mobile drawer (hidden on lg+) ── */}
+      {/* Mobile drawer */}
       {mobileOpen && (
         <div
           className="lg:hidden fixed inset-0 z-50 flex"
           onClick={() => setMobileOpen(false)}
         >
-          {/* Backdrop */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-
-          {/* Drawer panel */}
           <div
             className="relative z-10 w-60 h-full flex flex-col"
             style={{ background: bg }}
@@ -182,25 +176,17 @@ export default function Sidebar() {
             >
               <X size={18} />
             </button>
-            <NavContent
-              pathname={pathname}
-              onNav={handleNav}
-              onLogout={handleLogout}
-            />
+            <NavContent pathname={pathname} onNav={handleNav} onLogout={handleLogout} />
           </div>
         </div>
       )}
 
-      {/* ── Desktop fixed sidebar (hidden below lg) ── */}
+      {/* Desktop sidebar */}
       <aside
         className="hidden lg:flex flex-col w-60 fixed top-0 left-0 h-screen z-30 border-r border-white/5"
         style={{ background: bg }}
       >
-        <NavContent
-          pathname={pathname}
-          onNav={handleNav}
-          onLogout={handleLogout}
-        />
+        <NavContent pathname={pathname} onNav={handleNav} onLogout={handleLogout} />
       </aside>
     </>
   );

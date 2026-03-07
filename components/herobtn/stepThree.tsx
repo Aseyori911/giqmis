@@ -45,12 +45,12 @@ export default function StepThree({ formData, setFormData, activeCourses, min = 
       ? 'bg-amber-50 text-amber-700'
       : count === max
       ? 'bg-blue-50 text-blue-700'
-      : 'bg-emerald-50 text-emerald-700'
+      : 'bg-orange-50 text-orange-700'
 
   return (
     <div className="space-y-5">
-      <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-        <p className="text-sm text-emerald-800"><strong>Step 3 of 4 — Course Selection</strong></p>
+      <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+        <p className="text-sm text-orange-800"><strong>Step 3 of 4 — Course Selection</strong></p>
       </div>
 
       <div>
@@ -73,11 +73,11 @@ export default function StepThree({ formData, setFormData, activeCourses, min = 
                 return (
                   <button key={course} type="button" onClick={() => handleCourseToggle(course)} disabled={maxReached}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg border-2 text-sm font-medium text-left transition-colors
-                      ${selected ? 'border-emerald-500 bg-emerald-50 text-emerald-700' :
+                      ${selected ? 'border-orange-500 bg-orange-50 text-orange-700' :
                         maxReached ? 'border-gray-100 bg-gray-50 text-gray-300 cursor-not-allowed' :
-                        'border-gray-200 text-gray-600 hover:border-emerald-300 hover:bg-emerald-50/50'}`}>
+                        'border-gray-200 text-gray-600 hover:border-orange-300 hover:bg-orange-50/50'}`}>
                     <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border-2 transition-colors
-                      ${selected ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300'}`}>
+                      ${selected ? 'bg-orange-500 border-orange-500' : 'border-gray-300'}`}>
                       {selected && <CheckSquare className="w-3 h-3 text-white" />}
                     </div>
                     {course}

@@ -10,14 +10,14 @@ type Props = {
   onClose: () => void
 }
 
-const inputClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+const inputClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
 const labelClass = "block text-sm font-semibold text-gray-700 mb-1"
 
 export default function WaitlistForm({ waitlistData, onChange, onSubmit, onCancel, isSubmitted, onClose }: Props) {
   if (isSubmitted) return (
     <div className="text-center py-12">
-      <div className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-        <BellRing className="w-10 h-10 text-emerald-600" />
+      <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+        <BellRing className="w-10 h-10 text-orange-600" />
       </div>
       <h3 className="text-2xl font-bold text-gray-800 mb-2">You&apos;re on the list!</h3>
       <p className="text-gray-500 text-sm max-w-sm mx-auto">
@@ -72,7 +72,7 @@ export default function WaitlistForm({ waitlistData, onChange, onSubmit, onCance
             Cancel
           </button>
           <button type="submit"
-            className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
+            className="flex-1 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors">
             <BellRing className="w-4 h-4" /> Notify Me When Open
           </button>
         </div>

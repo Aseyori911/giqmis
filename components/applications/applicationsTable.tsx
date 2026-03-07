@@ -83,7 +83,7 @@ export default function ApplicationsTable({ apps, loading, search, filterStatus,
                     {courses.length > 0 ? (
                       <>
                         {courses.slice(0, 2).map((c, i) => (
-                          <span key={i} className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-semibold rounded border border-emerald-100">
+                          <span key={i} className="px-1.5 py-0.5 bg-orange-50 text-orange-700 text-[10px] font-semibold rounded border border-orange-100">
                             {c}
                           </span>
                         ))}

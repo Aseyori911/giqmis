@@ -6,15 +6,15 @@ type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void
 }
 
-const inputClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
-const selectClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none bg-white text-gray-700"
+const inputClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
+const selectClass = "w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none bg-white text-gray-700"
 const labelClass = "block text-sm font-semibold text-gray-700 mb-1"
 
 export default function StepOne({ formData, onChange }: Props) {
   return (
     <div className="space-y-5">
-      <div className="bg-emerald-50 p-4 rounded-lg border-l-4 border-emerald-500">
-        <p className="text-sm text-emerald-800"><strong>Step 1 of 4 — Personal Information</strong></p>
+      <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+        <p className="text-sm text-orange-800"><strong>Step 1 of 4 — Personal Information</strong></p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div>
