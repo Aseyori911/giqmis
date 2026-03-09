@@ -18,10 +18,10 @@ export default function HeroBanner() {
         <div className="flex justify-center gap-4 flex-wrap">
           <Link
             href={`/${locale}/sponsor-details`}
-            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-5 rounded-full font-semibold transition-colors">
+            className="bg-white hover:bg-orange-600 text-orange-600 px-8 py-5 rounded-full font-semibold transition-colors">
             {t('pageTitle')}
           </Link>
-          <div className="rounded-full bg-white px-8 py-3 hover:bg-gray-100 font-semibold transition-colors">
+          <div className="rounded-full bg-orange-500 hover:bg-orange-600 px-8 py-3 hover:bg-gray-100 font-semibold transition-colors">
             <Registerbtn />
           </div>
         </div>

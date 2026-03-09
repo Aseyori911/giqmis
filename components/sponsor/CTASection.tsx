@@ -1,10 +1,11 @@
 'use client'
 
 import Link from "next/link";
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function CTASection() {
   const t = useTranslations('sponsor')
+  const locale = useLocale()
 
   return (
     <section className="py-20 bg-orange-500 text-white text-center">
@@ -12,7 +13,7 @@ export default function CTASection() {
         <h3 className="text-3xl font-bold mb-4">{t('ctaTitle')}</h3>
         <p className="mb-8 max-w-2xl mx-auto">{t('ctaSubtitle')}</p>
         <Link
-          href="#sponsor-form"
+                      href={`/${locale}/sponsor-details`}
           className="inline-block px-8 py-3 bg-white text-orange-500 font-bold rounded-lg hover:bg-orange-50 transition-colors">
           {t('ctaBtn')}
         </Link>

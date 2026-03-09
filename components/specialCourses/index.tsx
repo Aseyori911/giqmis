@@ -147,9 +147,9 @@ export default function SpecialCourse() {
     <div>
       <button
         onClick={() => setShowApplyModal(true)}
-        className="inline-block bg-white text-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+        className="flex items-center gap-2 text-white bg-orange-500 px-8 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors"
       >
-        Enroll Today
+        Enroll Today <ArrowRight size={15} />
       </button>
 
       <Modal isOpen={showApplyModal} onClose={closeModal}>

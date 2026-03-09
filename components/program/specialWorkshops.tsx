@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { ArrowRight, ChevronLeft, ChevronRight, X, Target } from 'lucide-react'
 import { SPECIAL_WORKSHOPS } from './data'
+import SpecialCourse from '../specialCourses'
 
 type Workshop = typeof SPECIAL_WORKSHOPS.workshops[number]
 
@@ -72,15 +73,16 @@ function WorkshopModal({ workshop, onClose, onEnroll }: {
           )}
         </div>
 
-        <div className="px-6 py-4 border-t border-stone-100 dark:border-stone-800 flex gap-3">
+        <div className="px-6 py-4 border-t border-stone-100 dark:border-stone-800 flex gap-4">
           <button onClick={onClose}
             className="flex-1 py-2.5 border border-stone-200 dark:border-stone-700 text-stone-500 dark:text-stone-400 hover:bg-stone-50 dark:hover:bg-stone-800 text-sm font-semibold rounded-lg transition-colors">
             Close
           </button>
-          <button onClick={() => { onClose(); onEnroll() }}
+          {/* <button onClick={() => { onClose(); onEnroll() }}
             className="flex-1 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center gap-2">
             Enroll Now <ArrowRight size={15} />
-          </button>
+          </button> */}
+            <SpecialCourse />
         </div>
       </div>
     </div>
@@ -190,7 +192,7 @@ export default function SpecialWorkshops({ onEnroll }: { onEnroll: () => void })
         </div>
 
         {/* Enroll options */}
-        <div className="bg-white dark:bg-stone-800 rounded-2xl border border-gray-200 dark:border-stone-700 p-8 mb-10">
+        {/* <div className="bg-white dark:bg-stone-800 rounded-2xl border border-gray-200 dark:border-stone-700 p-8 mb-10">
           <p className="text-center text-slate-600 dark:text-stone-400 mb-6 text-sm">
             Choose any one workshop that suits your current needs.
           </p>
@@ -211,7 +213,7 @@ export default function SpecialWorkshops({ onEnroll }: { onEnroll: () => void })
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Benefits */}
         <div className="bg-white dark:bg-stone-800 rounded-xl border border-gray-200 dark:border-stone-700 p-6">

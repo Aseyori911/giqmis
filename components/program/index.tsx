@@ -3,7 +3,7 @@
 import HeroBanner from './heroBanner'
 import ProgramIntro from './programIntro'
 import TeachingMethod from './teachingMethod'
-import ProgramsSlider from './programsSlider'
+// import ProgramsSlider from './programsSlider'
 import CurriculumSection from './curriculumSection'
 import ArabicOnlineCourse from './arabicOnlineCourse'
 import SpecialWorkshops from './specialWorkshops'
@@ -12,7 +12,7 @@ import CTASection from './CTASection'
 import TeacherApply from './teacherApply'
 import ScrollToTop from '../scrollToTop'
 // import MultiCourseDetails from '@/components/programbtnbig'
-import MultiCourseDetailsSmallDevice from '@/components/programbtn'
+// import MultiCourseDetailsSmallDevice from '@/components/programbtn'
 
 export default function ProgramPage() {
   return (
