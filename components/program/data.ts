@@ -1,54 +1,58 @@
 export const curriculumPoints = [
   {
-    title: "Communicative Method",
-    desc: "Learn through real-life situations and conversations",
+    title: "Qur'an Memorization",
+    desc: "Memorize with correct recitation (Tajweed) and proper understanding",
   },
   {
-    title: "Cultural Integration",
-    desc: "Connect language learning with cultural context",
+    title: "Tafsir",
+    desc: "Understanding meanings through structured study of Qur'anic interpretation",
   },
   {
-    title: "Modern Materials",
-    desc: "Up-to-date textbooks and digital resources",
+    title: "Arabic Language",
+    desc: "Language skills to facilitate comprehension of the Qur'an",
   },
   {
-    title: "Regular Assessment",
-    desc: "Track progress with constructive feedback",
+    title: "Islamic Knowledge & Ethics",
+    desc: "Practical life guidance rooted in the Qur'an and Sunnah",
+  },
+  {
+    title: "Daily Application",
+    desc: "Applying lessons in daily life, grounded in correct Islamic creed (Aqeedah)",
   },
 ];
 
 export const faqs = [
   {
-    id: "faq-1",
-    question: "What age groups do you accept for enrollment?",
+    id: 'faq-1',
+    question: 'Who can join?',
     answer:
-      "We accept students of all ages! Our programs are designed for different age groups: children (ages 5-12), teens (ages 13-17), and adults. Each program is specifically tailored to meet the learning needs and interests of that particular age group.",
+      'Females of all ages! We have courses designed specifically for different age groups, plus special programs for unique learning needs.',
   },
   {
-    id: "faq-2",
-    question: "Do I need any prior knowledge of Arabic to enroll?",
+    id: 'faq-2',
+    question: 'Do I need prior experience?',
     answer:
-      "Not at all! We welcome students of all levels, from complete beginners to advanced learners. Our placement assessment will help determine the right level for you or your child to ensure the most effective learning experience.",
+      'No! Beginners and advanced learners are welcome. Our guidance covers Qur\'an memorization, understanding, and Arabic lessons.',
   },
   {
-    id: "faq-3",
-    question: "What is your teaching approach?",
+    id: 'faq-3',
+    question: 'What courses do you offer?',
     answer:
-      "We use a communicative, interactive approach that focuses on practical language skills. Our curriculum balances reading, writing, speaking, and listening while incorporating cultural elements to provide a comprehensive Arabic language education.",
+      'We offer Age-Based Courses — structured programs tailored to different age groups focusing on Qur\'an memorization, Arabic, and Islamic knowledge — as well as Special Courses including The First Day (essential guidance for new Muslims), Qur\'an Memorization Techniques (practical strategies for easier retention), Ramadhan Reflection (lessons for spiritual growth), and Islamic Marriage Guidance (understanding the sacred bond).',
   },
   {
-    id: "faq-4",
-    question: "Do you offer online classes?",
+    id: 'faq-4',
+    question: 'Can I learn online?',
     answer:
-      "Yes, we offer both in-person and online classes to accommodate different scheduling needs and preferences. Our online classes use interactive tools and resources to create an engaging virtual learning environment.",
+      'Yes! Some courses are online or pre-recorded, so you can study from anywhere.',
   },
   {
-    id: "faq-5",
-    question: "How can I register for classes?",
+    id: 'faq-5',
+    question: 'How do I enroll?',
     answer:
-      "Registration can be completed online through our website, by phone, or in person at our school. We recommend scheduling an initial consultation to discuss your learning goals and determine the best program for you or your child.",
+      'Visit our website or contact the institute for schedules, enrollment, and course details. Start your journey today — let the Qur\'an guide you!',
   },
-];
+]
 
 // ── NEW CONTENT BELOW ──
 
@@ -361,37 +365,88 @@ export const ARABIC_ONLINE_COURSE = {
 export const SPECIAL_WORKSHOPS = {
   intro:
     "Enhance your personal and spiritual growth through our carefully designed online seminars.",
+
   workshops: [
     {
-      emoji: "🧠",
-      title: "Hifz Memory Mastery",
+      emoji: "📖",
+      courseKey: "quran-memorisation-techniques",
+      title: "Qur'an Memorisation Techniques",
       description:
-        "Practical memorization techniques designed to improve retention, focus, revision methods, and long-term consistency in Qur'an memorization.",
-    },
-    {
-      emoji: "💍",
-      title: "Marriage & Family Guidance",
-      description:
-        "Structured lessons on communication, responsibilities, Islamic family values, and building a peaceful home.",
-    },
-    {
-      emoji: "🌙",
-      title: "Ramadan Reflections",
-      description:
-        "Guided reflections, worship planning, and practical lessons to help you maximize spiritual growth during Ramadan.",
+        "Equips students with practical strategies to memorise the Qur'an more effectively, retain it longer, and revise with confidence using proven, structured methods.",
+      fullDescription:
+        "Many students struggle not because they lack ability, but because they have not yet learned the right memorisation methods. Students will be introduced to proven techniques that make Qur'an memorisation more organised, focused, and manageable.",
+      keyLearning: [
+        "Memory Palace Method – mentally organising verses using visual associations for easier recall",
+        "Semantic & Meaning-Based Memorisation – understanding themes and key words to strengthen memory",
+        "Structured Repetition – repeating verses in a way that improves long-term retention",
+        "Verse Linking Techniques – connecting verses so recitation flows smoothly",
+        "Layered Revision System – combining new and older portions for stronger recall",
+        "Focus & Concentration Skills – practical tips to improve attention during memorisation",
+        "Avoiding Common Hifz Mistakes – identifying and correcting errors that slow progress",
+        "Confidence in Recitation – reciting memorised portions with clarity and accuracy",
+        "Active Recall & Association Techniques – using creative linking and testing to reinforce memory",
+      ],
+      goal: "To equip students with effective, advanced memorisation tools that make the journey of Hifz structured, consistent, and spiritually rewarding.",
     },
     {
       emoji: "🌱",
-      title: "Introduction for New Muslims",
+      courseKey: "the-first-day",
+      title: "The First Day",
       description:
-        "A supportive foundational course covering Islamic beliefs, prayer basics, daily practices, and essential guidance for new Muslims.",
+        "A warm welcome course designed to guide new Muslims through essential knowledge, practices, and mindset needed on the very first day of embracing Islam.",
+      fullDescription:
+        "Whether you're taking your first steps in prayer, learning basic supplications, or discovering the meaning behind key Islamic teachings, The First Day equips you with the foundational knowledge to grow steadily in your faith. Start your journey with guidance, understanding, and ease.",
+      keyLearning: [
+        "Understanding the core beliefs of Islam",
+        "Learning simple daily practices and supplications",
+        "Taking your first steps in prayer",
+        "Discovering the meaning behind key Islamic teachings",
+        "Building confidence, clarity, and support from day one",
+        "Growing steadily in faith with a strong foundation",
+      ],
+      goal: "To ensure that every new Muslim starts their journey with confidence, clarity, and the foundational knowledge to grow steadily in their faith.",
+    },
+    {
+      emoji: "💍",
+      courseKey: "sacred-bond-marriage",
+      title: "A Sacred Bond: Marriage in Islam",
+      description:
+        "Explores what Islam teaches about marriage — the sacred bond between spouses, responsibilities of husband and wife, and principles that ensure harmony, justice, and mutual respect.",
+      fullDescription:
+        "Drawing insights from The Muslim Family by Muhammad Al-Jibaly, this course provides a clear understanding of the conditions, rules, and regulations governing marriage, including consent, rights, and duties, as well as the ethical and spiritual foundations that make marriage a cornerstone of a healthy Muslim society.",
+      keyLearning: [
+        "The spiritual and practical aspects of Islamic marriage",
+        "Conditions, rules, and regulations governing marriage",
+        "Rights and duties of both husband and wife",
+        "Principles of harmony, justice, and mutual respect",
+        "Consent and ethical foundations of marriage",
+        "Building a strong, faith-centred relationship",
+        "The family as a cornerstone of a healthy Muslim society",
+      ],
+      goal: "To provide a clear, Islamic understanding of marriage — its rights, responsibilities, and the spiritual foundations that build a strong, harmonious family.",
+    },
+    {
+      emoji: "🌙",
+      courseKey: "ramadan-reflections",
+      title: "Ramadan Reflections",
+      description:
+        "Guided reflections, worship planning, and practical lessons to deepen your spiritual experience during Ramadan and carry its lessons into everyday life.",
+      fullDescription:
+        "Ramadan is a sacred month of spiritual renewal and self-discipline. Beyond fasting, it is a time for reflection, prayer, and deep connection with Allah. It reminds us to practise patience, empathy, and gratitude, and to seek forgiveness while nurturing kindness in our hearts. This is a season to pause, evaluate our actions, and strengthen our faith.",
+      keyLearning: [
+        "Deepening your connection with Allah through reflection and prayer",
+        "Planning and maximising worship during Ramadan",
+        "Practising patience, empathy, and gratitude",
+        "Seeking forgiveness and nurturing kindness",
+        "Evaluating actions and strengthening faith",
+        "Carrying the spirit of Ramadan — devotion, compassion, mindfulness — into every day",
+      ],
+      goal: "To deepen your spiritual experience during Ramadan and carry its lessons of gratitude, discipline, and mindfulness into everyday life.",
     },
   ],
+
   benefits: [
-    {
-      emoji: "📖",
-      text: "Self-paced learning – Study at your own convenience",
-    },
+    { emoji: "📖", text: "Self-paced learning – Study at your own convenience" },
     { emoji: "🎥", text: "Structured recorded lessons" },
     { emoji: "📝", text: "Reflection activities & practical exercises" },
     { emoji: "📊", text: "Simple assessments for progress tracking" },

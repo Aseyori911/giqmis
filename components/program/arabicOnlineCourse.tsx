@@ -11,7 +11,7 @@ export default function ArabicOnlineCourse() {
 
   return (
     <>
-      <section className="py-20 bg-gray-50 dark:bg-stone-950 transition-colors">
+      <section className="py-10 bg-gray-50 dark:bg-stone-950 transition-colors">
         <div className="max-w-4xl mx-auto px-4">
 
           {/* Header */}
